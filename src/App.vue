@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <StoreHeader/>
-    <StoreSideBar v-bind:catagories="catagories"/>
+    <StoreSideBar v-bind:genres="genres"/>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   },
   data(){
     return {
-      catagories: [
+      genres: [
         {
           name: "Drama",
           id: 1

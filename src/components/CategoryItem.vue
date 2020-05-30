@@ -2,9 +2,9 @@
   <li>
     <a>
       <p>
-        <label>
+        <label class="left">
           <input type="checkbox" class="filled-in checkbox-orange" />
-          <span>{{catagory.name}}</span>
+          <span>{{genre.name}}</span>
         </label>
       </p>
     </a>
@@ -13,13 +13,13 @@
 
 <script>
 export default {
-  name: "CatagoryItem",
-  props: ["catagory"]
+  name: "CategoryItem",
+  props: ["genre"]
 };
 </script>
 
 <style scoped>
-.checkbox-orange[type="checkbox"].filled-in:checked + label:after {
+.checkbox-orange[type="checkbox"].filled-in:checked + span:after {
   border: 2px solid #ff9800 !important;
   background-color: #ff9800 !important;
 }
