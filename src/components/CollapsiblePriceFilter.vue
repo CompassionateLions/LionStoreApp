@@ -6,8 +6,8 @@
         <div class="collapsible-body">
           <div class="price-slider"></div>
           <div class="price-box row input-field">
-            <input class="col s2 left price-value" v-model="priceMin" type="text" />
-            <input class="col s2 right price-value" v-model="priceMax" type="text" />
+            <input class="col s2 left price-value" v-on:change="updateSlider" v-model="priceMin" type="number" />
+            <input class="col s2 right price-value" v-on:change="updateSlider" v-model="priceMax" type="number" />
           </div>
         </div>
       </li>
@@ -43,13 +43,17 @@ export default {
         }
       });
 
-      slider.noUiSlider.on("update", this.updateSlider);
+      slider.noUiSlider.on("update", this.updateTextboxes);
 
     },
-    updateSlider(e) {
+    updateTextboxes(e) {
       this.priceMin = Math.round(e[0]);
       this.priceMax = Math.round(e[1]);
       console.log(e)
+    },
+    updateSlider(){
+      const slider = document.querySelector(".price-slider");
+      slider.noUiSlider.set([this.priceMin, this.priceMax]);
     }
   },
   mounted() {
