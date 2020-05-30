@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "storeuser",
+    "password": null,
+    "database": "database_development",
+    "host": "61.245.145.87",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "storeuser",
+    "password": null,
+    "database": "database_test",
+    "host": "61.245.145.87",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "storeuser",
+    "password": null,
+    "database": "database_production",
+    "host": "61.245.145.87",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}
