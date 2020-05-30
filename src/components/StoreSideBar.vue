@@ -1,30 +1,41 @@
 <template>
   <div class="sidebar">
     <ul id="slide-out" class="sidenav sidenav-fixed">
-      <div v-bind:key="catagory.id" v-for="catagory in catagories">
-        <CatagoryItem v-bind:catagory="catagory" />
-      </div>
+        <!-- Filter title -->
+        <SearchBox/>
+        <CollapsibleGenreFilter v-bind:genres="genres" class="filter-item"/>
+        <CollapsiblePriceFilter  class="filter-item"/>
+      
     </ul>
-    <a href="#" data-target="slide-out" class="sidenav-trigger">
+    <a href="#" data-target="slide-out" class="sidenav-trigger left">
       <i class="material-icons">menu</i>
     </a>
   </div>
 </template>
 
 <script>
-import CatagoryItem from "./CatagoryItem.vue";
+import SearchBox from "./SearchBox.vue";
+import CollapsibleGenreFilter from "./CollapsibleGenreFilter";
+import CollapsiblePriceFilter from "./CollapsiblePriceFilter";
 
 export default {
   name: "StoreSideBar",
-  props: ["catagories"],
+  props: ["genres"],
   components: {
-    CatagoryItem
+    SearchBox,
+    CollapsibleGenreFilter,
+    CollapsiblePriceFilter
   }
 };
 </script>
 
 <style  scoped>
 .sidenav-fixed {
-    padding-top: 64px;
+    padding-top: 100px;
+}
+
+.filter-item{
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 </style>
