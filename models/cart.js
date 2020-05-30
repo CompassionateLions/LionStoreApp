@@ -1,8 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
     const Product = db.model('products');
-    
+
     const Cart = sequelize.define(
       "Cart", {
+        
+        id: {
+          type: DataTypes.INTEGER,
+          autoIncrement: true,
+          primaryKey: true,
+          allowNull: false
+        },
         
         quantity: {
           type: DataTypes.INTEGER,

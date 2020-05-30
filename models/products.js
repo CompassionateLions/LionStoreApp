@@ -2,6 +2,13 @@ module.exports = function(sequelize, DataTypes) {
     const Products = sequelize.define(
       "Products", {
         
+        id: {
+          type: DataTypes.INTEGER,
+          autoIncrement: true,
+          primaryKey: true,
+          allowNull: false
+        },
+        
         name: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -24,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         quantity: {
-          type: DataTypes.INTEGER, // Float? Decimal?
+          type: DataTypes.INTEGER,
           allowNull: false
         },
         
