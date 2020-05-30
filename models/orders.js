@@ -1,8 +1,10 @@
-module.exports = function(sequelize, DataTypes) {
-    const Product = db.model('products');
+const Users = db.model('users');
+const Cart = db.model('Cart');
 
-    const Cart = sequelize.define(
-      "Cart", {
+module.exports = function(sequelize, DataTypes) {
+
+    const Orders = sequelize.define(
+      "Orders", {
         
         id: {
           type: DataTypes.INTEGER,
@@ -10,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
           primaryKey: true,
           allowNull: false
         },
-
+        
         quantity: {
           type: DataTypes.INTEGER,
         },
@@ -28,16 +30,14 @@ module.exports = function(sequelize, DataTypes) {
 
         include: [Product]
         
-      }      
+      },
+      
+      Orders.associate = function(models) {
+        Orders.belongsTo(models.ProductsInOrders, {
+          as: 'productsInOrders',
+          foreignKey: 'ordersId'
+        })
+      }
     )
-    
-    Cart.associate = function(models) {
-      Cart.belongsTo(models.Users, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    }
-    
     return Cart;
   };
