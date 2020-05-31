@@ -1,46 +1,16 @@
 <template>
   <div id="app">
-    <StoreHeader/>
-    <StoreSideBar v-bind:genres="genres"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 //Import Materialize css
 
-import StoreHeader from './components/StoreHeader.vue'
-import StoreSideBar from './components/StoreSideBar.vue'
-
-
 export default {
-  name: 'App',
-  components: {
-    StoreHeader,
-    StoreSideBar
-  },
-  data(){
-    return {
-      genres: [
-        {
-          name: "Drama",
-          id: 1
-        },
-        {
-          name: "Horror",
-          id: 2
-        },
-        {
-          name: "Thriller",
-          id: 3
-        },
-        {
-          name: "Action",
-          id: 4
-        }
-      ]
-    }
-  }
+  name: 'App'
 }
+
 </script>
 
 <style>
