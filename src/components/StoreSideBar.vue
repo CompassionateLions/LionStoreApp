@@ -2,9 +2,11 @@
   <div class="sidebar">
     <ul id="slide-out" class="sidenav sidenav-fixed">
         <!-- Filter title -->
+        <h5>Filter Titles</h5>
         <SearchBox/>
         <CollapsibleGenreFilter v-bind:genres="genres" class="filter-item"/>
         <CollapsiblePriceFilter  class="filter-item"/>
+        <CollapsibleYearFilter  class="filter-item"/>
       
     </ul>
     <a href="#" data-target="slide-out" class="sidenav-trigger left">
@@ -17,6 +19,7 @@
 import SearchBox from "./SearchBox.vue";
 import CollapsibleGenreFilter from "./CollapsibleGenreFilter";
 import CollapsiblePriceFilter from "./CollapsiblePriceFilter";
+import CollapsibleYearFilter from "./CollabsibleYearFilter";
 
 export default {
   name: "StoreSideBar",
@@ -24,14 +27,15 @@ export default {
   components: {
     SearchBox,
     CollapsibleGenreFilter,
-    CollapsiblePriceFilter
+    CollapsiblePriceFilter,
+    CollapsibleYearFilter
   }
 };
 </script>
 
 <style  scoped>
 .sidenav-fixed {
-    padding-top: 100px;
+    padding-top: 70px;
 }
 
 .filter-item{
