@@ -16,6 +16,8 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "nouislider": "^14.5.0",
     "vue": "^2.6.11",
     "vue-router": "^3.3.1"
   },
