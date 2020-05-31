@@ -15,10 +15,10 @@ module.exports = function(app) {
   });
 
    // GET one Product by id
-   app.get("/api/products?:id", function(req, res) {
-    db.Products.findOne({
+   app.get("/api/products/:id", function(req, res) {
+    db.Products.findall({
         where:{
-            id:  req.params.id,
+            id: req.params.id,
         }
     }).then(function(dbProduct) {
       res.json(dbProduct);
@@ -41,15 +41,60 @@ module.exports = function(app) {
         })
     });
 
-    // Search for a specific ALLproduct
+    // Search for a specific products by tarm
     app.get("/api/products/search/products?:tarm", function(req, res) {
       db.Products.findAll({
+        where:{}
 
       }).then(function(dbProduct) {
         res.json(dbProduct);
       });
     });
 
+    // POST Product
+    app.post('api/carts/add', (req, res) => {
+      db.Cart.create({
+        quantity: req.body.quantity,
+        price: req.body.price,
+        instanceSubtotal: req.body.instanceSubtotal
+      })
+        .then(newCart => {
+          res.json(newCart);
+        })
+    });
 
+//Create New user
+    app.post('api/user', (req, res) => {
+      db.User.create({
+        email: req.body.email,
+        password: req.body.password,
+      })
+        .then(newUser => {
+          res.json(newUser);
+        })
+    });
+
+//DELETE Cart
+app.delete('/api/cart/:id', (req, res) => {
+    db.Cart.destroy({
+      where: { id: req.params.id}
+    })
+      .then(deletecart => {
+        res.json(deletecart);
+      });
+  });
+
+  //POST Order Create
+  app.post('api/order/create', (req, res) => {
+    db.User.create({
+      quantity: req.body.quantity,
+      price: req.body.price,
+      instanceSubtotal: req.body. instanceSubtotal
+
+    })
+      .then(newOrder => {
+        res.json(newOrder);
+      })
+  });
 
 }

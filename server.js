@@ -1,9 +1,12 @@
 //Dependencies
-var express = require("express");
+const express = require('express');
+const bodyParser = require('body-parser')
 
 // Sets up the Express App
-var app = express();
-var PORT = process.env.PORT || 8080;
+const app = express();
+app.use(bodyParser.json())
+
+const PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 var db = require("./models");
