@@ -15,18 +15,16 @@ module.exports = function(sequelize, DataTypes) {
         },
         
         image_url: {
-          type: DataTypes.ARRAY (Datatypes.STRING),
-          defaultValue: [],
-          get: function () {
-            if(this.getDataValue('imageUrls').length === 0) {
-              return ['/defaultproduct.jpg'];
-            }
-            return this.getDataValue('imageUrls');
-          },
+          type: DataTypes.STRING
         },
         
         price: {
           type: DataTypes.INTEGER, // Float? Decimal?
+          allowNull: false
+        },
+
+        year: {
+          type: DataTypes.INTEGER,
           allowNull: false
         },
 
@@ -36,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         
 		    isAvailable: {
-			    type: Sequelize.BOOLEAN,
+			    type: DataTypes.BOOLEAN,
 			    defaultValue: true
         },
         
@@ -55,11 +53,11 @@ module.exports = function(sequelize, DataTypes) {
     // Products belong to many carts
     // Products belong to many products in orders
       
-      Products.associate = function(models) {
+      /*Products.associate = function(models) {
         Products.belongsToMany(models.Cart, { 
           as: 'cart',
           through: models.Cart,
-          foreignKey: 'cartId',
+          foreignKey: 'cartId'
          });
 
         Products.belongsToMany(models.ProductsInOrders, { 
@@ -67,7 +65,7 @@ module.exports = function(sequelize, DataTypes) {
           through: models.ProductId, 
           foreignKey: 'productId'
           })
-      }
+      }*/
     );
     return Products;
   };
