@@ -5,23 +5,33 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all Products
+  // GET all Products
   app.get("/api/products", function(req, res) {
-    // findAll returns all entries for a table when used with no options
-    db.Products.findAll({}).then(function(dbProduct) {
-      res.json(dbProduct);
+    db.Products.findAll({}).then(function(results) {
+      res.json(results);
     });
     
   });
 
    // GET one Product by id
    app.get("/api/products/:id", function(req, res) {
-    db.Products.findall({
+    db.Products.findOne({
         where:{
             id: req.params.id,
         }
-    }).then(function(dbProduct) {
-      res.json(dbProduct);
+    }).then(function(results) {
+      res.json(results);
+    });
+  });
+
+   // Get a specific product
+   app.get("/api/:products", function(req, res) {
+    db.Products.findAll({
+        where:{
+            name: req.params.Products,
+        }
+    }).then(function(results) {
+      res.json(results);
     });
   });
 
@@ -39,16 +49,6 @@ module.exports = function(app) {
         .then(newProducts => {
           res.json(newProducts);
         })
-    });
-
-    // Search for a specific products by tarm
-    app.get("/api/products/search/products?:tarm", function(req, res) {
-      db.Products.findAll({
-        where:{}
-
-      }).then(function(dbProduct) {
-        res.json(dbProduct);
-      });
     });
 
     // POST Product
@@ -77,10 +77,11 @@ module.exports = function(app) {
 //DELETE Cart
 app.delete('/api/cart/:id', (req, res) => {
     db.Cart.destroy({
-      where: { id: req.params.id}
+      where: { 
+        id: req.params.id}
     })
       .then(deletecart => {
-        res.json(deletecart);
+        res.end(deletecart);
       });
   });
 
