@@ -3,27 +3,30 @@ require("dotenv").config()
 module.exports = {
   
   "development": {
-    "username": "storeuser",
+    "username": process.env.DBUSER,
     "password": process.env.DBPASSWORD,
-    "database": "database_development",
+    "database": "storedb",
     "host": process.env.DBHOST,
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "port": process.env.DBPORT
   },
   "test": {
-    "username": "storeuser",
+    "username": process.env.DBUSER,
     "password": process.env.DBPASSWORD,
-    "database": "database_test",
+    "database": "storedb",
     "host": process.env.DBHOST,
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "port": process.env.DBPORT
   },
   "production": {
-    "username": "storeuser",
+    "username": process.env.DBUSER,
     "password": process.env.DBPASSWORD,
-    "database": "database_production",
+    "database": "storedb",
     "host": process.env.DBHOST,
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "port": process.env.DBPORT
   }
 }
