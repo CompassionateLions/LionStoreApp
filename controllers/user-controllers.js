@@ -3,7 +3,11 @@ const bcrypt = require('bcrypt');
 
 //Validate password function returns false if password not valid
 const validatePassword = (password) => {
-    return true
+    const upper = /[A-Z]+/.test(password);
+    const lower = /[a-z]+/.test(password);
+    const num = /[0-9]+/.test(password);
+
+    return password.length>=8 && upper && lower && num;
 }
 
 const validateEmail = (email) => {
