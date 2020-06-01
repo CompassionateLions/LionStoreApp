@@ -22,7 +22,6 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Cart, { as: 'cart'})
         User.hasMany(models.Orders, {as: 'orders'})
         }
-
     
     return Users;
     
