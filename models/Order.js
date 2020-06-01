@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
 
-    const Orders = sequelize.define(
-      "Orders", {
+    const Order = sequelize.define(
+      "Order", {
         
         id: {
           type: DataTypes.INTEGER,
@@ -20,10 +20,10 @@ module.exports = function(sequelize, DataTypes) {
         }
 
       },
-      
-      Orders.associate = function(models) {
-        Orders.belongsTo(models.Users, {foreignKey: 'User.Id', as: 'user', allowNull: false});
-      }
     )
-    return Orders;
+      Order.associate = function(models) {
+        Order.belongsTo(models.User, {foreignKey: 'User.Id', as: 'user', allowNull: false});
+      }
+    
+    return Order;
   };
