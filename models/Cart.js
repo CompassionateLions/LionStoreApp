@@ -2,16 +2,9 @@ module.exports = function(sequelize, DataTypes) {
    
     const Cart = sequelize.define(
       "Cart", {
-        
-        id: {
-          type: DataTypes.INTEGER,
-          autoIncrement: true,
-          primaryKey: true,
-          allowNull: false
-        },
-
         quantity: {
           type: DataTypes.INTEGER,
+          defaultValue: 1
         },
 
         price: {
@@ -22,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     )
     
     Cart.associate = function(models) {
+
     }
     
     return Cart;
