@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
 
-    const Orders = sequelize.define(
-      "Orders", {
+    const Order = sequelize.define(
+      "Order", {
         
         id: {
           type: DataTypes.INTEGER,
@@ -20,13 +20,10 @@ module.exports = function(sequelize, DataTypes) {
         }
 
       },
-      
- /*     Orders.associate = function(models) {
-        Orders.belongsTo(models.ProductsInOrders, {
-          as: 'productsInOrders',
-          foreignKey: 'ordersId'
-        })
-      }*/
     )
-    return Orders;
+      Order.associate = function(models) {
+        Order.belongsToMany(models.Product, {through: 'products_in_order'});
+      }
+    
+    return Order;
   };

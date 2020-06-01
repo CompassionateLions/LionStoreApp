@@ -18,17 +18,11 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.INTEGER, // Float? Decimal?
           allowNull: false
         }    
-        
       }      
     )
     
-   /* Cart.associate = function(models) {
-      Cart.belongsTo(models.Users, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    }*/
+    Cart.associate = function(models) {
+    }
     
     return Cart;
   };

@@ -18,10 +18,23 @@ module.exports = function(sequelize, DataTypes) {
         }
     );
 
-   /* User.associate = function(models) {
-        User.hasMany(models.Cart, { as: 'cart'})
-        User.hasMany(models.Orders, {as: 'orders'})
-        }*/
+   User.associate = function(models) {
+        User.hasMany(models.Cart, {
+            foreignKey: {
+                field: 'user_id',
+                allowNull: false,
+                onDelete: 'cascade'
+              }, 
+            as: 'Cart'
+        })
+        User.hasMany(models.Order, {
+            foreignKey: {
+                field: 'user_id',
+                allowNull: false,
+                onDelete: 'cascade'
+              }, 
+            as: 'Orders'})
+        }
     
     return User;
     
