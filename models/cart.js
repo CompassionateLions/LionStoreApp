@@ -22,13 +22,10 @@ module.exports = function(sequelize, DataTypes) {
       }      
     )
     
-   /* Cart.associate = function(models) {
-      Cart.belongsTo(models.Users, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    }*/
+    Cart.associate = function(models) {
+      Cart.belongsTo(models.Users, {foreignKey: 'User.Id', as: 'user', allowNull: false}
+     );
+    }
     
     return Cart;
   };

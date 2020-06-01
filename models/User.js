@@ -18,10 +18,10 @@ module.exports = function(sequelize, DataTypes) {
         }
     );
 
-   /* User.associate = function(models) {
-        User.hasMany(models.Cart, { as: 'cart'})
-        User.hasMany(models.Orders, {as: 'orders'})
-        }*/
+   User.associate = function(models) {
+        User.hasMany(models.Cart, {foreignKey: 'cartId', as: 'cart'})
+        User.hasMany(models.Orders, {foreignKey: 'orderId', as: 'orders'})
+        }
     
     return User;
     

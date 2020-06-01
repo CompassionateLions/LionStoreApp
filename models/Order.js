@@ -21,12 +21,9 @@ module.exports = function(sequelize, DataTypes) {
 
       },
       
- /*     Orders.associate = function(models) {
-        Orders.belongsTo(models.ProductsInOrders, {
-          as: 'productsInOrders',
-          foreignKey: 'ordersId'
-        })
-      }*/
+      Orders.associate = function(models) {
+        Orders.belongsTo(models.Users, {foreignKey: 'User.Id', as: 'user', allowNull: false});
+      }
     )
     return Orders;
   };

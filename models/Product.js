@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-    const Products = sequelize.define(
-      "Products", {
+    const Product = sequelize.define(
+      "Product", {
         
         id: {
           type: DataTypes.INTEGER,
@@ -50,22 +50,13 @@ module.exports = function(sequelize, DataTypes) {
       },
 
     // Not sure if these associates are correct...
-    // Products belong to many carts
-    // Products belong to many products in orders
+    // Product belong to many carts
+    // Product belong to many Product in orders
       
-      /*Products.associate = function(models) {
-        Products.belongsToMany(models.Cart, { 
-          as: 'cart',
-          through: models.Cart,
-          foreignKey: 'cartId'
-         });
-
-        Products.belongsToMany(models.ProductsInOrders, { 
-          as: 'permissions', 
-          through: models.ProductId, 
-          foreignKey: 'productId'
-          })
-      }*/
+      Product.associate = function(models) {
+        Product.belongsToMany(models.User, {through: 'Cart', foreignKey: 'cartId', as: 'product'});
+        Product.belongsToMany(models.Order, {through: 'ProductsInOrder', foreignKey: 'productsinorderId', as: 'product'})
+      }
     );
-    return Products;
+    return Product;
   };
