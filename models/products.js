@@ -30,6 +30,11 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: false
         },
 
+        year: {
+          type: DataTypes.INTEGER,
+          allowNull: false
+        },
+
         quantity: {
           type: DataTypes.INTEGER,
           allowNull: false
@@ -59,7 +64,7 @@ module.exports = function(sequelize, DataTypes) {
         Products.belongsToMany(models.Cart, { 
           as: 'cart',
           through: models.Cart,
-          foreignKey: 'cartId',
+          foreignKey: 'cartId'
          });
 
         Products.belongsToMany(models.ProductsInOrders, { 
