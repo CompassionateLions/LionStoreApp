@@ -1,25 +1,28 @@
-{
+require("dotenv").config()
+
+module.exports = {
+  
   "development": {
     "username": "storeuser",
-    "password": null,
+    "password": process.env.DBPASSWORD,
     "database": "database_development",
-    "host": "61.245.145.87",
+    "host": process.env.DBHOST,
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "test": {
     "username": "storeuser",
-    "password": null,
+    "password": process.env.DBPASSWORD,
     "database": "database_test",
-    "host": "61.245.145.87",
+    "host": process.env.DBHOST,
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "production": {
     "username": "storeuser",
-    "password": null,
+    "password": process.env.DBPASSWORD,
     "database": "database_production",
-    "host": "61.245.145.87",
+    "host": process.env.DBHOST,
     "dialect": "mysql",
     "operatorsAliases": false
   }
