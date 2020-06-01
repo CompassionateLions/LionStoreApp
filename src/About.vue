@@ -1,11 +1,12 @@
 <template>
-    <li>{{catagory.name}}</li>
+    <div>
+        <h1>About</h1>
+    </div>
 </template>
 
 <script>
     export default {
-        name: "CatagoryItem",
-        props: ["catagory"]
+        
     }
 </script>
 
