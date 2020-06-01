@@ -54,8 +54,16 @@ module.exports = function(sequelize, DataTypes) {
     // Product belong to many Product in orders
       
       Product.associate = function(models) {
-        Product.belongsToMany(models.Cart, {through: 'UserCart'})
-        Product.belongsToMany(models.Order, {through: 'ProductsInOrder'})
+        Product.hasMany(models.Cart, {
+          foreignKey:{
+            field: 'product_id',
+            allowNull: false,
+            onDelete: 'cascade'
+          }, 
+          as: 'Carts',
+
+        });
+        Product.belongsToMany(models.Order, {through: 'products_in_order'});
       }
     
     return Product;

@@ -19,8 +19,21 @@ module.exports = function(sequelize, DataTypes) {
     );
 
    User.associate = function(models) {
-        User.hasMany(models.Cart, {foreignKey: 'CartId', as: 'cart'})
-        User.hasMany(models.Order, {foreignKey: 'OrderId', as: 'order'})
+        User.hasMany(models.Cart, {
+            foreignKey: {
+                field: 'user_id',
+                allowNull: false,
+                onDelete: 'cascade'
+              }, 
+            as: 'Cart'
+        })
+        User.hasMany(models.Order, {
+            foreignKey: {
+                field: 'user_id',
+                allowNull: false,
+                onDelete: 'cascade'
+              }, 
+            as: 'Orders'})
         }
     
     return User;
