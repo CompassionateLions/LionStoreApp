@@ -11,9 +11,9 @@ module.exports = function (sequelize, DataTypes) {
 
     total: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     }
-    
+
     //Address - future
   },
   )
