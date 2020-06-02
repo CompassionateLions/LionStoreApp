@@ -134,13 +134,6 @@ module.exports = {
     //Get user info route
     getUserInfo(req, res){
 
-        //If middlewear didn't add user object to req then return (shouldn't happen)
-        if(req.user === undefined) return res.status(401).json({error: "Authentication error"});
-
-        //if authed user isn't an admin then don't give them access
-        if(req.user.role !== 'admin') return res.status(403).json({error: "User not permitted"});
-
-
         const id = req.params.id;
 
         db.User.findOne({where:{id}}).then(result => {

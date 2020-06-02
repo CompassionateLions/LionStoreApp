@@ -15,7 +15,8 @@ module.exports = {
             genre: product.genre,
             actors: product.actors,
             director: product.director,
-            rating: product.director
+            rating: product.director,
+            format: product.format
         }).then(result => {
             res.status(201).json(result.dataValues);
         }).catch(error => {
@@ -50,7 +51,8 @@ module.exports = {
             genre: product.genre,
             actors: product.actors,
             director: product.director,
-            rating: product.director
+            rating: product.director,
+            format: product.format
         },{where:{id:product.id}}).then(result => {
             if(result[0] === 0)return  res.status(404).json({error: "Couldn't update anything"});
             

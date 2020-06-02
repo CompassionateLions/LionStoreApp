@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const userControllers = require("../controllers/user-controllers");
-const authMiddleWear = require("../controllers/middlewear/check-auth-middlewear");
+const {authenticateUser, checkAdmin} = require("../controllers/middlewear/check-auth-middlewear");
 
 
 // ROOT URL = "/api/users"
@@ -13,11 +13,11 @@ router.post("/signup", userControllers.signup)
 //Login
 router.post("/login", userControllers.login)
 
-//Get info of specific user. Requires adim privilledges
-router.get("/:id", authMiddleWear.authenticateUser, userControllers.getUserInfo)
+//Get info of specific user. Requires admin privilledges
+router.get("/:id", authenticateUser, checkAdmin, userControllers.getUserInfo)
 
 //Get info of the authenticated user
-router.get("/", authMiddleWear.authenticateUser, userControllers.getAuthenticatedUser);
+router.get("/", authenticateUser, userControllers.getAuthenticatedUser);
 
 
 

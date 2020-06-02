@@ -39,16 +39,17 @@ module.exports = () => {
             return Promise.all([
                 user.setOrders(order),
                 order.setProducts([product1, product2]),
-                user.setCartContents([product1, product2])
+                user.addCartContents([ product2])
+                // user.setCartContents(product2, {through: {quantity: 4}})
             ])
-        }).then(([res1, res2, res3]) => {
+        }).then(([res1, res2, res3, res4]) => {
 
-            console.log(res3);
-            console.log(res3[0][0].dataValues);
+            // console.log(res3);
+            // console.log(res3[0][0].dataValues);
 
             return db.User.findOne({where:{id:1}, include: ['CartContents']});
             // return db.Order.findAll({ where: { id: 1 }, include: ['Products'] });
         }).then(res => {
-            console.log(res.dataValues.CartContents);
+            // console.log(res.dataValues.CartContents[0].Cart);
         })
 }
