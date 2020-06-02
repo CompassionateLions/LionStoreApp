@@ -1,5 +1,12 @@
-const db = require("../models");
+//NPM Depeendencies
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+//Local dependancies
+const db = require("../models");
+
+//Loading private key from env variables
+const privateKey = process.env.JWT_PRIV_KEY;
 
 //Validate password function returns false if password not valid
 const validatePassword = (password) => {
@@ -10,12 +17,14 @@ const validatePassword = (password) => {
     return password.length>=8 && upper && lower && num;
 }
 
+//Returns false if email not a valid format
 const validateEmail = (email) => {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
     return emailRegex.test(email);
 }
 
+//Returns the hash of the inputed password
 const hashPassword = (password) => {
     return new Promise((resolve, reject) => {
         bcrypt.hash(password, 10, (err, hash) => {
@@ -26,11 +35,29 @@ const hashPassword = (password) => {
     })
 }
 
+//Returns false if passwords don't match
+const comparePasswords = (password, hash) => {
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(password, hash, (err, result) => {
+            if (err) return reject(err);
+
+            return resolve(result);
+        })
+    })
+}
+
+//Issues token
+const issueToken = (user) => {
+    return jwt.sign(user, privateKey);
+}
+
 module.exports = {
+
+    //Signup route
     signup(req, res){
         const {body:{email, password, confirmpassword}} = req;
 
-        if(!email.length || !password.length || !confirmpassword.length) return res.status(400).json({error: "Missing information"})
+        if(email === undefined || password === undefined || confirmpassword === undefined) return res.status(400).json({error: "Missing information"})
 
         if(password !== confirmpassword) return res.status(400).json({error: "Passwords don't match"});
 
@@ -48,9 +75,17 @@ module.exports = {
                 password: passwordHash
             }).then(result => {
 
-                const response = {id: result.id, email: result.email}
+                const userIdentifier = {
+                    id: result.id,
+                    email: result.email
+                }
+    
+                const token = issueToken(userIdentifier);
+    
+                userIdentifier.token = token;
+    
+                res.status(200).json(userIdentifier);
 
-                res.status(200).json(response);
             }).catch(error => {
                 res.status(500).json({error: "Error signing up"});
             })
@@ -62,10 +97,39 @@ module.exports = {
 
     },
 
+
+    //Login route
     login(req, res){
 
+        const {body: {email, password}} = req;
+
+        if(email === undefined || password === undefined) return res.status(400).json({error: "Missing information"})
+
+        db.User.findOne({where:{email}}).then(async result => {
+            const user = result.dataValues;
+
+            //If passwords don't match return error
+            if(! await comparePasswords(password, user.password)) return res.status(400).json({error: "Incorrect username or password"});
+
+
+
+            const userIdentifier = {
+                id: user.id,
+                email: user.email
+            }
+
+            const token = issueToken(userIdentifier);
+
+            userIdentifier.token = token;
+
+            res.status(200).json(userIdentifier);
+
+        }).catch(error => {
+            res.status(400).json({error: "Incorrect username or password"});
+        })
     },
     
+    //Get user info route
     getUserInfo(req, res){
         const id = req.params.id;
 
