@@ -9,12 +9,16 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false
               },
             email: {
-                type: DataTypes.STRING, //validation by passport? or here?
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             password: {
                 type: DataTypes.STRING
             },
+            role: {
+                type: DataTypes.STRING,
+                defaultValue: "user"
+            }
         }
     );
 

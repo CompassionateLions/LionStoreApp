@@ -28,7 +28,8 @@ module.exports = () => {
         }),
         db.User.create({
             email: "ben@fawcett.xyz",
-            password: "123456"
+            password: "$2b$10$E/8y9e.lVN/l1Wb6yFcohOXYi4aj5RhUTJNrzehA88hxLrJ.4E7kq",
+            role: "admin"
         }),
         db.Order.create()
     ])
