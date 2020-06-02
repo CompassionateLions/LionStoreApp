@@ -14,10 +14,13 @@ module.exports = function(sequelize, DataTypes) {
             },
             password: {
                 type: DataTypes.STRING
+<<<<<<< HEAD
             },
             role: {
                 type: DataTypes.STRING,
                 defaultValue: "user"
+=======
+>>>>>>> 260da15657de6e195f409a84e4b014f061aa1920
             }
         }
     );

@@ -46,7 +46,29 @@ module.exports = function(sequelize, DataTypes) {
         genre: {
           type: DataTypes.TEXT,
           allowNull: false
+        },
+
+        actors: {
+          type: DataTypes.TEXT,
+          allowNull: true
+        },
+
+        director: {
+          type: DataTypes.TEXT,
+          allowNull: true
+        },
+
+        format: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          defaultValue: "DVD"
+        },
+
+        rating: {
+          type: DataTypes.TEXT,
+          allowNull: true
         }
+
       }
     )
     // Not sure if these associates are correct...
