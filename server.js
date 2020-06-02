@@ -25,7 +25,7 @@ const cartRoutes = require("./routes/api-cart-routes");
 // require("./controllers/api-routes.js")(app);
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
-// app.use("/api/cart", cartRoutes);
+app.use("/api/cart", cartRoutes);
 
 
 // Syncing our sequelize models and then starting our Express app

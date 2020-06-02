@@ -36,11 +36,17 @@ module.exports = () => {
         .then(([product1, product2, user, order]) => {
             return Promise.all([
                 user.setOrders(order),
-                order.setProducts([product1, product2])
+                order.setProducts([product1, product2]),
+                user.setCartContents([product1, product2])
             ])
-        }).then(([res1, res2]) => {
-            return db.Order.findAll({ where: { id: 1 }, include: ['Products'] });
+        }).then(([res1, res2, res3]) => {
+
+            console.log(res3);
+            console.log(res3[0][0].dataValues);
+
+            return db.User.findOne({where:{id:1}, include: ['CartContents']});
+            // return db.Order.findAll({ where: { id: 1 }, include: ['Products'] });
         }).then(res => {
-            console.log(JSON.stringify(res));
+            console.log(res.dataValues.CartContents);
         })
 }
