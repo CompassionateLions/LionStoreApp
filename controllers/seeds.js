@@ -12,7 +12,8 @@ module.exports = () => {
             genre: "Comedy, Drama",
             actors: "Fernando Rey, Carole Bouquet, Ángela Molina, Julien Bertheau",
             director: "Luis Buñuel",
-            rating: "R"
+            rating: "R",
+            format: "DVD"
         }),
         db.Product.create({
             name: "The Umbrellas of Cherbourg",
@@ -24,7 +25,8 @@ module.exports = () => {
             genre: "Drama, Musical, Romance",
             actors: "Catherine Deneuve, Nino Castelnuovo, Anne Vernon, Marc Michel",
             director: "Jacques Demy",
-            rating: "PG"
+            rating: "PG",
+            format: "Blu-Ray"
         }),
         db.User.create({
             email: "ben@fawcett.xyz",
