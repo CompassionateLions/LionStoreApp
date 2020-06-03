@@ -11,14 +11,15 @@ module.exports = function (sequelize, DataTypes) {
 
     total: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false,
+      defaultValue: 0
     }
 
     //Address - future
   },
   )
   Order.associate = function (models) {
-    Order.belongsToMany(models.Product, { through: 'products_in_order', as: 'Products' });
+    Order.belongsToMany(models.Product, { through: 'Products_in_order', as: 'Products' });
   }
 
   return Order;

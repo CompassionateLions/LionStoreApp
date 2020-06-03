@@ -38,7 +38,7 @@ module.exports = () => {
         .then(([product1, product2, user, order]) => {
             return Promise.all([
                 user.setOrders(order),
-                order.setProducts([product1, product2]),
+                order.addProducts(product2,{through: {quantity: 2, price: product2.price}}),
                 user.addCartContents([ product2])
                 // user.setCartContents(product2, {through: {quantity: 4}})
             ])

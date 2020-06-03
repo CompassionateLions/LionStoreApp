@@ -71,16 +71,13 @@ module.exports = function(sequelize, DataTypes) {
 
       }
     )
-    // Not sure if these associates are correct...
-    // Product belong to many carts
-    // Product belong to many Product in orders
       
       Product.associate = function(models) {
         
         Product.belongsToMany(models.User,
           {through: 'Cart', as: 'UserCart'});
 
-        Product.belongsToMany(models.Order, {through: 'products_in_order', as: 'Orders'});
+        Product.belongsToMany(models.Order, {through: 'Products_in_order', as: 'Orders'});
       }
     
     return Product;
