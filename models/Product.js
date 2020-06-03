@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
         
         description: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: true
         },
 
         genre: {
@@ -71,21 +71,13 @@ module.exports = function(sequelize, DataTypes) {
 
       }
     )
-    // Not sure if these associates are correct...
-    // Product belong to many carts
-    // Product belong to many Product in orders
       
       Product.associate = function(models) {
-        Product.hasMany(models.Cart, {
-          foreignKey:{
-            field: 'product_id',
-            allowNull: false,
-            onDelete: 'cascade'
-          }, 
-          as: 'Carts',
+        
+        Product.belongsToMany(models.User,
+          {through: 'Cart', as: 'UserCart'});
 
-        });
-        Product.belongsToMany(models.Order, {through: 'products_in_order'});
+        Product.belongsToMany(models.Order, {through: 'Products_in_order', as: 'Orders'});
       }
     
     return Product;

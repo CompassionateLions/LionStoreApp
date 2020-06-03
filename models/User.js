@@ -9,28 +9,27 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false
               },
             email: {
-                type: DataTypes.STRING, //validation by passport? or here?
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             password: {
                 type: DataTypes.STRING
+            },
+            role: {
+                type: DataTypes.STRING,
+                defaultValue: "user"
             }
         }
     );
 
    User.associate = function(models) {
-        User.hasMany(models.Cart, {
-            foreignKey: {
-                field: 'user_id',
-                allowNull: false,
-                onDelete: 'cascade'
-              }, 
-            as: 'Cart'
+        User.belongsToMany(models.Product, {
+            through: 'Cart',
+            as: 'CartContents'
         })
         User.hasMany(models.Order, {
             foreignKey: {
                 field: 'user_id',
-                allowNull: false,
                 onDelete: 'cascade'
               }, 
             as: 'Orders'})
