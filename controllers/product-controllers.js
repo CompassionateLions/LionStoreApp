@@ -41,6 +41,8 @@ module.exports = {
     updateProduct(req, res) {
         const product = req.body;
 
+        if(product.id === undefined) return res.status(400).json({error: "Missing Information"});
+
         db.Product.update({
             name: product.name,
             image_url: product.image_url,
