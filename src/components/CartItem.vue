@@ -4,7 +4,7 @@
       <div class="col l2 m12 ">
         <li>
           <a>
-            <img :src="product.image_url" />
+            <img class="responsive-img" :src="product.image_url" />
           </a>
         </li>
       </div>
@@ -58,8 +58,6 @@ i {
   color: #f44336;
 }
 img {
-  width: 70%;
-  height: 70%;
 }
 img:hover {
   cursor: pointer;
