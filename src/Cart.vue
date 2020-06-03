@@ -6,8 +6,8 @@
         <table>
           <tr class="collection-item">
             <div two-line>
-              <div class="collection " v-bind:key="product.product_id" v-for="(product, index) in products">
-               <CartItem v-bind:product="product" v-bind:index="index" />
+              <div class="collection " v-bind:key="product.productId" v-for="(product) in products">
+               <CartItem v-bind:product="product" />
                      <div><hr></div>
               </div>
             </div>
@@ -25,28 +25,35 @@ export default {
   components: {CartItem},
   data: () => ({
     products: [
-      {
-        product_id: 1,
-        photo: "./img/movipic_2.jpg",
-        name: "Ice Cream",
-        description:
-          "Our vintage kitchen utenils delight any chef. Made of bamboo by hand",
-        price: 14.99,
-        qty: 1
-      },
-      {
-        product_id: 2,
-        photo: "https://cdn.vuetifyjs.com/images/cards/kitchen.png",
-        name: "QW cooking utensils",
-        description:
-          "Our vintage kitchen utenils delight any chef. Made of bamboo by hand",
-        price: 14.99,
-        qty: 2
-      }
-  
-
-   
-    ]
+    {
+        "productId": 1,
+        "name": "That Obscure Object of Desire",
+        "image_url": "https://m.media-amazon.com/images/M/MV5BNzY5NDZjNTEtMTVlZC00MzkxLTllNjQtZmQ5ODE3ZWQxNGM4XkEyXkFqcGdeQXVyMTMxMTY0OTQ@._V1_SX300.jpg",
+        "price": 1000,
+        "year": 1977,
+        "description": "Recounted in flashback are the romantic perils of Mathieu, a middle-aged French sophisticate as he falls for his nineteen year-old former chambermaid Conchita.",
+        "genre": "Comedy, Drama",
+        "actors": "Fernando Rey, Carole Bouquet, Ángela Molina, Julien Bertheau",
+        "director": "Luis Buñuel",
+        "format": "DVD",
+        "rating": "R",
+        "quantity": 1
+    },
+    {
+        "productId": 2,
+        "name": "The Umbrellas of Cherbourg",
+        "image_url": "https://m.media-amazon.com/images/M/MV5BMWRkNWE1ZTMtY2ZhYy00NDFjLWI3ODktNDM4ZDIwOTMzNDQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+        "price": 2000,
+        "year": 1964,
+        "description": "A young woman separated from her lover by war faces a life-altering decision.",
+        "genre": "Drama, Musical, Romance",
+        "actors": "Catherine Deneuve, Nino Castelnuovo, Anne Vernon, Marc Michel",
+        "director": "Jacques Demy",
+        "format": "Blu-Ray",
+        "rating": "PG",
+        "quantity": 1
+    }
+]
   })
 };
 </script>

@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS `lionstore_db`;
-CREATE DATABASE `lionstore_db`
+DROP DATABASE IF EXISTS `storedb`;
+CREATE DATABASE `storedb`
