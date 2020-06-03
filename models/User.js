@@ -1,3 +1,16 @@
+const bcrypt = require('bcrypt');
+
+//Returns the hash of the inputed password
+const hashPassword = (password) => {
+    return new Promise((resolve, reject) => {
+        bcrypt.hash(password, 10, (err, hash) => {
+            if(err) return reject(err);
+
+            return resolve(hash);
+        })
+    })
+}
+
 module.exports = function(sequelize, DataTypes) {
     const User = sequelize.define(
         "User", {
@@ -13,11 +26,19 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false,
             },
             password: {
-                type: DataTypes.STRING
+                type: DataTypes.STRING,
+                allowNull: false
             },
             role: {
                 type: DataTypes.STRING,
                 defaultValue: "user"
+            }
+        },
+        {
+            hooks: {
+                beforeCreate: async function(user, options){
+                    user.password = await hashPassword(user.password);
+                }
             }
         }
     );

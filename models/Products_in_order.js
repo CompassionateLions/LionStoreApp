@@ -11,7 +11,13 @@ module.exports = function(sequelize, DataTypes) {
         price: {
             type: DataTypes.INTEGER,
             defaultValue: 0,
-            allowNull: false
+            allowNull: false,
+            get(){
+              return this.getDataValue('price')/100;
+            },
+            set(dollars){
+              return this.setDataValue('price', dollars*100);
+            }
         }
       }      
     )

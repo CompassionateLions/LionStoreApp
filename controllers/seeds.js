@@ -5,7 +5,7 @@ module.exports = () => {
         db.Product.create({
             name: "That Obscure Object of Desire",
             image_url: "https://m.media-amazon.com/images/M/MV5BNzY5NDZjNTEtMTVlZC00MzkxLTllNjQtZmQ5ODE3ZWQxNGM4XkEyXkFqcGdeQXVyMTMxMTY0OTQ@._V1_SX300.jpg",
-            price: 1000,
+            price: 10.50,
             year: 1977,
             quantity: 10,
             description: "Recounted in flashback are the romantic perils of Mathieu, a middle-aged French sophisticate as he falls for his nineteen year-old former chambermaid Conchita.",
@@ -18,7 +18,7 @@ module.exports = () => {
         db.Product.create({
             name: "The Umbrellas of Cherbourg",
             image_url: "https://m.media-amazon.com/images/M/MV5BMWRkNWE1ZTMtY2ZhYy00NDFjLWI3ODktNDM4ZDIwOTMzNDQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-            price: 2000,
+            price: 12.99,
             year: 1964,
             quantity: 2,
             description: "A young woman separated from her lover by war faces a life-altering decision.",
@@ -30,7 +30,7 @@ module.exports = () => {
         }),
         db.User.create({
             email: "ben@fawcett.xyz",
-            password: "$2b$10$E/8y9e.lVN/l1Wb6yFcohOXYi4aj5RhUTJNrzehA88hxLrJ.4E7kq",
+            password: "12345678Lion",
             role: "admin"
         }),
         db.Order.create()
