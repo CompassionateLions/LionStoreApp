@@ -70,13 +70,10 @@ export default {
                 console.log(json) //extract token and store in local + somewhere in vue
             })
         },
-        //check this
-        clear: { 
-            function(e) {
+        clear(e) {
                 e.preventDefault()
-                this.email = "",
-                this.password = ""
-            }
+                this.credentials.email = "",
+                this.credentials.password = ""
         }
     }
 
