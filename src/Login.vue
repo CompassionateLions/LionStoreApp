@@ -67,7 +67,7 @@ export default {
             }).then((res) => {
                 return res.json();
             }).then((json) => {
-                console.log(json)
+                console.log(json) //extract token and store in local + somewhere in vue
             })
         },
         //check this
