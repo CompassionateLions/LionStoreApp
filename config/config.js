@@ -5,7 +5,7 @@ module.exports = {
   "development": {
     "username": "storeuser",
     "password": process.env.DBPASSWORD,
-    "database": "database_development",
+    "database": "storedb",
     "host": process.env.DBHOST,
     "dialect": "mysql",
     "operatorsAliases": false
@@ -13,7 +13,7 @@ module.exports = {
   "test": {
     "username": "storeuser",
     "password": process.env.DBPASSWORD,
-    "database": "database_test",
+    "database": "storedb",
     "host": process.env.DBHOST,
     "dialect": "mysql",
     "operatorsAliases": false
@@ -21,7 +21,7 @@ module.exports = {
   "production": {
     "username": "storeuser",
     "password": process.env.DBPASSWORD,
-    "database": "database_production",
+    "database": "storedb",
     "host": process.env.DBHOST,
     "dialect": "mysql",
     "operatorsAliases": false

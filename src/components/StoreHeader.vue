@@ -10,7 +10,7 @@
           </router-link>
           </li>
           <li>
-            <router-link to="/">
+            <router-link to="/Cart">
             <i class="material-icons left">shopping_cart</i> <span class="hide-on-med-and-down">Cart</span>
             </router-link>
           </li>
