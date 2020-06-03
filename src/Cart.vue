@@ -1,21 +1,30 @@
 <template>
   <div>
     <StoreHeader />
-    <h4>Items added to your Shopping Cart</h4>
+   
     <div class="row">
-      <div class="col m6 s12 offset-m3 border_style ">
-        <div class="collection-item">
-          <div two-line>
-            <div class="collection" v-bind:key="product.productId" v-for="(product) in products">
-              <CartItem v-bind:product="product" />
-            </div>
+        <div class="col m6 s12 offset-m3 ">
+       <h4>Items added to your Shopping <span class="cartSty">Cart</span>  </h4>
+        </div>
+      <div class="col m6 s12 offset-m3 border_style z-depth-2">
+        <div class="col m12 s12 ">
+           <router-link to="/">
+             <a>
+            <i class="material-icons right ">close</i>
+          </a></router-link>
+        
+        </div>
+        <div>
+          <div class="collection" v-bind:key="product.productId" v-for="(product) in products">
+            <CartItem v-bind:product="product" />
           </div>
         </div>
         <div class="col m3 s6 offset-m9 -s6">
-          <button class="btn waves-effect waves-light orange darken-3" type="submit" name="action">
+           <router-link to="/login">
+           <button class="btn waves-effect waves-light orange darken-3" type="submit" name="action">
             Submit
-            <i class="material-icons right">send</i>
           </button>
+           </router-link>        
         </div>
       </div>
     </div>
@@ -60,7 +69,7 @@ export default {
         director: "Jacques Demy",
         format: "Blu-Ray",
         rating: "PG",
-        quantity: 2
+        quantity: 100
       }
     ]
   })
@@ -69,7 +78,18 @@ export default {
 
 <style scoped>
 .border_style {
-  border-style: groove;
   padding: 10px;
+  margin-top: 30px;
+}
+i {
+  color: #f44336;
+  font-size: 40px;
+  padding-top: 10;
+}
+.cartSty{
+  font-size: 50px;
+    color: #f44336;
+    font-weight: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 </style>
