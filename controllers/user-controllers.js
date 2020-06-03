@@ -101,7 +101,7 @@ module.exports = {
 
     //Login route
     login(req, res){
-
+        console.log(req.body)
         const {body: {email, password}} = req;
 
         if(email === undefined || password === undefined) return res.status(400).json({error: "Missing information"})
