@@ -3,10 +3,10 @@
     <StoreHeader />
    
     <div class="row">
-        <div class="col m6 s12 offset-m3 ">
+        <div class="col l6 s12 offset-l3 ">
        <h4>Items added to your Shopping <span class="cartSty">Cart</span>  </h4>
         </div>
-      <div class="col m6 s12 offset-m3 border_style z-depth-2">
+      <div class="col l6 s12 offset-l3 border_style z-depth-2">
         <div class="col m12 s12 ">
            <router-link to="/">
              <a>
@@ -19,7 +19,7 @@
             <CartItem v-bind:product="product" />
           </div>
         </div>
-        <div class="col m3 s6 offset-m9 -s6">
+        <div class="col l3 s6 offset-l9 -s6">
            <router-link to="/login">
            <button class="btn waves-effect waves-light orange darken-3" type="submit" name="action">
             Submit

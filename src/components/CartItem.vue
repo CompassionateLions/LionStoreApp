@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="row divStyle">
-      <div class="col m2 s12">
+      <div class="col l2 m12 ">
         <li>
           <a>
             <img :src="product.image_url" />
           </a>
         </li>
       </div>
-      <div class="col m4 s12 textStyle">
+      <div class="col l4 m12 textStyle">
         <h6 v-html="product.name" class="red-text text-darken-3"></h6>
         <li v-html="product.format"></li>
         <li>
@@ -16,7 +16,7 @@
         </li>
         <li>${{product.price}}</li>
       </div>
-      <div class="col m2 s12 textStyle">
+      <div class="col l2 m12  textStyle">
         <li>
           <b>Quantity</b>
         </li>
@@ -32,13 +32,13 @@
           </a>
         </li>
       </div>
-      <div class="col m2 s12 textStyle">
+      <div class="col l2 m12  s12textStyle">
         <li>
           <b>Total Price</b>
         </li>
         <li>${{product.price * product.quantity}}</li>
       </div>
-      <div class="col m1 s12 divStyle">
+      <div class="col l2 m12 s12 offset-l1 divStyle">
         <a class="secondary-content ">
           <i class="material-icons ">delete</i>
         </a>
@@ -80,7 +80,6 @@ li {
 .binStyle {
   padding-top: 60%;
   padding-left: 80%;
-
 }
 .textStyle {
   text-align: left;
