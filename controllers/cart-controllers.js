@@ -6,7 +6,7 @@ const sendUserCartBack = (req, res) => {
     db.User.findOne({ where: { id: user.id }, include: ['CartContents'] }).then(result => {
 
         //Construct cart in json format with only relevant fields to return
-        const response = result.dataValues.CartContents.map(item => {
+        const response = result.CartContents.map(item => {
             return {
                 productId: item.id,
                 name: item.name,
@@ -53,7 +53,7 @@ module.exports = {
             db.User.findOne({ where: { id: req.user.id }, include: ['CartContents'] })
         ]).then(([product, user]) => {
 
-            const productStock = product.dataValues.quantity;
+            const productStock = product.quantity;
 
             if (productStock === 0) return res.status(400).json({ error: "No stock left" });
 
@@ -64,16 +64,16 @@ module.exports = {
                 //if already in cart
                 if (hasInCart) {
 
-                    for (cartItem of user.dataValues.CartContents) {
+                    for (cartItem of user.CartContents) {
                         //Iterate through users current cart items and find the one they're trying to add
-                        if (cartItem.dataValues.id === product.dataValues.id) {
+                        if (cartItem.id === product.id) {
 
                             //If they're trying to add more than we have then throw an error
-                            if (cartItem.dataValues.Cart.quantity + 1 > productStock) {
+                            if (cartItem.Cart.quantity + 1 > productStock) {
                                 res.status(400).json({ error: "Not enough stock to add to cart" });
 
                             } else {
-                                return cartItem.dataValues.Cart.increment('quantity').then(result => {
+                                return cartItem.Cart.increment('quantity').then(result => {
                                     sendUserCartBack(req, res);
                                 })
                             }
@@ -137,14 +137,14 @@ module.exports = {
         ]).then(([user, product]) => {
 
             //If there is stock in the store
-            if (product.dataValues.quantity >= newQuantity) {
+            if (product.quantity >= newQuantity) {
 
-                for (cartItem of user.dataValues.CartContents) {
+                for (cartItem of user.CartContents) {
 
                     //Iterate through users current cart items and find the one they're trying to update
-                    if (cartItem.dataValues.id === product.dataValues.id) {
+                    if (cartItem.id === product.id) {
 
-                        return cartItem.dataValues.Cart.update({quantity: newQuantity}).then(result => {
+                        return cartItem.Cart.update({quantity: newQuantity}).then(result => {
                             return sendUserCartBack(req, res);
                         })
 

@@ -39,6 +39,7 @@ module.exports = function(sequelize, DataTypes) {
                 beforeCreate: async function(user, options){
                     user.password = await hashPassword(user.password);
                 }
+
             }
         }
     );

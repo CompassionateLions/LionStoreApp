@@ -22,7 +22,8 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.INTEGER,
           allowNull: false,
           get(){
-            return this.getDataValue('price')/100;
+            const res = this.getDataValue('price');
+            return (res/100);
           },
           set(dollars){
             return this.setDataValue('price', dollars*100);
@@ -45,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         
         description: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(500),
           allowNull: true
         },
 
