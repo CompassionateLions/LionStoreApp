@@ -1,49 +1,45 @@
 <template>
   <div>
-      <div>
-                  <td>
-                    <img avatar :src="product.image_url" />
-                  </td>
-                  <td>
-                    <li v-html="product.name"></li>
-                         <li v-html="product.genre"></li>
-                    <li v-html="product.format"></li>               
-                  </td>
-                  <td>
-                    <li class="side_padd"><b>Price</b></li>
-                    <li>{{product.price}}$</li>
-                  </td>
-                  <td>
-                    <div class="side_padd">
-                      <li><b>Quantity</b></li>
+    <div class="row divStyle">
+      <div class="col m2 s12 ">
+        <li>
+          <img :src="product.image_url" />
+        </li>
+      </div>
+    <div class="col  m4 s12 textStyle">
+   <li v-html="product.name"></li>
+        <li v-html="product.format"></li>
+        <li > <b>Price</b></li>
+        <li>${{product.price}}</li>
+     </div>
+        <div class="col m2 s12">
+          <li><b>Quantity</b></li>
+          <li>
+            <a><i class="material-icons">expand_less</i> </a>
+          </li>
+          <li class="border_style" label="Quantity" v-html="product.quantity"></li>
+          <li>
+            <a><i class="material-icons">expand_more</i></a>         
+          </li>
+        </div>
+       <div class="col m2 s12 textStyle">
+        <li >
+          <b>Total Price</b>
+        </li>
+        <li>{{product.price * product.quantity}}$</li>
+      </div>
+      <div class="col m1 s12 divStyle">
+        <a class="secondary-content binStyle"><i class="material-icons flow-text">delete</i></a>
+      </div>
 
-                     <li><a><i class="material-icons">expand_less</i></a></li>
-                      <li  class="border_style" label="Quantity" v-html="product.quantity"></li>
-                      <li> <a></a><i class="material-icons">expand_more</i></li>
-                    </div>
-                  </td>
-                  <td>
-                    <div  class="side_padd">
-                      <li class="side_padd"><b>Total Price</b></li>
-                      <li>{{product.price * product.quantity}}$</li>
-                    </div>
-                  </td>
-                  <td>
-                    <a href="#!" class="secondary-content">
-                      <i class="material-icons">delete</i>
-                    </a>
-                  </td>
-                </div>         
+    </div>
   </div>
 </template>
 <script>
 export default {
-    name: "CartItem",
-    props: [
-        "product",
-        "index"
-    ]
-}
+  name: "CartItem",
+  props: ["product", "index"]
+};
 </script>
 
 <style scoped>
@@ -51,20 +47,34 @@ i {
   color: #f44336;
 }
 img {
-  height: 120px;
-  width: 130px;
+  width: 70%;
+  height: 70%;
+ 
 }
 img:hover {
   cursor: pointer;
 }
 li {
   list-style: none;
+
+}
+.border_style {
+  border-style: groove;
+  padding: 5px;
+}
+.divStyle{
+  padding-top: 20px;
   padding-left: 10px;
+  margin: 10px;
 }
-.border_style{
-    border-style: groove;
+.binStyle{
+ padding-top: 50%;
+ padding-right: 40%;
 }
-.side_padd{
+.textStyle{
+  text-align: left;
   padding-left: 20px;
+  margin-left: 20px;
+
 }
 </style>
