@@ -24,17 +24,6 @@ const validateEmail = (email) => {
     return emailRegex.test(email);
 }
 
-//Returns the hash of the inputed password
-const hashPassword = (password) => {
-    return new Promise((resolve, reject) => {
-        bcrypt.hash(password, 10, (err, hash) => {
-            if(err) return reject(err);
-
-            return resolve(hash);
-        })
-    })
-}
-
 //Returns false if passwords don't match
 const comparePasswords = (password, hash) => {
     return new Promise((resolve, reject) => {
@@ -68,11 +57,9 @@ module.exports = {
         db.User.findAll({where:{email}}).then(async result => {
             if(result.length != 0) return res.status(403).json({error: "Email already Exists"});
 
-            passwordHash = await hashPassword(password);
-
             db.User.create({
                 email,
-                password: passwordHash
+                password
             }).then(result => {
 
                 const userIdentifier = {

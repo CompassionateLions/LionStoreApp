@@ -12,7 +12,13 @@ module.exports = function (sequelize, DataTypes) {
     total: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0
+      defaultValue: 0,
+      get(){
+        return this.getDataValue('total')/100;
+      },
+      set(dollars){
+        return this.setDataValue('total', dollars*100);
+      }
     }
 
     //Address - future

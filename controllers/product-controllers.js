@@ -18,7 +18,7 @@ module.exports = {
             rating: product.director,
             format: product.format
         }).then(result => {
-            res.status(201).json(result.dataValues);
+            res.status(201).json(result.get());
         }).catch(error => {
             res.status(422).json({ error: "Couldn't create product" });
         })
@@ -28,8 +28,7 @@ module.exports = {
 
         db.Product.findAll()
         .then(result => {
-            console.log(result);
-            const response = result.map(({dataValues}) => dataValues);
+            const response = result.map((product) => product.get());
 
             res.status(200).json(response);
         })
@@ -66,7 +65,7 @@ module.exports = {
 
     getProductById(req, res){
         db.Product.findOne({where:{id:req.params.id}}).then(result => {
-            res.status(200).json(result.dataValues);
+            res.status(200).json(result.get());
         }).catch(error => {
             res.status(404).json({error: "Couldn't find product"});
         })

@@ -98,6 +98,7 @@ module.exports = {
                     //Iterate through cart
                     const productsInOrder = user.CartContents.map(product => {
                         
+                        
                         return Promise.all([
                             
                             //Add product to order
