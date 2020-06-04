@@ -456,17 +456,17 @@ Example response:
                 "productId": 1,
                 "name": "That Obscure Object of Desire",
                 "format": "DVD",
-                "individualCost": 1000,
+                "individualCost": 10.00,
                 "quantity": 9,
-                "totalCost": 9000
+                "totalCost": 90.00
             },
             {
                 "productId": 2,
                 "name": "The Umbrellas of Cherbourg",
                 "format": "Blu-Ray",
-                "individualCost": 2000,
+                "individualCost": 20.00,
                 "quantity": 1,
-                "totalCost": 2000
+                "totalCost": 20.00
             }
         ]
     }
@@ -494,17 +494,17 @@ Example response:
             "productId": 1,
             "name": "That Obscure Object of Desire",
             "format": "DVD",
-            "individualCost": 1000,
+            "individualCost": 10.00,
             "quantity": 9,
-            "totalCost": 9000
+            "totalCost": 90.00
         },
         {
             "productId": 2,
             "name": "The Umbrellas of Cherbourg",
             "format": "Blu-Ray",
-            "individualCost": 2000,
+            "individualCost": 20.00,
             "quantity": 1,
-            "totalCost": 2000
+            "totalCost": 20.00
         }
     ]
 }
@@ -532,9 +532,9 @@ Example response:
                 "productId": 2,
                 "name": "The Umbrellas of Cherbourg",
                 "format": "Blu-Ray",
-                "individualCost": 2000,
+                "individualCost": 20.00,
                 "quantity": 2,
-                "totalCost": 4000
+                "totalCost": 40.00
             }
         ]
     },
@@ -548,17 +548,17 @@ Example response:
                 "productId": 1,
                 "name": "That Obscure Object of Desire",
                 "format": "DVD",
-                "individualCost": 1000,
+                "individualCost": 10.00,
                 "quantity": 9,
-                "totalCost": 9000
+                "totalCost": 90.00
             },
             {
                 "productId": 2,
                 "name": "The Umbrellas of Cherbourg",
                 "format": "Blu-Ray",
-                "individualCost": 2000,
+                "individualCost": 20.00,
                 "quantity": 1,
-                "totalCost": 2000
+                "totalCost": 20.00
             }
         ]
     }
@@ -587,9 +587,9 @@ Example response:
                 "productId": 2,
                 "name": "The Umbrellas of Cherbourg",
                 "format": "Blu-Ray",
-                "individualCost": 2000,
+                "individualCost": 20.00,
                 "quantity": 2,
-                "totalCost": 4000
+                "totalCost": 40.00
             }
         ]
     },
@@ -603,17 +603,17 @@ Example response:
                 "productId": 1,
                 "name": "That Obscure Object of Desire",
                 "format": "DVD",
-                "individualCost": 1000,
+                "individualCost": 10.00,
                 "quantity": 9,
-                "totalCost": 9000
+                "totalCost": 90.00
             },
             {
                 "productId": 2,
                 "name": "The Umbrellas of Cherbourg",
                 "format": "Blu-Ray",
-                "individualCost": 2000,
+                "individualCost": 20.00,
                 "quantity": 1,
-                "totalCost": 2000
+                "totalCost": 20.00
             }
         ]
     }
