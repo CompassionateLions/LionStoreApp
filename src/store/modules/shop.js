@@ -106,7 +106,12 @@ const state = {
             "createdAt": "2020-06-03T20:54:40.000Z",
             "updatedAt": "2020-06-03T20:54:40.000Z"
         }],
-    allGenres: [],
+    filter: {
+        title:'',
+        genres: [],
+        years: [0, 9999],
+        price: [0,999]
+    },
     filteredProducts: [],
     user: {},
 
@@ -114,6 +119,15 @@ const state = {
 
 const getters = {
     allProducts: (state) => state.allProducts,
+    filteredProducts: (state) => state.filteredProducts,
+    allGenres: (state) => {
+        const genres = Array.from(new Set(state.allProducts.map(movie => movie.genre).map(genres => genres.split(', ')).flat())).sort();
+        console.log(genres);
+        return genres.map(genre => {
+            return {name: genre, checked: state.filter.genres.includes(genre)}
+        });
+    },
+    searchTerm: (state) => state.filter.title
 
 };
 
@@ -127,13 +141,71 @@ const actions = {
 
             commit('updateProducts', json);
         })
+    },
+    applyFilters({commit, state}){
+        const allProducts = state.allProducts;
+        const {filter} = state
+
+        const filteredProducts = allProducts.filter((title) => {
+
+            const yearFilter = title.year >= filter.years[0] && title.year <= filter.years[1];
+            const priceFilter = title.price >= filter.price[0] && title.price <= filter.price[1];
+            const nameFilter = filter.title.length
+                ?title.name.toLowerCase().includes(filter.title.toLowerCase())
+                :true;
+            const genreFilter = filter.genres.length > 0
+                ?filter.genres.some(genre => {
+                    console.log()
+                    return title.genre.includes(genre)
+                })
+                :true;
+            
+            // console.log(`${title.name}, Year: ${yearFilter}, Price: ${priceFilter}, Name: ${nameFilter}, Genre: ${genreFilter}`);
+            return (yearFilter && priceFilter && nameFilter && genreFilter)
+        })
+
+        commit('updateFiltered', filteredProducts)
+    },
+    updateGenreFilter({ state, dispatch}, genre){
+
+        if(state.filter.genres.includes(genre)){
+            
+            state.filter.genres = state.filter.genres.filter(filtergenre => filtergenre !== genre);
+        } else {
+            state.filter.genres.push(genre);
+        }
+
+        console.log(state.filter.genres);
+
+        dispatch("applyFilters");
+
+    },
+    updateYearFilter({ state, dispatch}, years){
+        state.filter.years = years;
+        dispatch("applyFilters");
+    },
+    updatePriceFilter({ state, dispatch}, prices){
+        state.filter.price = prices;
+        dispatch("applyFilters");
+    },
+    searchTermUpdateHandler({commit, dispatch}, searchTerm){
+        commit('updateFilterSearchTerm', searchTerm);
+        dispatch("applyFilters");
     }
+
 };
 
 const mutations = {
     updateProducts(state, products) {
         state.allProducts = products;
+    },
+    updateFiltered(state, filteredProducts){
+        state.filteredProducts = filteredProducts;
+    },
+    updateFilterSearchTerm(state, searchTerm){
+        state.filter.title = searchTerm
     }
+    
 };
 
 export default {

@@ -21,6 +21,8 @@ import M from "materialize-css";
 import noUiSlider from "nouislider";
 import "nouislider/distribute/nouislider.css";
 
+import {mapActions} from "vuex";
+
 export default {
   name: "CollabsibleYearFilter",
   components: {},
@@ -53,6 +55,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['updateYearFilter']),
     initSlider() {
       const yearSlider = document.querySelector(".year-slider");
 
@@ -67,16 +70,17 @@ export default {
       });
 
       yearSlider.noUiSlider.on("update", this.updateTextboxes);
+      yearSlider.noUiSlider.on("set", this.updateYearFilter);
 
     },
     updateTextboxes(e) {
       this.yearMin = Math.round(e[0]);
       this.yearMax = Math.round(e[1]);
-      console.log(e)
     },
     updateSlider(){
       const yearSlider = document.querySelector(".year-slider");
       yearSlider.noUiSlider.set([this.yearMin, this.yearMax]);
+      this.updateYearFilter([this.yearMin, this.yearMax]);
     },
     updateSliderRange(){
       const yearSlider = document.querySelector(".year-slider");

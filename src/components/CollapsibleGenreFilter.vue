@@ -4,7 +4,7 @@
       <li>
         <a class="collapsible-header orange darken-3 white-text">Genres</a>
         <div class="collapsible-body">
-          <div :key="index" v-for="(genre, index) in genres">
+          <div :key="index" v-for="(genre, index) in allGenres">
             <CategoryItem v-bind:genre="genre" />
           </div>
         </div>
@@ -15,23 +15,23 @@
 
 <script>
 import CategoryItem from "./CategoryItem";
+import {mapActions} from "vuex";
 
 import M from "materialize-css";
 
 //VueX
-// import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "CollabsibleGenreFilterContainer",
   computed: {
-    genres() {
-      return new Set(this.$store.state.shop.allProducts.map(movie => movie.genre).map(genres => genres.split(', ')).flat().sort());
-    }
+    ...mapGetters(['allGenres'])
   },
   components: {
     CategoryItem
   },
   methods: {
+    ...mapActions(['updateProductDisplay']),
     printAll() {
       console.log(this.allProducts);
     }
