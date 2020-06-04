@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <StoreHeader/>
-    <StoreSideBar v-bind:genres="genres"/>
+    <StoreSideBar/>
   </div>
 </template>
 
@@ -11,6 +11,8 @@
 import StoreHeader from './components/StoreHeader.vue'
 import StoreSideBar from './components/StoreSideBar.vue'
 
+import {mapActions} from 'vuex'
+
 
 export default {
   name: 'Home',
@@ -18,27 +20,11 @@ export default {
     StoreHeader,
     StoreSideBar
   },
-  data(){
-    return {
-      genres: [
-        {
-          name: "Drama",
-          id: 1
-        },
-        {
-          name: "Horror",
-          id: 2
-        },
-        {
-          name: "Thriller",
-          id: 3
-        },
-        {
-          name: "Action",
-          id: 4
-        }
-      ]
-    }
+  methods: {
+    ...mapActions(['queryApiAllProducts'])
+  },
+  created() {
+    this.queryApiAllProducts();
   }
 }
 </script>

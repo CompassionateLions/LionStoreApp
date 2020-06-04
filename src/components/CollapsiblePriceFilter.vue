@@ -37,6 +37,7 @@ export default {
       noUiSlider.create(slider, {
         start: [0, 100],
         connect: true,
+        step: 1,
         range: {
           min: 0,
           max: 100

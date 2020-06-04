@@ -24,6 +24,28 @@ import "nouislider/distribute/nouislider.css";
 export default {
   name: "CollabsibleYearFilter",
   components: {},
+  computed: {
+    years(){
+      if(this.$store.state.shop.allProducts.length === 0){
+        return [1920, 2020];
+      }else{
+        return this.$store.state.shop.allProducts.reduce((years, movie) => {
+         if(movie.year > years[1]){
+           years[1] =  movie.year;
+         }
+         if(movie.year < years[0]){
+           years[0] = movie.year
+         } 
+         return years
+       }, [9999, 0]);
+      }
+    }
+  },
+  watch:{
+    years(){
+      this.updateSliderRange();
+    }
+  },
   data() {
     return {
       yearMin: 0,
@@ -35,11 +57,12 @@ export default {
       const yearSlider = document.querySelector(".year-slider");
 
       noUiSlider.create(yearSlider, {
-        start: [2010,2020],
+        start: [this.years[0],this.years[1]],
         connect: true,
+        step: 1,
         range: {
-          min: 1900,
-          max: 2020
+          min: this.years[0]-1,
+          max: this.years[1]+1
         }
       });
 
@@ -54,6 +77,16 @@ export default {
     updateSlider(){
       const yearSlider = document.querySelector(".year-slider");
       yearSlider.noUiSlider.set([this.yearMin, this.yearMax]);
+    },
+    updateSliderRange(){
+      const yearSlider = document.querySelector(".year-slider");
+      yearSlider.noUiSlider.updateOptions({
+        start: [this.years[0],this.years[1]],
+        range: {
+          min: this.years[0]-1,
+          max: this.years[1]+1
+        }
+      });
     }
   },
   mounted() {

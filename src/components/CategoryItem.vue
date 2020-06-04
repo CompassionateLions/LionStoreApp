@@ -4,7 +4,7 @@
       <p>
         <label class="left">
           <input type="checkbox" class="filled-in checkbox-orange" />
-          <span>{{genre.name}}</span>
+          <span>{{genre}}</span>
         </label>
       </p>
     </a>
