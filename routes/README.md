@@ -487,7 +487,7 @@ Example response:
 {
     "userId": 1,
     "orderId": 2,
-    "total": 11000,
+    "total": 110.00,
     "orderPlaced": "2020-06-03T01:11:55.000Z",
     "productsInOrder": [
         {
@@ -525,7 +525,7 @@ Example response:
     {
         "userId": 1,
         "orderId": 1,
-        "total": 15000,
+        "total": 150.00,
         "orderPlaced": "2020-06-03T00:26:52.000Z",
         "productsInOrder": [
             {
@@ -541,7 +541,7 @@ Example response:
     {
         "userId": 1,
         "orderId": 2,
-        "total": 11000,
+        "total": 110.00,
         "orderPlaced": "2020-06-03T01:11:55.000Z",
         "productsInOrder": [
             {
@@ -580,7 +580,7 @@ Example response:
     {
         "userId": 1,
         "orderId": 1,
-        "total": 15000,
+        "total": 150.00,
         "orderPlaced": "2020-06-03T00:26:52.000Z",
         "productsInOrder": [
             {
@@ -596,7 +596,7 @@ Example response:
     {
         "userId": 1,
         "orderId": 2,
-        "total": 11000,
+        "total": 110.00,
         "orderPlaced": "2020-06-03T01:11:55.000Z",
         "productsInOrder": [
             {
