@@ -124,7 +124,7 @@ Example response:
 | director | `String` | No | |
 | actors | `String` | No | Comma seperated list |
 | image_url | `String` | No | Url to poster or box art |
-| price | `Integer` | Yes | Price in AUD cents |
+| price | `Float` | Yes | Price in AUD dollars |
 | quantity | `Integer` | Yes | |
 
 Example response:
@@ -134,7 +134,7 @@ Example response:
     "id": 3,
     "name": "Eraserhead",
     "image_url": "https://m.media-amazon.com/images/M/MV5BMDExYzg5YjQtMzE0Yy00OWJjLThiZTctMWI5MzhjM2RmNjA4L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
-    "price": "100",
+    "price": "1.00",
     "year": "1977",
     "quantity": "1",
     "description": "Henry Spencer tries to survive his industrial environment, his angry girlfriend, and the unbearable screams of his newly born mutant child.",
@@ -170,7 +170,7 @@ Example response:
 | director | `String` | No | |
 | actors | `String` | No | Comma seperated list |
 | image_url | `String` | No | Url to poster or box art |
-| price | `Integer` | No | Price in AUD cents |
+| price | `Float` | No | Price in AUD dollars |
 | quantity | `Integer` | No | |
 
 Example response:
@@ -194,7 +194,7 @@ Example response:
     "id": 1,
     "name": "That Obscure Object of Desire",
     "image_url": "https://m.media-amazon.com/images/M/MV5BNzY5NDZjNTEtMTVlZC00MzkxLTllNjQtZmQ5ODE3ZWQxNGM4XkEyXkFqcGdeQXVyMTMxMTY0OTQ@._V1_SX300.jpg",
-    "price": 1000,
+    "price": 10.00,
     "year": 1977,
     "quantity": 10,
     "isAvailable": true,
@@ -224,7 +224,7 @@ Example response:
         "id": 1,
         "name": "That Obscure Object of Desire",
         "image_url": "https://m.media-amazon.com/images/M/MV5BNzY5NDZjNTEtMTVlZC00MzkxLTllNjQtZmQ5ODE3ZWQxNGM4XkEyXkFqcGdeQXVyMTMxMTY0OTQ@._V1_SX300.jpg",
-        "price": 1000,
+        "price": 10.00,
         "year": 1977,
         "quantity": 10,
         "isAvailable": true,
@@ -241,7 +241,7 @@ Example response:
         "id": 2,
         "name": "The Umbrellas of Cherbourg",
         "image_url": "https://m.media-amazon.com/images/M/MV5BMWRkNWE1ZTMtY2ZhYy00NDFjLWI3ODktNDM4ZDIwOTMzNDQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-        "price": 2000,
+        "price": 20.00,
         "year": 1964,
         "quantity": 2,
         "isAvailable": true,
@@ -258,7 +258,7 @@ Example response:
         "id": 3,
         "name": "Eraserhead",
         "image_url": "https://m.media-amazon.com/images/M/MV5BMDExYzg5YjQtMzE0Yy00OWJjLThiZTctMWI5MzhjM2RmNjA4L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
-        "price": 100,
+        "price": 1.00,
         "year": 1977,
         "quantity": 1,
         "isAvailable": true,
@@ -292,7 +292,7 @@ note: Returns all items in cart, not just product added to cart by request
         "productId": 1,
         "name": "That Obscure Object of Desire",
         "image_url": "https://m.media-amazon.com/images/M/MV5BNzY5NDZjNTEtMTVlZC00MzkxLTllNjQtZmQ5ODE3ZWQxNGM4XkEyXkFqcGdeQXVyMTMxMTY0OTQ@._V1_SX300.jpg",
-        "price": 1000,
+        "price": 10.00,
         "year": 1977,
         "description": "Recounted in flashback are the romantic perils of Mathieu, a middle-aged French sophisticate as he falls for his nineteen year-old former chambermaid Conchita.",
         "genre": "Comedy, Drama",
@@ -306,7 +306,7 @@ note: Returns all items in cart, not just product added to cart by request
         "productId": 2,
         "name": "The Umbrellas of Cherbourg",
         "image_url": "https://m.media-amazon.com/images/M/MV5BMWRkNWE1ZTMtY2ZhYy00NDFjLWI3ODktNDM4ZDIwOTMzNDQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-        "price": 2000,
+        "price": 20.00,
         "year": 1964,
         "description": "A young woman separated from her lover by war faces a life-altering decision.",
         "genre": "Drama, Musical, Romance",
@@ -336,7 +336,7 @@ Note: Returns all items in cart after deletion. If more than 1 copy of the same 
         "productId": 2,
         "name": "The Umbrellas of Cherbourg",
         "image_url": "https://m.media-amazon.com/images/M/MV5BMWRkNWE1ZTMtY2ZhYy00NDFjLWI3ODktNDM4ZDIwOTMzNDQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-        "price": 2000,
+        "price": 20.00,
         "year": 1964,
         "description": "A young woman separated from her lover by war faces a life-altering decision.",
         "genre": "Drama, Musical, Romance",
@@ -373,7 +373,7 @@ Note: Returns all items in cart after update.
         "productId": 1,
         "name": "That Obscure Object of Desire",
         "image_url": "https://m.media-amazon.com/images/M/MV5BNzY5NDZjNTEtMTVlZC00MzkxLTllNjQtZmQ5ODE3ZWQxNGM4XkEyXkFqcGdeQXVyMTMxMTY0OTQ@._V1_SX300.jpg",
-        "price": 1000,
+        "price": 10.00,
         "year": 1977,
         "description": "Recounted in flashback are the romantic perils of Mathieu, a middle-aged French sophisticate as he falls for his nineteen year-old former chambermaid Conchita.",
         "genre": "Comedy, Drama",
@@ -402,7 +402,7 @@ Example response:
         "productId": 1,
         "name": "That Obscure Object of Desire",
         "image_url": "https://m.media-amazon.com/images/M/MV5BNzY5NDZjNTEtMTVlZC00MzkxLTllNjQtZmQ5ODE3ZWQxNGM4XkEyXkFqcGdeQXVyMTMxMTY0OTQ@._V1_SX300.jpg",
-        "price": 1000,
+        "price": 10.00,
         "year": 1977,
         "description": "Recounted in flashback are the romantic perils of Mathieu, a middle-aged French sophisticate as he falls for his nineteen year-old former chambermaid Conchita.",
         "genre": "Comedy, Drama",
@@ -416,7 +416,7 @@ Example response:
         "productId": 2,
         "name": "The Umbrellas of Cherbourg",
         "image_url": "https://m.media-amazon.com/images/M/MV5BMWRkNWE1ZTMtY2ZhYy00NDFjLWI3ODktNDM4ZDIwOTMzNDQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-        "price": 2000,
+        "price": 20.00,
         "year": 1964,
         "description": "A young woman separated from her lover by war faces a life-altering decision.",
         "genre": "Drama, Musical, Romance",
