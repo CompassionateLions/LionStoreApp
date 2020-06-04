@@ -4,7 +4,7 @@
     <StoreSideBar />
     <div class="filter-out" :key="product.id" v-for="product in filteredProducts">
       <div class="movie">
-        <p>{{product.name}} ({{product.year}})</p>
+        <h5>{{product.name}} ({{product.year}})</h5>
         <p>$ {{product.price}}</p>
         <p> {{product.genre}}</p>
       </div>
