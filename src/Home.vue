@@ -1,51 +1,46 @@
 <template>
   <div id="app">
-    <StoreHeader/>
-    <StoreSideBar v-bind:genres="genres"/>
+    <StoreHeader />
+    <StoreSideBar />
+    <div class="filter-out" :key="product.id" v-for="product in filteredProducts">
+      <div class="movie">
+        <h5>{{product.name}} ({{product.year}})</h5>
+        <p>$ {{product.price}}</p>
+        <p> {{product.genre}}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 //Import Materialize css
 
-import StoreHeader from './components/StoreHeader.vue'
-import StoreSideBar from './components/StoreSideBar.vue'
+import StoreHeader from "./components/StoreHeader.vue";
+import StoreSideBar from "./components/StoreSideBar.vue";
 
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     StoreHeader,
     StoreSideBar
   },
-  data(){
-    return {
-      genres: [
-        {
-          name: "Drama",
-          id: 1
-        },
-        {
-          name: "Horror",
-          id: 2
-        },
-        {
-          name: "Thriller",
-          id: 3
-        },
-        {
-          name: "Action",
-          id: 4
-        }
-      ]
-    }
+  computed: {
+    ...mapGetters(["filteredProducts"])
+  },
+  methods: {
+    ...mapActions(["queryApiAllProducts"])
+  },
+  created() {
+    this.queryApiAllProducts();
   }
-}
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-*{
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+* {
   margin: 0;
   padding: 0;
 }

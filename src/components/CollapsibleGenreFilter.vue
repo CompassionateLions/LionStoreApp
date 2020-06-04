@@ -2,11 +2,9 @@
   <div>
     <ul class="collapsible">
       <li>
-        <a class="collapsible-header orange darken-3 white-text">
-          Genres
-        </a>
+        <a class="collapsible-header orange darken-3 white-text">Genres</a>
         <div class="collapsible-body">
-          <div v-bind:key="genre.id" v-for="genre in genres">
+          <div :key="index" v-for="(genre, index) in allGenres">
             <CategoryItem v-bind:genre="genre" />
           </div>
         </div>
@@ -17,14 +15,26 @@
 
 <script>
 import CategoryItem from "./CategoryItem";
+import {mapActions} from "vuex";
 
 import M from "materialize-css";
 
+//VueX
+import { mapGetters } from "vuex";
+
 export default {
-  name: "CollabsibleFilterContainer",
-  props: ["genres"],
+  name: "CollabsibleGenreFilterContainer",
+  computed: {
+    ...mapGetters(['allGenres'])
+  },
   components: {
     CategoryItem
+  },
+  methods: {
+    ...mapActions(['updateProductDisplay']),
+    printAll() {
+      console.log(this.allProducts);
+    }
   },
   mounted() {
     M.AutoInit();
