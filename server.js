@@ -2,6 +2,8 @@
 var express = require('express');
 require ('dotenv').config();
 
+const path = require('path');
+
 // Sets up the Express App
 var app = express();
 
@@ -14,9 +16,6 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Static directory
-app.use(express.static("public"));
-
 // Routes
 const productRoutes = require("./routes/api-product-routes");
 const userRoutes = require("./routes/api-user-routes");
@@ -28,6 +27,13 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/order", orderRoutes);
+
+//Handle Prod
+if(process.env.NODE_ENV === 'production'){
+  //set static
+  // Static directory
+  app.use(express.static("public"));
+}
 
 
 // Syncing our sequelize models and then starting our Express app

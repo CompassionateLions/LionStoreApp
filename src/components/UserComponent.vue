@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .card-image {
-    padding: 10px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-content: center;
