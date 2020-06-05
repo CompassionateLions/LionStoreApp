@@ -1,8 +1,9 @@
 <template>
   <div class="row">
+    <div class="col s12 m4">
       <div class="card white">
         <MovieTitle />
-        <MoviePoster /> 
+        <MoviePoster />
         <div class="row">
           <MoviePrice />
           <div class="col s12 m6">
@@ -17,11 +18,11 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
-
 import MovieTitle from "./MovieTitle.vue";
 import MovieDetails from "./MovieDetails.vue";
 import MoviePoster from "./MoviePoster.vue";
@@ -51,24 +52,22 @@ export default {
 </script>
 
 <style>
-*{
-    box-shadow: none !important;
+* {
+  box-shadow: none !important;
 }
 
-.main-container{
-    margin: 1em;
-    border: none;
-    box-shadow: none;
-    margin-right: 2em;
+.main-container {
+  margin: 1em;
+  border: none;
+  box-shadow: none;
+  margin-right: 2em;
 }
 .card {
-    border: none !important;
+  border: none !important;
 }
 
-a{
-    color: black;
-    text-decoration: underline;
+a {
+  color: black;
+  text-decoration: underline;
 }
-
-
 </style>

@@ -1,36 +1,34 @@
 <template>
   <div id="app">
+    <div class="row">
+      <StoreHeader />
 
-    <StoreHeader/>
+      <div class="col s4 m2">
+        <StoreSideBar v-bind:genres="genres" />
+      </div>
 
-    <div class="s4 m2">
-          <StoreSideBar v-bind:genres="genres"/>
-    </div>
-    
-  <div class="s8 m10">
+      <div class="col s8 m10">
         <MovieBox />
-
-  </div>
-    
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 //Import Materialize css
 
-import StoreHeader from './components/StoreHeader.vue'
-import StoreSideBar from './components/StoreSideBar.vue'
-import MovieBox from './components/MovieBox.vue'
-
+import StoreHeader from "./components/StoreHeader.vue";
+import StoreSideBar from "./components/StoreSideBar.vue";
+import MovieBox from "./components/MovieBox.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     StoreHeader,
     StoreSideBar,
     MovieBox
   },
-  data(){
+  data() {
     return {
       genres: [
         {
@@ -50,14 +48,14 @@ export default {
           id: 4
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-*{
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+* {
   margin: 0;
   padding: 0;
 }
