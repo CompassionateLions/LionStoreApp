@@ -100,7 +100,7 @@ Example response:
     },
     {
         "id": 32,
-        "email": "ginger_rodgers@test.com",
+        "email": "ginger_rogers@test.com",
         "role": "user"
     },
     {
