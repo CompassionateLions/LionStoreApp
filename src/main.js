@@ -11,6 +11,7 @@ import Login from './Login.vue'
 import Signup from './Signup.vue'
 import About from './About.vue'
 import Cart from './Cart.vue'
+import Admin from './Admin.vue'
 
 Vue.config.productionTip = false
 
@@ -21,7 +22,9 @@ const routes = [
   {path: "/Login", component: Login},
   {path: "/Signup", component: Signup},
   {path: "/About", component: About},
-  {path: "/Cart", component: Cart}
+  {path: "/Cart", component: Cart},
+  {path: "/Admin", component: Admin},
+
 ]
 
 const router = new VueRouter({

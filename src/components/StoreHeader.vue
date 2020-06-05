@@ -2,7 +2,7 @@
   <div>
     <nav>
       <div class="nav-wrapper orange darken-4">
-        <a href="#!" class="brand-logo">Lion Movie Store</a>
+        <a href="#!" class="brand-logo left">Lion Movie Store</a>
         <ul class="right">
           <li>
           <router-link to="/Login">
@@ -42,5 +42,10 @@ export default {
 <style scoped>
   .nav-wrapper {
     z-index: 1000;
+  }
+
+  .brand-logo {
+    position: relative;
+    padding-left: 2rem;
   }
 </style>
