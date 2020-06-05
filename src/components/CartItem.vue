@@ -71,7 +71,7 @@ li {
   border-style: groove;
 }
 .divStyle {
-  padding-top: 10px;
+  padding-top: 20px;
   padding-left: 10px;
 }
 .binStyle {

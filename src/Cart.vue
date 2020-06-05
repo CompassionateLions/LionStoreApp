@@ -19,12 +19,24 @@
             <CartItem v-bind:product="product" />
           </div>
         </div>
+         <div>
+          <hr />
+        </div>
         <div class="col l3 s6 offset-l9 -s6">
-           <router-link to="/login">
-           <button class="btn waves-effect waves-light   deep-orange darken-3" type="submit" name="action">
-            Submit
-          </button>
-           </router-link>        
+            <div class="row">
+            <router-link to="/login">
+              <button
+                class="btn waves-effect waves-light deep-orange darken-3"
+                type="submit"
+                name="action"
+              >Checkout</button>
+            </router-link>
+            <button
+              class="btn waves-effect waves-light deep-orange darken-3"
+              type="submit"
+              name="action"
+            >Cleart Cart</button>
+          </div>       
         </div>
       </div>
     </div>
@@ -99,7 +111,8 @@ i {
     position: relative;
     border-block-end-style: none;
 }
-button{
- margin-top: 10px;
+button {
+  margin-top: 10px;
+margin-left:2px ;
 }
 </style>
