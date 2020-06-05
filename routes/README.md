@@ -67,6 +67,50 @@ Example response:
 }
 ````
 
+### Get All Users ###
+
+| Endpoint | /api/users/all |
+| --- | --- |
+| Method | `GET` |
+| Token required | Yes |
+| Admin only | Yes |
+
+Example response:
+````json
+[
+    {
+        "id": 28,
+        "email": "humphrey_bogart@test.com",
+        "role": "user"
+    },
+    {
+        "id": 29,
+        "email": "james_stewart@test.com",
+        "role": "user"
+    },
+    {
+        "id": 30,
+        "email": "ingrid_bergman@test.com",
+        "role": "user"
+    },
+    {
+        "id": 31,
+        "email": "rita_hayworth@test.com",
+        "role": "user"
+    },
+    {
+        "id": 32,
+        "email": "ginger_rodgers@test.com",
+        "role": "user"
+    },
+    {
+        "id": 33,
+        "email": "edward_robinson@test.com",
+        "role": "user"
+    }
+]
+````
+
 ### Get Single User Information ###
 
 | Endpoint | /api/users/:userId |
