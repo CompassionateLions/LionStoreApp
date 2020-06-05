@@ -1,33 +1,42 @@
 <template>
   <div class="row">
-    <div class="col s12 m3 main-container right">
       <div class="card white">
-        <div class="movie-img">
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg" alt="Dark Knight Poster" />
-        </div>
-        <span class="movie-title">The Dark knight</span>
-
+        <MovieTitle />
+        <MoviePoster /> 
         <div class="row">
-          <div class="col s12 m6 left price">$30</div>
+          <MoviePrice />
           <div class="col s12 m6">
             <ul>
               <li>
-                <a href="#">Details</a>
+                <MovieDetails />
               </li>
               <li>
-                <a href="#">Add to Cart</a>
+                <MovieAddToCart />
               </li>
             </ul>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
 <script>
+
+import MovieTitle from "./MovieTitle.vue";
+import MovieDetails from "./MovieDetails.vue";
+import MoviePoster from "./MoviePoster.vue";
+import MoviePrice from "./MoviePrice.vue";
+import MovieAddToCart from "./MovieAddToCart.vue";
+
 export default {
   name: "MovieBox",
+  components: {
+    MovieTitle,
+    MovieDetails,
+    MoviePoster,
+    MoviePrice,
+    MovieAddToCart
+  },
   data() {
     return {
       SelectedMovie: ""
@@ -42,17 +51,8 @@ export default {
 </script>
 
 <style>
-.price {
-  font-size: 2em;
-  color: #35d0ba;
-}
-
-.movie-img{
-    padding: 1em;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    overflow: hidden;
+*{
+    box-shadow: none !important;
 }
 
 .main-container{
@@ -70,9 +70,5 @@ a{
     text-decoration: underline;
 }
 
-.movie-title {
-    font-size: 2em;
-    margin-bottom: 1em;
-    padding-bottom: 1em;
-}
+
 </style>

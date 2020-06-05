@@ -1,7 +1,17 @@
 <template>
   <div id="app">
+
     <StoreHeader/>
-    <StoreSideBar v-bind:genres="genres"/>
+
+    <div class="s4 m2">
+          <StoreSideBar v-bind:genres="genres"/>
+    </div>
+    
+  <div class="s8 m10">
+        <MovieBox />
+
+  </div>
+    
   </div>
 </template>
 
@@ -10,13 +20,15 @@
 
 import StoreHeader from './components/StoreHeader.vue'
 import StoreSideBar from './components/StoreSideBar.vue'
+import MovieBox from './components/MovieBox.vue'
 
 
 export default {
   name: 'Home',
   components: {
     StoreHeader,
-    StoreSideBar
+    StoreSideBar,
+    MovieBox
   },
   data(){
     return {
