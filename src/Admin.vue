@@ -4,17 +4,17 @@
     <h1>Admin page</h1>
     <div class="row container">
       <div class="col s12 tab-container">
-        <ul class="tabs">
-          <li class="tab col s3">
+        <ul class="tabs tabs-fixed-width">
+          <li class="tab">
             <a class="active" href="#addProduct">Add New Product</a>
           </li>
-          <li class="tab col s3">
+          <li class="tab">
             <a href="#updateProduct">Update Existing Product</a>
           </li>
-          <li class="tab col s3">
+          <li class="tab">
             <a href="#viewOrders">View Orders</a>
           </li>
-          <li class="tab col s3">
+          <li class="tab">
             <a href="#viewUsers">View Users</a>
           </li>
         </ul>

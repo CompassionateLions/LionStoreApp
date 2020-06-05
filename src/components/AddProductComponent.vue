@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h4 class="add-heading">Add A Product</h4>
     <div class="row">
       <form class="col s12 product-form" v-on:submit="createProduct">
         <div class="row">
@@ -88,6 +89,8 @@ export default {
   }
 };
 </script>
-
 <style scoped>
+  .add-heading {
+    margin-bottom: 3rem;
+  }
 </style>

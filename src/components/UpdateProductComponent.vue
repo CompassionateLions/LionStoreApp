@@ -5,10 +5,10 @@
       <form class="col s12 product-form" v-on:submit="updateProduct">
         <div class="row">
           <div class="input-field col s8">
-            <input id="id" type="number" required class="validate" name="id" />
-            <label for="id">Product ID To Update</label>
+            <input id="updateid" type="number" required class="validate" name="updateid" />
+            <label for="updateid">Product ID To Update</label>
           </div>
-          <button class="btn waves-effect waves-light col s4" type="button" name="populate" v-on:click="populateData">
+          <button class="btn waves-effect waves-light col s4" type="button" name="updatepopulate" v-on:click="populateData">
             Populate Data
             <i class="material-icons right">assignment</i>
           </button>
@@ -16,65 +16,65 @@
 
         <div class="row">
           <div class="input-field col s9">
-            <input id="name" type="text" required class="validate" name="name" />
-            <label for="name">Title</label>
+            <input id="updatename" type="text" required class="validate" name="updatename" />
+            <label for="updatename">Title</label>
           </div>
 
           <div class="input-field col s3">
-            <input id="year" type="number" class="validate" name="year" />
-            <label for="year">Year</label>
+            <input id="updateyear" type="number" class="validate" name="updateyear" />
+            <label for="updateyear">Year</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="genre" type="text" class="validate" name="genre" />
-            <label for="genre">Genres</label>
+            <input id="updategenre" type="text" class="validate" name="updategenre" />
+            <label for="updategenre">Genres</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s4">
-            <input id="director" type="text" class="validate" name="director" />
-            <label for="director">Director</label>
+            <input id="updatedirector" type="text" class="validate" name="updatedirector" />
+            <label for="updatedirector">Director</label>
           </div>
 
           <div class="input-field col s8">
-            <input id="actors" type="text" class="validate" name="actors" />
-            <label for="actors">Actors</label>
+            <input id="updateactors" type="text" class="validate" name="updateactors" />
+            <label for="updateactors">Actors</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="description" class="materialize-textarea" name="description"></textarea>
-            <label for="description">Description</label>
+            <textarea id="updatedescription" class="materialize-textarea" name="updatedescription"></textarea>
+            <label for="updatedescription">Description</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="image_url" name="image_url" type="text" class="validate" />
-            <label for="image_url">Poster URL</label>
+            <input id="updateimage_url" name="updateimage_url" type="text" class="validate" />
+            <label for="updateimage_url">Poster URL</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s4">
-            <input id="quantity" name="quantity" type="number" required class="validate" />
-            <label for="quantity">Stock Quantity</label>
+            <input id="updatequantity" name="updatequantity" type="number" required class="validate" />
+            <label for="updatequantity">Stock Quantity</label>
           </div>
           <div class="input-field col s4">
-            <input id="price" name="price" type="number" required class="validate" step="0.01" />
-            <label for="price">Price</label>
+            <input id="updateprice" name="updateprice" type="number" required class="validate" step="0.01" />
+            <label for="updateprice">Price</label>
           </div>
           <div class="input-field col s4">
-            <input id="format" name="format" type="text" required class="validate" />
-            <label for="format">Format</label>
+            <input id="updateformat" name="updateformat" type="text" required class="validate" />
+            <label for="updateformat">Format</label>
           </div>
         </div>
         <div class="row">
-          <button class="btn waves-effect waves-light" type="submit" name="action">
+          <button class="btn waves-effect waves-light" type="submit" name="updateaction">
             Update Product
             <i class="material-icons right">send</i>
           </button>
