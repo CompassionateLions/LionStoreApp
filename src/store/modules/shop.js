@@ -114,6 +114,10 @@ const state = {
     },
     filteredProducts: [],
     user: {},
+    admin: {
+        allUsers: [],
+        allOrders: [],
+    }
 
 };
 
@@ -127,7 +131,9 @@ const getters = {
             return {name: genre, checked: state.filter.genres.includes(genre)}
         });
     },
-    searchTerm: (state) => state.filter.title
+    searchTerm: (state) => state.filter.title,
+    allUsers: (state) => state.admin.allUsers,
+    allOrders: (state) => state.admin.allOrders
 
 };
 
@@ -191,6 +197,37 @@ const actions = {
     searchTermUpdateHandler({commit, dispatch}, searchTerm){
         commit('updateFilterSearchTerm', searchTerm);
         dispatch("applyFilters");
+    },
+    getAllOrders({commit}){
+
+        // const token = getToken
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        fetch('/api/order/all',{
+            method: 'GET',
+            headers:{
+
+            }
+        }).then(response => response.json()).then(json => {
+            if(json.error) return
+            
+            commit('updateAllOrders',json);
+        })
+    },
+    getAllUsers({commit}){
+        // const token = getToken
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        fetch('/api/users/all',{
+            method: 'GET',
+            headers:{
+
+            }
+        }).then(response => response.json()).then(json => {
+            if(json.error) return
+            
+            commit('updateAllUsers',json);
+        })
     }
 
 };
@@ -204,6 +241,12 @@ const mutations = {
     },
     updateFilterSearchTerm(state, searchTerm){
         state.filter.title = searchTerm
+    },
+    updateAllUsers(state, allUsers){
+        state.admin.allUsers = allUsers;
+    },
+    updateAllOrders(state, allOrders){
+        state.admin.allOrders = allOrders;
     }
     
 };
