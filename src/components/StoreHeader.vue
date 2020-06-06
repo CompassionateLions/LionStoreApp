@@ -2,7 +2,9 @@
   <div>
     <nav class="nav-extended">
       <div class="nav-wrapper orange darken-4">
-        <a href="#!" class="brand-logo left">Lion Movie Store</a>
+        <router-link to="/" class="brand-logo left">    
+          Lion Movie Store
+          </router-link>
         <ul class="right">
           <li>
           <router-link to="/Login">
@@ -15,8 +17,8 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/About">
-            <i class="material-icons left">info</i> <span class="hide-on-med-and-down">About</span>
+            <router-link to="/Admin">
+            <i class="material-icons left">info</i> <span class="hide-on-med-and-down">Admin</span>
             </router-link>
           </li>
         </ul>

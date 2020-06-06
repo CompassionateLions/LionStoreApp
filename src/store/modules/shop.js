@@ -113,12 +113,6 @@ const state = {
         price: [0,999]
     },
     filteredProducts: [],
-    user: {},
-    admin: {
-        allUsers: [],
-        allOrders: [],
-    }
-
 };
 
 const getters = {
@@ -131,9 +125,7 @@ const getters = {
             return {name: genre, checked: state.filter.genres.includes(genre)}
         });
     },
-    searchTerm: (state) => state.filter.title,
-    allUsers: (state) => state.admin.allUsers,
-    allOrders: (state) => state.admin.allOrders
+    searchTerm: (state) => state.filter.title
 
 };
 
@@ -198,35 +190,67 @@ const actions = {
         commit('updateFilterSearchTerm', searchTerm);
         dispatch("applyFilters");
     },
-    getAllOrders({commit}){
+    getAllOrders(){
 
         // const token = getToken
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
 
-        fetch('/api/order/all',{
+        return fetch('/api/order/all',{
             method: 'GET',
             headers:{
-
+                'Authorization': `Bearer ${token}`
             }
         }).then(response => response.json()).then(json => {
             if(json.error) return
             
-            commit('updateAllOrders',json);
+            return json
         })
     },
-    getAllUsers({commit}){
+    getAllUsers(){
         // const token = getToken
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
 
-        fetch('/api/users/all',{
+        return fetch('/api/users/all',{
             method: 'GET',
             headers:{
-
+                'Authorization': `Bearer ${token}`
             }
         }).then(response => response.json()).then(json => {
-            if(json.error) return
+            if(json.error) throw json.error
             
-            commit('updateAllUsers',json);
+            return json
+        })
+    },
+    getOneOrder(state, orderId){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        console.log(state.thing);
+
+        return fetch(`/api/order/${orderId}`,{
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) throw "No order found"
+            return json
+        })
+    },
+    getOneUser(state, userId){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        console.log(state.thing);
+
+        return fetch(`/api/users/${userId}`,{
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) throw json.error
+            return json
         })
     }
 
@@ -241,14 +265,7 @@ const mutations = {
     },
     updateFilterSearchTerm(state, searchTerm){
         state.filter.title = searchTerm
-    },
-    updateAllUsers(state, allUsers){
-        state.admin.allUsers = allUsers;
-    },
-    updateAllOrders(state, allOrders){
-        state.admin.allOrders = allOrders;
-    }
-    
+    },    
 };
 
 export default {

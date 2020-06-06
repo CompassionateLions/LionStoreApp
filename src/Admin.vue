@@ -45,8 +45,6 @@ import ViewUsersComponent from "./components/ViewUsersComponent";
 
 import M from "materialize-css";
 
-import {mapGetters} from 'vuex';
-
 export default {
   name: "Admin",
   components: {
@@ -55,9 +53,6 @@ export default {
     UpdateProductComponent,
     ViewOrdersComponent,
     ViewUsersComponent
-  },
-  computed: {
-    ...mapGetters(['allOrders', 'allUsers'])
   },
   mounted() {
     M.AutoInit();
