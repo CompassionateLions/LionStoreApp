@@ -3,26 +3,15 @@
     <div class="row">
       <StoreHeader />
 
-      <div class="col s4 m2">
+      <div class="col s4 m3">
         <StoreSideBar />
-        <div class="filter-out" :key="product.id" v-for="product in filteredProducts">
-          <div class="movie">
-            <h5>{{product.name}} ({{product.year}})</h5>
-            <p>$ {{product.price}}</p>
-            <p>{{product.genre}}</p>
-          </div>
+      </div>
+
+      <div class="col m9">
+        <div class= "col m3" :key="movie.id" v-for="movie in filteredProducts">
+          <MovieBox v-bind:movie="movie" />
         </div>
       </div>
-
-      <div class="col s8 m10">
-        <div class="col s12 m4"> <MovieBox /> </div>
-       <div class="col s12 m4"> <MovieBox /> </div>
-       <div class="col s12 m4"> <MovieBox /> </div>
-       <div class="col s12 m4"> <MovieBox /> </div>
-       <div class="col s12 m4"> <MovieBox /> </div>
-       <div class="col s12 m4"> <MovieBox /> </div>
-      </div>
-
     </div>
   </div>
 </template>

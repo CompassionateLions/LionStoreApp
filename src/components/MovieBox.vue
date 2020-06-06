@@ -1,65 +1,68 @@
 <template>
   <div class="row">
-    
-      <div class="card white">
-        <MovieTitle />
-        <MoviePoster />
+    <div class="card white">
+      <div class="movie-container">
+        <div class="movie-title center-align ">{{movie.name}}</div>
+        <div class="movie-img">
+           <img :src="movie.image_url" width = 100% height= 400em>
+        </div>
         <div class="row">
-          <MoviePrice />
+          <div class="col s12 m6 left price"> ${{movie.price}}</div>
           <div class="col s12 m6">
             <ul>
               <li>
-                <MovieDetails />
+                <a href="#">Details</a>
               </li>
               <li>
-                <MovieAddToCart />
+                <a href="#">Add to Cart</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
-import MovieTitle from "./MovieTitle.vue";
-import MovieDetails from "./MovieDetails.vue";
-import MoviePoster from "./MoviePoster.vue";
-import MoviePrice from "./MoviePrice.vue";
-import MovieAddToCart from "./MovieAddToCart.vue";
-
 export default {
   name: "MovieBox",
-  components: {
-    MovieTitle,
-    MovieDetails,
-    MoviePoster,
-    MoviePrice,
-    MovieAddToCart
-  },
-  data() {
-    return {
-      SelectedMovie: ""
-    };
-  },
+  props: ["movie"],
   methods: {
     searchTitle() {
       console.log(this.SelectedMovie);
     }
+  },
+  created() {
+    console.log(this.movie);
   }
 };
 </script>
 
 <style>
 * {
+  margin: 15em;
   box-shadow: none !important;
+}
+
+.movie-title {
+  font-size: 2em;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  height: 2em;
+  text-align: center;
+}
+
+.price {
+  font-size: 2em;
+  color: #35d0ba;
 }
 
 .main-container {
   margin: 1em;
   border: none;
   box-shadow: none;
-  margin-right: 2em;
+  margin-bottom: 1em;
 }
 .card {
   border: none !important;
@@ -68,5 +71,13 @@ export default {
 a {
   color: black;
   text-decoration: underline;
+}
+
+.movie-img {
+  padding: 1em;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  overflow: hidden;
 }
 </style>
