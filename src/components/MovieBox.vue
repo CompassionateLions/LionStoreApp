@@ -39,11 +39,7 @@ export default {
 };
 </script>
 
-<style>
-* {
-  margin: 15em;
-  box-shadow: none !important;
-}
+<style scoped>
 
 .movie-title {
   font-size: 2em;
@@ -63,9 +59,6 @@ export default {
   border: none;
   box-shadow: none;
   margin-bottom: 1em;
-}
-.card {
-  border: none !important;
 }
 
 a {
