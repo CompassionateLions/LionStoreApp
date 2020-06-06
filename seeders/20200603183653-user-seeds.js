@@ -46,7 +46,7 @@ module.exports = {
         role: "user"
       },
       {
-        email: "ginger_rodgers@test.com",
+        email: "ginger_rogers@test.com",
         password: "Ginger123",
         role: "user"
       },

@@ -94,7 +94,7 @@ module.exports = {
         if(email === undefined || password === undefined) return res.status(400).json({error: "Missing information"})
 
         db.User.findOne({where:{email}}).then(async result => {
-            const user = result.dataValues;
+            const user = result;
 
             //If passwords don't match return error
             if(! await comparePasswords(password, user.password)) return res.status(400).json({error: "Incorrect username or password"});
@@ -157,5 +157,25 @@ module.exports = {
         }).catch((error) => {
             return res.status(404).json({error: "Could not get details of user"});
         })
+    },
+    getAllUsers(req, res){
+        //If middlewear didn't add user object to req then return (shouldn't happen)
+        if(req.user === undefined) return res.status(401).json({error: "Authentication error"});
+
+        db.User.findAll({where:{}}).then(result => {
+            const response = result.map(user => {
+                return {
+                    id: user.id,
+                    email: user.email,
+                    role: user.role
+                }
+            })
+
+            return res.status(200).json(response);
+        }).catch(error => {
+            res.status(500).json({error: "Unable to process request"});
+        })
+
+
     }
 }
