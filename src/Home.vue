@@ -8,8 +8,14 @@
       </div>
 
       <div class="col s8 m10">
-        <MovieBox />
+        <div class="col s12 m4"> <MovieBox /> </div>
+       <div class="col s12 m4"> <MovieBox /> </div>
+       <div class="col s12 m4"> <MovieBox /> </div>
+       <div class="col s12 m4"> <MovieBox /> </div>
+       <div class="col s12 m4"> <MovieBox /> </div>
+       <div class="col s12 m4"> <MovieBox /> </div>
       </div>
+      
     </div>
   </div>
 </template>

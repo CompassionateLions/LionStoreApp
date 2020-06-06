@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col s12 m4">
+    
       <div class="card white">
         <MovieTitle />
         <MoviePoster />
@@ -18,7 +18,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
