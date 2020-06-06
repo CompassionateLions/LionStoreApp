@@ -58,7 +58,7 @@ export default {
           const form = {email: this.credentials.email, password: this.credentials.password }
 
           console.log(form)
-            fetch('http://localhost:8080/api/users/login', {
+            fetch('/api/users/login', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

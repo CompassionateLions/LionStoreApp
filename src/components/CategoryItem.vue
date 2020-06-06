@@ -3,7 +3,7 @@
     <a>
       <p>
         <label class="left">
-          <input type="checkbox" class="filled-in checkbox-orange" />
+          <input type="checkbox" v-on:change="checkboxHandler" class="filled-in checkbox-orange" :checked="genre.checked"/>
           <span>{{genre.name}}</span>
         </label>
       </p>
@@ -12,9 +12,18 @@
 </template>
 
 <script>
+
+import {mapActions} from 'vuex';
+
 export default {
   name: "CategoryItem",
-  props: ["genre"]
+  props: ["genre"],
+  methods: {
+    ...mapActions(['updateGenreFilter']),
+    checkboxHandler(){
+      this.updateGenreFilter(this.genre.name);
+    }
+  }
 };
 </script>
 

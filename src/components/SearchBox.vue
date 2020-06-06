@@ -10,11 +10,11 @@
             type="search" 
             placeholder="Search"
             v-model="searchTerm"
-            v-on:keyup="searchTitle" />
+            />
             <label class="label-icon" for="search">
               <i class="material-icons search-icon">search</i>
             </label>
-            <i class="material-icons close-icon">close</i>
+            <i class="material-icons close-icon" @click="clearSearchTerm">close</i>
           </div>
         </form>
       </div>
@@ -23,17 +23,25 @@
 </template>
 
 <script>
+
+// import {mapActions} from 'vuex';
+
 export default {
   name: "SearchBox",
-  data() {
-      return {
-          searchTerm: ''
+  computed: {
+    searchTerm:{
+      get(){
+        return this.$store.getters.searchTerm;
+      },
+      set(value){
+        this.$store.dispatch('searchTermUpdateHandler', value)
       }
+    }
   },
-  methods: {
-      searchTitle() {
-          console.log(this.searchTerm);
-      }
+  methods:{
+    clearSearchTerm(){
+      this.searchTerm = '';
+    }
   }
 };
 </script>
@@ -65,3 +73,12 @@ export default {
 
 
 </style>
+
+
+  // methods: {
+  //     ...mapActions(['updateNameFilter']),
+  //     searchTitle() {
+  //         console.log(this.searchTerm);
+  //         this.updateNameFilter(this.searchTerm);
+  //     }
+  // }
