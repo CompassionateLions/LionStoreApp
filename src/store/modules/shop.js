@@ -113,7 +113,6 @@ const state = {
         price: [0, 999]
     },
     filteredProducts: [],
-    user: {},
     cartProducts: [],
 };
 
@@ -194,7 +193,132 @@ const actions = {
         commit('updateFilterSearchTerm', searchTerm);
         dispatch("applyFilters");
     },
+    getAllOrders(){
 
+        // const token = getToken
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        return fetch('/api/order/all',{
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(response => response.json()).then(json => {
+            if(json.error) return
+            
+            return json
+        })
+    },
+    getAllUsers(){
+        // const token = getToken
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        return fetch('/api/users/all',{
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(response => response.json()).then(json => {
+            if(json.error) throw json.error
+            
+            return json
+        })
+    },
+    getOneOrder(state, orderId){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        console.log(state.thing);
+
+        return fetch(`/api/order/${orderId}`,{
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) throw "No order found"
+            return json
+        })
+    },
+    getOneUser(state, userId){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        console.log(state.thing);
+
+        return fetch(`/api/users/${userId}`,{
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) throw json.error
+            return json
+        })
+    },
+    addProductToStore({dispatch}, product){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+
+        return fetch(`/api/products/`,{
+            method: 'POST',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-type':'application/x-www-form-urlencoded'
+            },
+            body: product
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) throw json.error
+            dispatch('queryApiAllProducts');
+            return json
+        })
+    },
+    getOneProduct(state, productId){
+        console.log(state.nothing);
+        return fetch(`/api/products/${productId}`,{
+            method: 'GET',
+            headers:{
+                
+                
+            }
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            return json
+        })
+    },
+    updateProduct({dispatch}, product){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        return fetch(`/api/products/`,{
+            method: 'PUT',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify(product)
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) return json
+            dispatch('queryApiAllProducts');
+            return json
+        })
+    },
+    deleteProduct({dispatch}, productId){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        return fetch(`/api/products/${productId}`,{
+            method: 'DELETE',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }).then(response => response.json()).then(json => {
+            if(json.error) return json
+            dispatch('queryApiAllProducts');
+            return json
+        })
+
+    },
     getCartProducts({commit}) {
         fetch("/api/cart/", {
             method: "GET",
@@ -252,16 +376,6 @@ const actions = {
 
             })
       }
-
-    //     //Construct the post body (with product id and newQuantity) - Check login method for details
-
-    //     //Do the PUT request to API
-
-    //     //In the then block
-    //     //commit("updateCartProducts", json)
-
-    // }
-
 };
 
 const mutations = {

@@ -3,7 +3,7 @@
     <h4 class="view-heading">View Users</h4>
     <div class="row valign-wrapper">
       <div class="input-field col s5">
-        <input id="userId" type="number" class="validate" />
+        <input id="userId" type="number" v-model="userId" />
         <label for="userId">UserID To View</label>
       </div>
       <button
@@ -26,9 +26,9 @@
       </button>
     </div>
 
-    <div class="row">
-      <div v-bind:key="user.id" v-for="user in users" class="col s12 m6">
-        <UserComponent v-bind:user="user" />
+    <div class="row box-container">
+      <div v-bind:key="user.id" v-for="user in users" class="col s12 m4 box-outer-wrapper">
+        <UserComponent v-bind:user="user" class="card-wrapper"/>
       </div>
     </div>
   </div>
@@ -37,75 +37,34 @@
 <script>
 import UserComponent from "./UserComponent";
 
+import {mapActions} from 'vuex'
+
 export default {
   name: "ViewUsersComponent",
   components: {
     UserComponent
   },
-  data() {
+  data(){
     return {
-      users: [
-        {
-          id: 23,
-          email: "ben@fawcett.xyz",
-          role: "admin"
-        },
-        {
-          id: 24,
-          email: "ben@lionstore.com",
-          role: "admin"
-        },
-        {
-          id: 25,
-          email: "ruma@lionstore.com",
-          role: "admin"
-        },
-        {
-          id: 26,
-          email: "ziyen@lionstore.com",
-          role: "admin"
-        },
-        {
-          id: 27,
-          email: "karthik@lionstore.com",
-          role: "admin"
-        },
-        {
-          id: 28,
-          email: "humphrey_bogart@test.com",
-          role: "user"
-        },
-        {
-          id: 29,
-          email: "james_stewart@test.com",
-          role: "user"
-        },
-        {
-          id: 30,
-          email: "ingrid_bergman@test.com",
-          role: "user"
-        },
-        {
-          id: 31,
-          email: "rita_hayworth@test.com",
-          role: "user"
-        },
-        {
-          id: 32,
-          email: "ginger_rodgers@test.com",
-          role: "user"
-        },
-        {
-          id: 33,
-          email: "edward_robinson@test.com",
-          role: "user"
-        }
-      ]
-    };
+      users: [],
+      userId: '',
+    }
   },
   methods: {
-    viewOneUser() {},
-    viewAllUsers() {}
+    ...mapActions(['getAllUsers','getOneUser']),
+    viewAllUsers() {
+      this.getAllUsers().then(users => {
+        this.users = users
+      });
+    },
+    viewOneUser(){
+      this.getOneUser(this.userId).then(user => {
+        this.users = [user]
+      }).catch(err => {
+        console.log(err);
+      });
+    }
+
   }
 };
 </script>
@@ -113,5 +72,24 @@ export default {
 <style scoped>
 .view-heading {
   margin-bottom: 3rem;
+}
+.box-container{
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.box-container::after{
+  display: none;
+}
+
+.card-wrapper {
+  height: 100%;
+  padding: 10px;
+}
+
+.box-outer-wrapper {
+  margin: 0!important;
 }
 </style>
