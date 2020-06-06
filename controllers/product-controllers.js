@@ -5,6 +5,8 @@ module.exports = {
 
         const product = req.body;
 
+        console.log(product);
+
         db.Product.create({
             name: product.name,
             image_url: product.image_url,
@@ -68,6 +70,17 @@ module.exports = {
             res.status(200).json(result.get());
         }).catch(error => {
             res.status(404).json({error: "Couldn't find product"});
+        })
+    },
+
+    deleteProduct(req, res){
+        console.log(req.params.id)
+        if(req.params.id === undefined || !(/^[0-9]+$/.test(req.params.id))) return res.status(400).json({error: "Invalid product id"});
+
+        db.Product.destroy({where:{id:req.params.id}}).then(result => {
+            return res.status(200).json({success: "Successfully deleted product"});
+        }).catch(error => {
+            return res.status(400).json({error: "Could not process request"});
         })
     }
 

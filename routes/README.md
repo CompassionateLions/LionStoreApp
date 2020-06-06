@@ -8,7 +8,7 @@ Example with Fetch API:
 ````javascript
 fetch('https://example.com/api/products', {
     headers: {
-        Authourization: 'Bearer <token-here>'
+        'Authorization': 'Bearer <token-here>'
     }
 })
 ````
@@ -250,6 +250,21 @@ Example response:
     "rating": "R",
     "createdAt": "2020-06-03T00:26:52.000Z",
     "updatedAt": "2020-06-03T00:26:52.000Z"
+}
+````
+
+### Delete Product ###
+
+| Endpoint | /api/products/:productId |
+| --- | --- |
+| Method | `DELETE` |
+| Token required | Yes |
+| Admin only | Yes |
+
+Example response:
+````json
+{
+    "success": "Successfully deleted product"
 }
 ````
 

@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .card-image {
-    padding: 20px;
+    
     display: flex;
     justify-content: center;
     align-content: center;
@@ -41,9 +41,15 @@ export default {
 
 .card-title {
     overflow-wrap: break-word;
+    padding: 0 15px;
 }
 
 .bold {
     font-weight: bold;
+}
+
+.card {
+  height: 100%;
+  padding: 20px;
 }
 </style>
