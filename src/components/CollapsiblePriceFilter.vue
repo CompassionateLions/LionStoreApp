@@ -21,6 +21,8 @@ import M from "materialize-css";
 import noUiSlider from "nouislider";
 import "nouislider/distribute/nouislider.css";
 
+import {mapActions} from 'vuex';
+
 export default {
   name: "CollabsiblePriceFilter",
   components: {},
@@ -31,12 +33,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['updatePriceFilter']),
     initSlider() {
       const slider = document.querySelector(".price-slider");
 
       noUiSlider.create(slider, {
         start: [0, 100],
         connect: true,
+        step: 1,
         range: {
           min: 0,
           max: 100
@@ -44,16 +48,18 @@ export default {
       });
 
       slider.noUiSlider.on("update", this.updateTextboxes);
+      slider.noUiSlider.on("set", this.updatePriceFilter);
 
     },
     updateTextboxes(e) {
       this.priceMin = Math.round(e[0]);
       this.priceMax = Math.round(e[1]);
-      console.log(e)
+      
     },
     updateSlider(){
       const slider = document.querySelector(".price-slider");
       slider.noUiSlider.set([this.priceMin, this.priceMax]);
+      this.updatePriceFilter([this.priceMin, this.priceMax]);
     }
   },
   mounted() {

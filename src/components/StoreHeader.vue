@@ -1,8 +1,8 @@
 <template>
   <div>
-    <nav>
+    <nav class="nav-extended">
       <div class="nav-wrapper orange darken-4">
-        <a href="#!" class="brand-logo">Lion Movie Store</a>
+        <a href="#!" class="brand-logo left">Lion Movie Store</a>
         <ul class="right">
           <li>
           <router-link to="/Login">
@@ -10,7 +10,7 @@
           </router-link>
           </li>
           <li>
-            <router-link to="/">
+            <router-link to="/Cart">
             <i class="material-icons left">shopping_cart</i> <span class="hide-on-med-and-down">Cart</span>
             </router-link>
           </li>
@@ -42,5 +42,15 @@ export default {
 <style scoped>
   .nav-wrapper {
     z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .brand-logo {
+    position: relative;
+    padding-left: 2rem;
+    
   }
 </style>

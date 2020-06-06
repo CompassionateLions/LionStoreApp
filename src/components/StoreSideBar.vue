@@ -4,7 +4,7 @@
         <!-- Filter title -->
         <h5>Filter Titles</h5>
         <SearchBox/>
-        <CollapsibleGenreFilter v-bind:genres="genres" class="filter-item"/>
+        <CollapsibleGenreFilter class="filter-item"/>
         <CollapsiblePriceFilter  class="filter-item"/>
         <CollapsibleYearFilter  class="filter-item"/>
       

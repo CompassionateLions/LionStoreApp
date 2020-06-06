@@ -4,7 +4,14 @@
       <StoreHeader />
 
       <div class="col s4 m2">
-        <StoreSideBar v-bind:genres="genres" />
+        <StoreSideBar />
+        <div class="filter-out" :key="product.id" v-for="product in filteredProducts">
+          <div class="movie">
+            <h5>{{product.name}} ({{product.year}})</h5>
+            <p>$ {{product.price}}</p>
+            <p>{{product.genre}}</p>
+          </div>
+        </div>
       </div>
 
       <div class="col s8 m10">
@@ -15,7 +22,7 @@
        <div class="col s12 m4"> <MovieBox /> </div>
        <div class="col s12 m4"> <MovieBox /> </div>
       </div>
-      
+
     </div>
   </div>
 </template>
@@ -27,6 +34,8 @@ import StoreHeader from "./components/StoreHeader.vue";
 import StoreSideBar from "./components/StoreSideBar.vue";
 import MovieBox from "./components/MovieBox.vue";
 
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Home",
   components: {
@@ -34,27 +43,14 @@ export default {
     StoreSideBar,
     MovieBox
   },
-  data() {
-    return {
-      genres: [
-        {
-          name: "Drama",
-          id: 1
-        },
-        {
-          name: "Horror",
-          id: 2
-        },
-        {
-          name: "Thriller",
-          id: 3
-        },
-        {
-          name: "Action",
-          id: 4
-        }
-      ]
-    };
+  computed: {
+    ...mapGetters(["filteredProducts"])
+  },
+  methods: {
+    ...mapActions(["queryApiAllProducts"])
+  },
+  created() {
+    this.queryApiAllProducts();
   }
 };
 </script>
