@@ -7,6 +7,11 @@
           </router-link>
         <ul class="right">
           <li>
+          <router-link to="/Signup">
+            <i class="material-icons left">person</i><span class="hide-on-med-and-down">Signup</span>
+          </router-link>
+          </li>
+          <li>
           <router-link to="/Login">
             <i class="material-icons left">person</i><span class="hide-on-med-and-down">Login</span>
           </router-link>
