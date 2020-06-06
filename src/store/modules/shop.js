@@ -252,6 +252,69 @@ const actions = {
             if(json.error) throw json.error
             return json
         })
+    },
+    addProductToStore({dispatch}, product){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+
+        return fetch(`/api/products/`,{
+            method: 'POST',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-type':'application/x-www-form-urlencoded'
+            },
+            body: product
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) throw json.error
+            dispatch('queryApiAllProducts');
+            return json
+        })
+    },
+    getOneProduct(state, productId){
+        console.log(state.nothing);
+        return fetch(`/api/products/${productId}`,{
+            method: 'GET',
+            headers:{
+                
+                
+            }
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            return json
+        })
+    },
+    updateProduct({dispatch}, product){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        return fetch(`/api/products/`,{
+            method: 'PUT',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify(product)
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) return json
+            dispatch('queryApiAllProducts');
+            return json
+        })
+    },
+    deleteProduct({dispatch}, productId){
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4";
+
+        return fetch(`/api/products/${productId}`,{
+            method: 'DELETE',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            }
+        }).then(response => response.json()).then(json => {
+            if(json.error) return json
+            dispatch('queryApiAllProducts');
+            return json
+        })
+
     }
 
 };

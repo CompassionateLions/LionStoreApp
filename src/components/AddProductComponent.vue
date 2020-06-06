@@ -74,16 +74,20 @@
 </template>
 
 <script>
+
+import {mapActions} from 'vuex';
+
 export default {
   name: "AddProductComponent",
   methods:{
+    ...mapActions(['addProductToStore']),
       createProduct(e){
           e.preventDefault();
 
-          const data = new FormData(e.target);
-          console.log(data)
+          const data = new URLSearchParams(new FormData(e.target));
+          console.log([...data.entries()])
           //Validate?
-
+          this.addProductToStore(data);
           //post data
       }
   }

@@ -16,6 +16,9 @@ router.get("/", productControllers.getAllProducts);
 //Update a product, admin only
 router.put("/", authenticateUser, checkAdmin, productControllers.updateProduct);
 
+//Delete a product, admin only
+router.delete("/:id", authenticateUser, checkAdmin, productControllers.deleteProduct);
+
 //Get info about single product
 router.get("/:id", productControllers.getProductById);
 
