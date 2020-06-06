@@ -8,7 +8,7 @@ Example with Fetch API:
 ````javascript
 fetch('https://example.com/api/products', {
     headers: {
-        Authourization: 'Bearer <token-here>'
+        'Authorization': 'Bearer <token-here>'
     }
 })
 ````
