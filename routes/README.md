@@ -253,6 +253,21 @@ Example response:
 }
 ````
 
+### Delete Product ###
+
+| Endpoint | /api/products/:productId |
+| --- | --- |
+| Method | `DELETE` |
+| Token required | Yes |
+| Admin only | Yes |
+
+Example response:
+````json
+{
+    "success": "Successfully deleted product"
+}
+````
+
 ### Get All Products ###
 
 | Endpoint | /api/products/ |
