@@ -21,13 +21,13 @@
       </li>
       <li class="padL">
         <a>
-          <i class="material-icons">expand_less</i>
+          <i class="material-icons" @click="increaseProductByOne()">expand_less</i>
         </a>
       </li>
       <li class="qty" label="Quantity" v-html="product.quantity"></li>
       <li class="padL">
         <a>
-          <i class="material-icons">expand_more</i>
+          <i class="material-icons"  @click=" decreaseProductByOne()">expand_more</i>
         </a>
       </li>
     </div>
@@ -39,15 +39,35 @@
     </div>
     <div class="col l2 m12 s12 offset-l1 divStyle">
       <a class="secondary-content">
-        <i class="material-icons">delete</i>
+        <i class="material-icons" @click="removeProduct()">delete</i>
       </a>
     </div>
   </div>
 </template>
 <script>
+
+import {mapActions} from 'vuex';
+
+
 export default {
   name: "CartItem",
-  props: ["product", "index"]
+  props: ["product"],
+  methods: {
+    ...mapActions(['removeProductFromCart', 'updateCartQuantity']),
+    removeProduct(){
+      //Needs to call an action from vueX store
+    this.removeProductFromCart(this.product.productId);
+
+    },
+    // increaseProductByOne(){
+    //   this.updateCartQuantity(this.product.id, this.product.quantity + 1)
+    // },
+    // decreaseProductByOne(){
+    //   this.updateCartQuantity(this.product.id, this.product.quantity - 1)
+    // }
+  }
+ 
+
 };
 </script>
 
