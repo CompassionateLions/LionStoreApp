@@ -29,12 +29,8 @@ export default {
   name: "MovieBox",
   props: ["movie"],
   methods: {
-    searchTitle() {
-      console.log(this.SelectedMovie);
-    }
   },
   created() {
-    console.log(this.movie);
   }
 };
 </script>
