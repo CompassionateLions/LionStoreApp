@@ -8,16 +8,20 @@ const {authenticateUser, checkAdmin} = require("../controllers/middlewear/check-
 // ROOT URL = "/api/users"
 
 //Signup
-router.post("/signup", userControllers.signup)
+router.post("/signup", userControllers.signup);
 
 //Login
-router.post("/login", userControllers.login)
+router.post("/login", userControllers.login);
+
+//Get All users. Admin only
+router.get("/all", authenticateUser, checkAdmin, userControllers.getAllUsers);
 
 //Get info of specific user. Requires admin privilledges
-router.get("/:id", authenticateUser, checkAdmin, userControllers.getUserInfo)
+router.get("/:id", authenticateUser, checkAdmin, userControllers.getUserInfo);
 
 //Get info of the authenticated user
 router.get("/", authenticateUser, userControllers.getAuthenticatedUser);
+
 
 
 

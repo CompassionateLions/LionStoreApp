@@ -134,7 +134,7 @@ const getters = {
 const actions = {
     queryApiAllProducts({ commit }) {
 
-        return fetch('http://localhost:8080/api/products').then(response => {
+        return fetch('/api/products').then(response => {
             return response.json()
         }).then(json => {
             if (json.error) return //do some error handling
