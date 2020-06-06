@@ -8,7 +8,7 @@ Example with Fetch API:
 ````javascript
 fetch('https://example.com/api/products', {
     headers: {
-        Authourization: 'Bearer <token-here>'
+        'Authorization': 'Bearer <token-here>'
     }
 })
 ````
@@ -65,6 +65,50 @@ Example response:
     "role": "user",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJiZW5AdGVzdC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTU5MTE0NDYzMiwiZXhwIjoxNTkxMjMxMDMyfQ.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 }
+````
+
+### Get All Users ###
+
+| Endpoint | /api/users/all |
+| --- | --- |
+| Method | `GET` |
+| Token required | Yes |
+| Admin only | Yes |
+
+Example response:
+````json
+[
+    {
+        "id": 28,
+        "email": "humphrey_bogart@test.com",
+        "role": "user"
+    },
+    {
+        "id": 29,
+        "email": "james_stewart@test.com",
+        "role": "user"
+    },
+    {
+        "id": 30,
+        "email": "ingrid_bergman@test.com",
+        "role": "user"
+    },
+    {
+        "id": 31,
+        "email": "rita_hayworth@test.com",
+        "role": "user"
+    },
+    {
+        "id": 32,
+        "email": "ginger_rogers@test.com",
+        "role": "user"
+    },
+    {
+        "id": 33,
+        "email": "edward_robinson@test.com",
+        "role": "user"
+    }
+]
 ````
 
 ### Get Single User Information ###
@@ -206,6 +250,21 @@ Example response:
     "rating": "R",
     "createdAt": "2020-06-03T00:26:52.000Z",
     "updatedAt": "2020-06-03T00:26:52.000Z"
+}
+````
+
+### Delete Product ###
+
+| Endpoint | /api/products/:productId |
+| --- | --- |
+| Method | `DELETE` |
+| Token required | Yes |
+| Admin only | Yes |
+
+Example response:
+````json
+{
+    "success": "Successfully deleted product"
 }
 ````
 
