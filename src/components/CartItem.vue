@@ -57,14 +57,13 @@ export default {
     removeProduct(){
       //Needs to call an action from vueX store
     this.removeProductFromCart(this.product.productId);
-
     },
-    // increaseProductByOne(){
-    //   this.updateCartQuantity(this.product.id, this.product.quantity + 1)
-    // },
-    // decreaseProductByOne(){
-    //   this.updateCartQuantity(this.product.id, this.product.quantity - 1)
-    // }
+    increaseProductByOne(){
+      this.updateCartQuantity({productId: this.product.productId,newQuantity: this.product.quantity + 1})
+    },
+    decreaseProductByOne(){
+      this.updateCartQuantity({productId: this.product.productId,newQuantity: this.product.quantity - 1})
+    }
   }
  
 

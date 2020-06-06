@@ -221,6 +221,9 @@ const actions = {
                 return res.json();
             })
             .then(json => {
+                if(json.error) {
+                    return "No Product In Cart"
+                }
                 console.log(json); 
                 commit("updateCartProducts", json)
 
@@ -229,7 +232,27 @@ const actions = {
         //In the then block
             //commit("updateCartProducts", json)
     },
-    // updateCartQuantity({commit}, productId, newQuantity){
+   updateCartQuantity({commit}, body){
+            console.log(body);
+            fetch('/api/cart/update', {
+                method: "PUT",
+                headers: {
+                    "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJiZW5AZmF3Y2V0dC54eXoiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1OTE0MDc2NDgsImV4cCI6MTU5MTQ5NDA0OH0.ga0973ZtuimjIZKCF9-LJ26N_piXizaYTUgfoJ1zvV4",
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            }).then((res) => {
+                return res.json();
+            }).then((json) => {
+                if(json.error) {
+                    return
+                }
+                console.log(json)
+                commit("updateCartProducts", json)
+
+            })
+      }
+
     //     //Construct the post body (with product id and newQuantity) - Check login method for details
 
     //     //Do the PUT request to API
