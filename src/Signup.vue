@@ -35,11 +35,34 @@
 <script>
 import StoreHeader from './components/StoreHeader.vue'
 
+import { mapActions } from "vuex";
+
 export default {
     name: 'Signup',
     components: {
     StoreHeader  
   },  
+    
+    data() {
+        return {
+            user: {
+                email: '',
+                password: ''
+            },
+            error: ""
+        };
+    },
+
+    methods: {
+        ...mapActions(["signUpUser"]),
+        signUpUser (){
+
+
+        }
+
+    }
+
+
     }
 </script>
 
