@@ -280,6 +280,25 @@ const actions = {
             commit("updateCartProducts", json)
 
         })
+    },
+    getUserOrders({rootState}){
+
+        const token = rootState.user.token;
+
+        return fetch("/api/order/", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(res => {
+            return res.json();
+        })
+            .then(json => {
+                if (json.error) {
+                    return json
+                }
+                return json
+            });
     }
 };
 
@@ -295,6 +314,10 @@ const mutations = {
     },
     updateCartProducts(state, cartProducts) {
         state.cartProducts = cartProducts;
+    }
+    ,
+    clearCart(state){
+        state.cartProducts = [];
     }
 
 };

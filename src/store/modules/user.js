@@ -7,7 +7,14 @@ const state = {
 }
 
 const getters = {
-
+    user(state){
+        return {
+            id: state.id,
+            role: state.role,
+            email: state.email,
+            loggedIn: state.loggedIn
+        }
+    }
 }
 
 const actions = {
@@ -34,6 +41,24 @@ const actions = {
     // },
     logoutUser({commit}){
         commit('clearUser');
+        commit('clearCart');
+    },
+    changePassword({state}, data){
+
+        const token = state.token;
+
+        return fetch(`/api/users/password`, {
+            method: 'PUT',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: data
+        }).then(response => response.json()).then(json => {
+            if(json.error) return json
+            return json
+
+        })
     }
 }
 
