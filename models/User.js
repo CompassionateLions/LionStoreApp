@@ -36,7 +36,10 @@ module.exports = function(sequelize, DataTypes) {
         },
         {
             hooks: {
-                beforeCreate: async function(user, options){
+                beforeSave: async function(user, options){
+                    user.password = await hashPassword(user.password);
+                },
+                beforeBulkUpdate: async function(user, options){
                     user.password = await hashPassword(user.password);
                 }
 

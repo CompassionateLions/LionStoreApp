@@ -88,7 +88,7 @@ module.exports = {
 
     //Login route
     login(req, res){
-        console.log(req.body)
+        
         const {body: {email, password}} = req;
 
         if(email === undefined || password === undefined) return res.status(400).json({error: "Missing information"})
@@ -176,6 +176,34 @@ module.exports = {
             res.status(500).json({error: "Unable to process request"});
         })
 
+
+    },
+    updatePassword(req, res){
+
+        //If middlewear didn't add user object to req then return (shouldn't happen)
+        if(req.user === undefined) return res.status(401).json({error: "Authentication error"});
+
+        const {body:{oldPassword, newPassword, confirmPassword}} = req;
+
+        if(oldPassword === undefined || newPassword === undefined || confirmPassword === undefined) return res.status(400).json({error: "Missing information"})
+
+        db.User.findOne({where:{id:req.user.id}}).then(async user => {
+            
+            if(! await comparePasswords(oldPassword, user.password)) return res.status(400).json({error:"Incorrect password"});
+            
+            if(newPassword !== confirmPassword) return res.status(400).json({error: "Passwords don't match"});
+            
+            if(!validatePassword(newPassword)) return res.status(400).json({error:"New password doesn't meet requirements"});
+
+            user.password = newPassword;
+
+            user.save().then(result => {
+                return res.status(200).json({success: "Password changed succesfully"});
+            })
+
+        }).catch(error => {
+            res.status(500).json({error: "Error while trying to change password"})
+        })
 
     }
 }
