@@ -29,6 +29,8 @@ const actions = {
     },
     // signUpUser({commit}, data){
 
+    //same as login but to signup endpoint instead
+
     // },
     logoutUser({commit}){
         commit('clearUser');
