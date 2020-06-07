@@ -1,6 +1,7 @@
 //Dependencies
 import Vuex from 'vuex';
 import Vue from 'vue';
+import createPersistedState from "vuex-persistedstate";
 
 //Import modules
 import shop from './modules/shop';
@@ -12,5 +13,6 @@ export default new Vuex.Store({
     modules: {
         shop,
         user
-    }
+    },
+    plugins: [createPersistedState()]
 });
