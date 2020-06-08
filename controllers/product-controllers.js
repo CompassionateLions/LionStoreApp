@@ -28,7 +28,7 @@ module.exports = {
 
     getAllProducts(req, res) {
 
-        db.Product.findAll()
+        db.Product.findAll({where:{isAvailable:true}})
         .then(result => {
             const response = result.map((product) => product.get());
 
@@ -77,7 +77,7 @@ module.exports = {
         console.log(req.params.id)
         if(req.params.id === undefined || !(/^[0-9]+$/.test(req.params.id))) return res.status(400).json({error: "Invalid product id"});
 
-        db.Product.destroy({where:{id:req.params.id}}).then(result => {
+        db.Product.update({isAvailable: false},{where:{id:req.params.id}}).then(result => {
             return res.status(200).json({success: "Successfully deleted product"});
         }).catch(error => {
             return res.status(400).json({error: "Could not process request"});
