@@ -11,9 +11,9 @@
             <div class="form-field">
               <label for="email">Email</label>
               <input
-                type="text"
+                type="email"
                 placeholder="Enter your email"
-                id="username"
+                id="email"
                 v-model="credentials.email"
               />
             </div>
@@ -22,7 +22,7 @@
             <div class="form-field">
               <label for="password">Password</label>
               <input
-                type="text"
+                type="password"
                 placeholder="Enter your password"
                 id="password"
                 v-model="credentials.password"

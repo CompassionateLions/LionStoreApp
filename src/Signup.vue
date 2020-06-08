@@ -11,7 +11,7 @@
                         <div class="form-field">
                             <label for="email">Email</label>
                             <input 
-                                type="text" 
+                                type="email" 
                                 placeholder="Email" 
                                 id="username"
                                 v-model="user.email">
@@ -20,7 +20,7 @@
                         <div class="form-field">
                             <label for="password">Password</label>
                             <input 
-                                type="text"  
+                                type="password"  
                                 placeholder="Password" 
                                 id="password"
                                 v-model="user.password">
@@ -29,7 +29,7 @@
                         <div class="form-field">
                             <label for="confirmPassword">Confirm Password</label>
                             <input 
-                                type="text"  
+                                type="password"  
                                 placeholder="Confirm password" 
                                 id="confirm-password"
                                 v-model="user.confirmPassword">

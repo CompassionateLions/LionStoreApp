@@ -53,7 +53,9 @@
               <div v-if="error" class="card-panel red lighten-1 error-msg">
                 <span class="white-text">{{error}}</span>
               </div>
-
+              <!-- <div v-if="success" class="card-panel green lighten-1 success-msg">
+                <span class="white-text">{{success}}</span>
+              </div> -->
               <button class="btn waves-effect waves-light" type="submit" name="action">
                 Submit
                 <i class="material-icons right">send</i>
