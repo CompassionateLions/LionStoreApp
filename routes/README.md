@@ -401,6 +401,22 @@ note: Returns all items in cart, not just product added to cart by request
 ]
 ````
 
+### Remove All Items From Cart ###
+
+| Endpoint | /api/cart/remove/all |
+| --- | --- |
+| Method | `DELETE` |
+| Token required | Yes |
+| Admin only | No |
+
+Example response:
+
+````json
+{
+    "success": "Cart has been emptied"
+}
+````
+
 ### Remove Product From Cart ###
 
 | Endpoint | /api/cart/remove/:productId |
