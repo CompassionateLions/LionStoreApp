@@ -97,6 +97,9 @@ export default {
     },
     createOrderHandler (){
       //If not logged in redirect to login
+      if(! this.$store.state.user.loggedIn) {
+        return this.$router.push("/Login");
+      }
 
       this.createOrder().then(res => {
         console.log(res);

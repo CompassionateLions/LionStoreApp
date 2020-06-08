@@ -437,7 +437,12 @@ const actions = {
         });
     },
 
-    removeAllCartProducts({commit, rootState}){
+    removeAllCartProducts({commit, state, rootState}){
+
+        if(! rootState.user.loggedIn) {
+            state.guestCartContents = [];
+            return commit('clearCart');
+        }
 
         const token = rootState.user.token;
 
