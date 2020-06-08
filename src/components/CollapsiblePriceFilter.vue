@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       priceMin: 0,
-      priceMax: 100
+      priceMax: 55
     }
   },
   methods: {
@@ -38,12 +38,12 @@ export default {
       const slider = document.querySelector(".price-slider");
 
       noUiSlider.create(slider, {
-        start: [0, 100],
+        start: [0, 55],
         connect: true,
         step: 1,
         range: {
           min: 0,
-          max: 100
+          max: 55
         }
       });
 

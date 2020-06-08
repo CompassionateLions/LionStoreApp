@@ -16,6 +16,9 @@ router.put("/update", authenticateUser, cartControllers.updateCartQuantity);
 //Add to cart
 router.put("/add/:productId", authenticateUser, cartControllers.addProductToCart);
 
+//Remove all items from cart
+router.delete("/remove/all", authenticateUser, cartControllers.removeAllFromCart);
+
 //Remove item from cart
 router.delete("/remove/:productId", authenticateUser, cartControllers.removeFromCart);
 

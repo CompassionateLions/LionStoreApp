@@ -3,13 +3,13 @@
     <StoreHeader />
     <div class="container">
       <div class="row">
-        <div class="col m12 s12">
+        <div class="col m12 s12" v-if="order === ''">
           <h4>
-            Items added to your Shopping
+            Items in your Shopping
             <span class>Cart</span>
           </h4>
         </div>
-        <div class="col m12 l8 s12 offset-l2 border_style z-depth-2">
+        <div v-if="order === ''" class="col m12 l8 s12 offset-l2 border_style z-depth-2">
           <div class="col m12 s12">
             <router-link to="/">
               <a>
@@ -25,7 +25,7 @@
                 <button
                   class="btn waves-effect waves-light deep-orange darken-3"
                   name="mainPage"
-                >Go for Shopping</button>
+                >Go Shopping</button>
               </router-link>
             </div>
           </div>
@@ -41,22 +41,29 @@
             </div>
             <div class="col m6 s12 offset-m6">
               <div class="row">
-                <router-link to="/Order">
+                <button to="/Order">
                   <button
                     class="btn waves-effect waves-light deep-orange darken-3"
                     type="submit"
                     name="orders"
+                    @click="createOrderHandler"
                   >Process Order</button>
-                </router-link>
+                </button>
                 <button
                   class="btn waves-effect waves-light deep-orange darken-3"
                   name="clearCart"
-                  @click="cartClear()"
-                >Clear Cart</button>
+                  @click="removeAllCartProductsHandler"
+                >Empty Cart</button>
               </div>
             </div>
           </div>
         </div>
+        <div class="row" v-if="order !== ''">
+        <div>
+          <h4>Order placed Sucessfully</h4>
+            <OrderComponent v-bind:order="order"/>
+        </div>
+    </div>
       </div>
     </div>
   </div>
@@ -65,22 +72,42 @@
 <script>
 import StoreHeader from "./components/StoreHeader";
 import CartItem from "./components/CartItem";
+import OrderComponent from "./components/OrderComponent";
 
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Cart",
-  components: { CartItem, StoreHeader },
+  components: { CartItem, StoreHeader, OrderComponent },
   computed: {
-    ...mapGetters(["cartProducts", "removeCartProduct"])
+    ...mapGetters(["cartProducts"])
+  },
+  data(){
+    return {
+      order: ''
+    }
   },
   created() {
     this.getCartProducts();
   },
   methods: {
-    ...mapActions(["getCartProducts"]),
+    ...mapActions(["getCartProducts", "createOrder", "removeAllCartProducts"]),
     cartClear() {
       this.removeCartProduct();
+    },
+    createOrderHandler (){
+      //If not logged in redirect to login
+
+      this.createOrder().then(res => {
+        console.log(res);
+        if(res.error) return console.log(res.error);
+
+        this.order = res.order
+        //Print out Order summary
+      })
+    },
+    removeAllCartProductsHandler(){
+      this.removeAllCartProducts()
     }
   }
 };
