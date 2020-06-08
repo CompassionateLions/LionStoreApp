@@ -3,13 +3,13 @@
     <div class="container">
 <StoreHeader />
     <div class="row">
-      <div class="col l12 s12 ">
+      <div class="col m12 s12 ">
         <h4>
           Items added to your Shopping
           <span class>Cart</span>
         </h4>
       </div>
-      <div class="col l8 s12 offset-l2 border_style z-depth-2">
+      <div class="col m12 l8 s12 offset-l2 border_style z-depth-2">
         <div class="col m12 s12">
           <router-link to="/">
             <a>
