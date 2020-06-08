@@ -38,20 +38,23 @@
                          <div class="row">
                             <a 
                                 class="btn waves-effect waves-light orange darken-3" 
-                                style="width:100%;" 
+                                style="width:50%;" 
                                 type ="submit" 
                                 id="login-btn"
                                 v-on:click="signUpHandler"
                             >Register</a>
                         </div>
                         <div class="row">
-                            <router-link to="/">
+                            <div class ="col s6">
+                                <router-link to="/">
                             <a 
                                 class="btn waves-effect waves-light orange darken-3" 
                                 style="width:50%;" 
                                 id="home-btn"
-                                >Return to Home</a>
+                                >Home</a>
                             </router-link>
+                        </div>
+                        <div class ="col s6">
                             <router-link to="/Login">
                             <a 
                             class="btn waves-effect waves-light orange darken-3" 
@@ -59,6 +62,7 @@
                             id="signup-btn"
                             >Login</a>
                             </router-link>
+                        </div>
                         </div><br>
                     </div>
                 </div>
