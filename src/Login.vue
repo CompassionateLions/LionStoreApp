@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <StoreHeader />
-    <div class="row">
-      <div class="col s12 m4 offset-m4">
+    <div class="container">
+    <div class="row login-container">
+      <div class="col s12 m10 l8">
         <div class="card">
           <div class="card-action">
             <h3>Login Form</h3>
@@ -58,6 +59,8 @@
         </div>
       </div>
     </div>
+
+    </div>
   </div>
 </template>
 
@@ -105,4 +108,12 @@ export default {
 </script>
 
 <style scoped>
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
+.col {
+  margin: 0!important;
+}
 </style>
