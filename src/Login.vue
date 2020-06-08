@@ -11,9 +11,9 @@
             <div class="form-field">
               <label for="email">Email</label>
               <input
-                type="text"
+                type="email"
                 placeholder="Enter your email"
-                id="username"
+                id="email"
                 v-model="credentials.email"
               />
             </div>
@@ -22,33 +22,32 @@
             <div class="form-field">
               <label for="password">Password</label>
               <input
-                type="text"
+                type="password"
                 placeholder="Enter your password"
                 id="password"
                 v-model="credentials.password"
               />
             </div>
             <br />
-
             <div class="row">
-              <a
-                class="btn-large waves-effect waves-light orange darken-3"
-                style="width:50%;"
-                type="submit"
-                id="login-btn"
-                v-on:click="loginHandler"
-              >Login</a>
-              <a
-                class="btn-large waves-effect waves-light orange darken-3"
-                style="width:50%;"
-                id="clear-btn"
-                v-on:click="clear"
-              >Clear</a>
+                <a
+                    class="btn waves-effect waves-light orange darken-3"
+                    style="width:50%;"
+                    type="submit"
+                    id="login-btn"
+                    v-on:click="loginHandler"           
+                >Login</a>
+                <a
+                    class="btn waves-effect waves-light orange darken-3"
+                    style="width:50%;"
+                    id="clear-btn"
+                    v-on:click="clear"
+                >Clear</a>
             </div>
             <div class="row">
               <router-link to="/Signup">
                 <a
-                  class="btn-large waves-effect waves-light orange darken-3"
+                  class="btn waves-effect waves-light orange darken-3"
                   style="width:100%;"
                   id="signup-btn"
                 >Sign Up</a>
@@ -91,7 +90,7 @@ export default {
       this.loginUser(this.credentials).then(result => {
         if (result.error) return console.log(result); //handle error
 
-        console.log(this.$store.state.user.token)
+       //console.log(this.$store.state.user.token)
 
         this.$router.push("/");
       });
