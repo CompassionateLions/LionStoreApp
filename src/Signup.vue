@@ -50,7 +50,6 @@
                                 class="btn-large waves-effect waves-light orange darken-3" 
                                 style="width:50%;" 
                                 id="home-btn"
-                                v-on:click="home"
                                 >Return to Home</a>
                             </router-link>
                             <router-link to="/Login">
@@ -84,7 +83,7 @@ export default {
             user: {
                 email: '',
                 password: '',
-                confirmpassword:''
+                confirmPassword:''
             },
             error: ""
         };
@@ -94,12 +93,13 @@ export default {
         ...mapActions(["signUpUser"]),
         signUpHandler (){
         console.log(this.user);
+        const body = {
+            email: this.user.email, 
+            password: this.user.password, 
+            confirmpassword: this.user.confirmPassword}
 
-            this.signUpUser(this.user).then(result => {
+            this.signUpUser(body).then(result => {
                 if (result.error) return console.log(result);
-
-                console.log(this.$store.state.user.token)
-
                 this.$router.push("/");
             });
         }

@@ -30,8 +30,8 @@ const actions = {
     // signUpUser({commit}, data){
     //same as login but to signup endpoint instead
 
-    signupUser({commit}, data){
-
+    signUpUser({commit}, data){
+        console.log(data);
         return fetch(`/api/users/signup`, {
             method: 'POST',
             headers: {
@@ -39,6 +39,7 @@ const actions = {
             },
             body: JSON.stringify(data)
         }).then(response => response.json()).then(json => {
+            console.log(json);
             if(json.error) return json
 
             commit('setUser', json);

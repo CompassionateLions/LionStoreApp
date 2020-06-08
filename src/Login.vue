@@ -91,7 +91,7 @@ export default {
       this.loginUser(this.credentials).then(result => {
         if (result.error) return console.log(result); //handle error
 
-        console.log(this.$store.state.user.token)
+       //console.log(this.$store.state.user.token)
 
         this.$router.push("/");
       });
