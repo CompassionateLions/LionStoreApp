@@ -34,7 +34,7 @@
         </p>
       </div>
       <div class="card-action action-container">
-        <a class="icon-btn">
+        <a class="icon-btn" @click="addtoCardHandler">
           <i class="material-icons">add_shopping_cart</i>
         </a>
         <a class="movie-price">${{movie.price.toFixed(2)}}</a>
@@ -47,10 +47,28 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
+import M from 'materialize-css';
+
 export default {
   name: "MovieBox",
   props: ["movie"],
-  methods: {},
+  methods: {
+    ...mapActions(['addToCart']),
+    addtoCardHandler(){
+      this.addToCart(this.movie.id).then(response => {
+        if(response.error){
+          console.log(response.error);
+         
+            return M.toast({ html: response.error, classes: 'red lighten-1' }, 4000);
+        }
+
+        M.toast({ html: `${this.movie.name} added to cart` }, 4000);
+
+      })
+    }
+  },
   created() {}
 };
 </script>

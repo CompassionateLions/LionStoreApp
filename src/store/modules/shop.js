@@ -31,7 +31,7 @@ const getters = {
 };
 
 const actions = {
-    queryApiAllProducts({ commit }) {
+    queryApiAllProducts({ commit, dispatch }) {
 
         return fetch('/api/products').then(response => {
             return response.json()
@@ -39,6 +39,7 @@ const actions = {
             if (json.error) return //do some error handling
 
             commit('updateProducts', json);
+            dispatch('applyFilters');
         })
     },
     applyFilters({ commit, state }) {
@@ -59,8 +60,10 @@ const actions = {
                 })
                 : true;
 
+            const inStock = title.quantity > 0;
+
             // console.log(`${title.name}, Year: ${yearFilter}, Price: ${priceFilter}, Name: ${nameFilter}, Genre: ${genreFilter}`);
-            return (yearFilter && priceFilter && nameFilter && genreFilter)
+            return (yearFilter && priceFilter && nameFilter && genreFilter && inStock);
         })
 
         commit('updateFiltered', filteredProducts)
@@ -108,7 +111,7 @@ const actions = {
         })
     },
     getAllUsers({ rootState }) {
-        
+
         const token = rootState.user.token;
 
         return fetch('/api/users/all', {
@@ -213,7 +216,7 @@ const actions = {
         })
 
     },
-    getCartProducts({rootState, commit}) {
+    getCartProducts({ rootState, commit }) {
 
         const token = rootState.user.token;
 
@@ -234,7 +237,7 @@ const actions = {
 
             });
     },
-    removeProductFromCart({rootState, commit}, productId) {
+    removeProductFromCart({ rootState, commit }, productId) {
 
         const token = rootState.user.token;
 
@@ -281,7 +284,7 @@ const actions = {
 
         })
     },
-    getUserOrders({rootState}){
+    getUserOrders({ rootState }) {
 
         const token = rootState.user.token;
 
@@ -299,6 +302,26 @@ const actions = {
                 }
                 return json
             });
+    },
+    addToCart({ rootState, dispatch }, productId) {
+
+        const token = rootState.user.token;
+
+        return fetch(`/api/cart/add/${productId}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(res => {
+            return res.json();
+        }).then(json => {
+            if (json.error) {
+                return json
+            }
+            dispatch('queryApiAllProducts')
+            return json
+        });
+
     }
 };
 
@@ -316,8 +339,16 @@ const mutations = {
         state.cartProducts = cartProducts;
     }
     ,
-    clearCart(state){
+    clearCart(state) {
         state.cartProducts = [];
+    },
+    clearFilter(state) {
+        state.filter = {
+            title: '',
+            genres: [],
+            years: [0, 9999],
+            price: [0, 999]
+        }
     }
 
 };

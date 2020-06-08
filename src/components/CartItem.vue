@@ -13,7 +13,7 @@
       <li>
         <b>Price</b>
       </li>
-      <li>${{product.price}}</li>
+      <li>${{product.price.toFixed(2)}}</li>
     </div>
     <div class="col l2 m12 textStyle">
       <li>
@@ -35,7 +35,7 @@
       <li>
         <b>Total Price</b>
       </li>
-      <li>${{product.price * product.quantity}}</li>
+      <li>${{(product.price * product.quantity).toFixed(2)}}</li>
     </div>
     <div class="col l2 m12 s12 offset-l1 divStyle">
       <a class="secondary-content">
