@@ -46,13 +46,8 @@
                 </div>
                 <div class ="col s6">
                 <a
-<<<<<<< HEAD
                     class="btn waves-effect waves-light orange darken-3"
                     style="width:49%;"
-=======
-                    class="btn waves-effect waves-light orange darken-3 "
-                    style="width:50%;"
->>>>>>> ca659f9ee201a6e5e3667f0a7b4fa1d8ec7759a4
                     id="clear-btn"
                     v-on:click="clear"
                 >Clear</a>

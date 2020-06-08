@@ -21,33 +21,30 @@
               </div>
               <br />
 
-                         <div class="row">
-                            <a 
-                                class="btn waves-effect waves-light orange darken-3" 
-                                style="width:100%;" 
-                                type ="submit" 
-                                id="login-btn"
-                                v-on:click="signUpHandler"
-                            >Register</a>
-                        </div>
-                        <div class="row">                      
-                                 <router-link to="/">
-                            <a 
-                                class="btn waves-effect waves-light orange darken-3" 
-                                style="width:49%;" 
-                                id="home-btn"
-                                >Return to Home</a>
-                            </router-link>
-                                 <router-link to="/Login">
-                            <a 
-                            class="btn waves-effect waves-light orange darken-3" 
-                            style="width:49%;" 
-                            id="signup-btn"
-                            >Login</a>
-                          </router-link>                       
-                        </div><br>
-                    </div>
-                </div>
+              <div class="row">
+                <a
+                  class="btn-large waves-effect waves-light orange darken-3"
+                  style="width:50%;"
+                  type="submit"
+                  id="login-btn"
+                >Register</a>
+                <a
+                  class="btn-large waves-effect waves-light orange darken-3"
+                  style="width:50%;"
+                  id="clear-btn"
+                >Clear</a>
+                <br />
+              </div>
+              <div class="row">
+                <router-link to="/Login">
+                  <a
+                    class="btn-large waves-effect waves-light orange darken-3"
+                    style="width:100%;"
+                    id="signup-btn"
+                  >Login</a>
+                </router-link>
+              </div>
+              <br />
             </div>
           </div>
         </div>
@@ -62,53 +59,52 @@ import StoreHeader from "./components/StoreHeader.vue";
 import { mapActions } from "vuex";
 
 export default {
-    name: 'Signup',
-    components: {
-    StoreHeader  
-  },  
-    
-    data() {
-        return {
-            user: {
-                email: '',
-                password: '',
-                confirmPassword:''
-            },
-            error: ""
-        };
-    },
+  name: "Signup",
+  components: {
+    StoreHeader
+  },
 
-    methods: {
-        ...mapActions(["signUpUser"]),
-        signUpHandler (){
-        console.log(this.user);
-        const body = {
-            email: this.user.email, 
-            password: this.user.password, 
-            confirmpassword: this.user.confirmPassword}
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+        confirmPassword: ""
+      },
+      error: ""
+    };
+  },
 
-            this.signUpUser(body).then(result => {
-                if (result.error) return console.log(result);
-                this.$router.push("/");
-            });
-        }
-     }
+  methods: {
+    ...mapActions(["signUpUser"]),
+    signUpHandler() {
+      console.log(this.user);
+      const body = {
+        email: this.user.email,
+        password: this.user.password,
+        confirmpassword: this.user.confirmPassword
+      };
+
+      this.signUpUser(body).then(result => {
+        if (result.error) return console.log(result);
+        this.$router.push("/");
+      });
+    }
+  }
 };
 </script>
 
 <style scoped>
-<<<<<<< HEAD
 .btn:hover {
-filter: brightness(130%);
+  filter: brightness(130%);
 }
 .btn {
-      margin-left: 2px;
+  margin-left: 2px;
+}
 
-=======
 .signup-container {
   display: flex;
   justify-content: center;
->>>>>>> ca659f9ee201a6e5e3667f0a7b4fa1d8ec7759a4
 }
 
 .col {
