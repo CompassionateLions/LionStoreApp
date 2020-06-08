@@ -1,16 +1,10 @@
 <template>
-  <div id="app">
-    <div class="row">
-      <StoreHeader />
-
-      <div class="col s4 m3">
-        <StoreSideBar />
-      </div>
-
-      <div class="col m9">
-        <div class= "col m3" :key="movie.id" v-for="movie in filteredProducts">
-          <MovieBox v-bind:movie="movie" />
-        </div>
+  <div>
+    <StoreHeader />
+    <StoreSideBar />
+    <div class="main">
+      <div class="row movie-box-container">
+        <MovieBox v-bind:movie="movie" :key="movie.id" v-for="movie in filteredProducts" />
       </div>
     </div>
   </div>
@@ -44,23 +38,22 @@ export default {
 };
 </script>
 
-<style>
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-* {
-  margin: 0;
-  padding: 0;
+<style scoped>
+
+.main {
+  margin-left: 300px;
 }
 
-body {
-  min-height: 100vh;
-}
+.movie-box-container{
+    display: flex;
+    align-content: stretch;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  min-height: 100vh;
+@media screen and (max-width: 992px) {
+  .main {
+    margin-left: 24px;
+  }
 }
 </style>
