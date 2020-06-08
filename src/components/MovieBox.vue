@@ -8,15 +8,13 @@
         <span class="card-title activator grey-text text-darken-4">{{movie.name}}</span>
         <p>{{movie.format}}</p>
       </div>
-      
+
       <div class="card-reveal">
         <div class="card-title grey-text text-darken-4">
           <div>
             <i class="material-icons right">close</i>
-            </div>
-            <div>
-          {{movie.name}}
           </div>
+          <div>{{movie.name}}</div>
         </div>
         <p>({{movie.year}}) {{movie.rating}}</p>
         <p class="genre">{{movie.genre}}</p>
@@ -47,26 +45,37 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
-import M from 'materialize-css';
+import M from "materialize-css";
 
 export default {
   name: "MovieBox",
   props: ["movie"],
   methods: {
-    ...mapActions(['addToCart']),
-    addtoCardHandler(){
-      this.addToCart(this.movie.id).then(response => {
-        if(response.error){
-          console.log(response.error);
-         
-            return M.toast({ html: response.error, classes: 'red lighten-1' }, 4000);
-        }
+    ...mapActions(["addToCart", "addToCartGuest"]),
+    addtoCardHandler() {
 
+      //If logged in then add to cart using api
+      if (this.$store.state.user.loggedIn) {
+        return this.addToCart(this.movie.id).then(response => {
+          if (response.error) {
+            console.log(response.error);
+
+            return M.toast(
+              { html: response.error, classes: "red lighten-1" },
+              4000
+            );
+          }
+
+          M.toast({ html: `${this.movie.name} added to cart` }, 4000);
+        });
+
+        //If not logged in just add prod to local storage cart
+      } else {
+        this.addToCartGuest(this.movie);
         M.toast({ html: `${this.movie.name} added to cart` }, 4000);
-
-      })
+      }
     }
   },
   created() {}
@@ -105,7 +114,7 @@ export default {
 }
 
 .movie-price:hover {
-  color: #ffab40!important;
+  color: #ffab40 !important;
 }
 
 .action-container {
@@ -117,7 +126,7 @@ export default {
 }
 
 .action-container > * {
-  margin-right: 0!important;
+  margin-right: 0 !important;
 }
 
 .icon-btn {

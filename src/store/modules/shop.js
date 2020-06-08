@@ -12,6 +12,7 @@ const state = {
     },
     filteredProducts: [],
     cartProducts: [],
+    guestCartContents: []
 };
 
 const getters = {
@@ -26,7 +27,18 @@ const getters = {
     },
     searchTerm: (state) => state.filter.title,
 
-    cartProducts: (state) => state.cartProducts,
+    cartProducts: (state, getters, rootState) => {
+        
+        console.log(getters.nothing);
+
+        console.log(rootState.user.loggedIn)
+
+        if(rootState.user.loggedIn){
+            return state.cartProducts
+        } else {
+            return state.guestCartContents
+        }
+    }
 
 };
 
@@ -218,26 +230,36 @@ const actions = {
     },
     getCartProducts({ rootState, commit }) {
 
-        const token = rootState.user.token;
+        if(! rootState.user.loggedIn){
+            return
+        }
 
-        fetch("/api/cart/", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        }).then(res => {
-            return res.json();
-        })
-            .then(json => {
-                if (json.error) {
-                    return "No Product In Cart"
+            const token = rootState.user.token;
+    
+            fetch("/api/cart/", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
                 }
-                console.log(json);
-                commit("updateCartProducts", json)
-
-            });
+            }).then(res => {
+                return res.json();
+            })
+                .then(json => {
+                    if (json.error) {
+                        return "No Product In Cart"
+                    }
+                    console.log(json);
+                    commit("updateCartProducts", json)
+    
+                });
+        //If not logged in then get cart from guest cart
     },
-    removeProductFromCart({ rootState, commit }, productId) {
+    removeProductFromCart({ rootState, commit, state }, productId) {
+
+        if(! rootState.user.loggedIn){
+            commit('removeFromGuestCart', productId)
+            return state.guestCartContents
+        }
 
         const token = rootState.user.token;
 
@@ -263,6 +285,11 @@ const actions = {
         //commit("updateCartProducts", json)
     },
     updateCartQuantity({ commit, rootState }, body) {
+
+        if(! rootState.user.loggedIn){
+            commit('updateCartQuantityGuest', body)
+            return state.guestCartContents
+        }
 
         const token = rootState.user.token;
 
@@ -315,6 +342,7 @@ const actions = {
         }).then(res => {
             return res.json();
         }).then(json => {
+            console.log(json)
             if (json.error) {
                 return json
             }
@@ -322,6 +350,45 @@ const actions = {
             return json
         });
 
+    },
+    addToCartGuest({state}, product) {
+        
+        let alreadyInCart = false
+
+        state.guestCartContents.forEach((cartProduct, i) => {
+
+            if(cartProduct.productId === product.id){
+                alreadyInCart = true
+                state.guestCartContents[i].quantity = state.guestCartContents[i].quantity +1
+            }
+        })
+
+        if(!alreadyInCart){
+            state.guestCartContents.push({
+               productId: product.id,
+               name: product.name,
+               image_url: product.image_url,
+               price: product.price,
+               year: product.year,
+               description: product.description,
+               genre: product.genre,
+               actors: product.actors,
+               director: product.director,
+               format: product.format,
+               rating: product.rating,
+               quantity: 1
+            });
+        }
+    },
+    mergeGuestCart({state, dispatch}) {
+        console.log("merge guest cart")
+        const productsToCart = state.guestCartContents.map(title => {
+            return dispatch('addToCart', title.productId);
+        })
+
+        Promise.all(productsToCart).then(() => {
+            state.guestCartContents = [];
+        })
     }
 };
 
@@ -349,6 +416,18 @@ const mutations = {
             years: [0, 9999],
             price: [0, 999]
         }
+    },
+    removeFromGuestCart(state, productId){
+        state.guestCartContents = state.guestCartContents.filter(product => product.productId !== productId);
+    },
+    updateCartQuantityGuest(state, {newQuantity, productId}){
+        state.guestCartContents.forEach((cartProduct, i) => {
+            if(cartProduct.productId === productId){
+                state.guestCartContents[i].quantity = newQuantity;
+            }
+        })
+
+        return state.guestCartContents
     }
 
 };
