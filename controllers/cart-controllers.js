@@ -163,5 +163,21 @@ module.exports = {
             return res.status(500).json({ error: "Error while updating cart" });
         })
 
+    },
+
+    removeAllFromCart(req, res) {
+
+        //Make sure there is an authed user
+        if (req.user === undefined) return res.status(401).json({ error: "Authentication error" });
+
+        db.User.findOne({ where: { id: req.user.id } }).then( user => {
+
+            user.setCartContents([]).then(result => {
+                res.status(200).json({success: "Cart has been emptied"});
+            });
+        
+        }).catch(error => {
+            res.status(400).json({ error: "Couldn't remove product(s) from cart" })
+        })
     }
 }

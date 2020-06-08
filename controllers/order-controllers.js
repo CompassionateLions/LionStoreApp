@@ -105,7 +105,7 @@ module.exports = {
                             order.addProducts(product, {through: {quantity: product.Cart.quantity, price: product.price}}),
 
                             //Increase order total by product amount
-                            order.increment('total', {by: product.price * product.Cart.quantity}),
+                            order.increment('total', {by: product.price * product.Cart.quantity * 100}),
 
                             //adjust stock level
                             product.decrement('quantity',{by: product.Cart.quantity}),

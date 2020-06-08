@@ -59,8 +59,13 @@ export default {
     initSlider() {
       const yearSlider = document.querySelector(".year-slider");
 
+
+
       noUiSlider.create(yearSlider, {
-        start: [this.years[0],this.years[1]],
+        start: [
+          this.$store.state.shop.filter.years[0]?this.$store.state.shop.filter.years[0]:this.years[0],
+          this.$store.state.shop.filter.years[1] < 9999?this.$store.state.shop.filter.years[1]:this.years[1]
+          ],
         connect: true,
         step: 1,
         range: {

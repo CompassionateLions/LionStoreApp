@@ -339,31 +339,6 @@ const actions = {
 
         })
     },
-    removeCartProduct({rootState, commit}) {
-
-        const token = rootState.user.token;
-
-        //Fetch DELETE reqest
-        fetch(`/api/cart/remove/`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        }).then(res => {
-            return res.json();
-        })
-            .then(json => {
-                if (json.error) {
-                    return "No Product In Cart"
-                }
-                console.log(json);
-                commit("clearCart", json)
-
-            });
-
-        //In the then block
-        //commit("updateCartProducts", json)
-    },
     getUserOrders({rootState}){
 
         const token = rootState.user.token;
@@ -442,6 +417,44 @@ const actions = {
         Promise.all(productsToCart).then(() => {
             state.guestCartContents = [];
         })
+    },
+
+    createOrder({rootState, dispatch}){
+        const token = rootState.user.token;
+
+        return fetch(`/api/order/create`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(res => {
+            return res.json();
+        }).then(json => { 
+            if(json.error) return json
+
+            dispatch("getCartProducts");
+            return json
+        });
+    },
+
+    removeAllCartProducts({commit, rootState}){
+
+        const token = rootState.user.token;
+
+        return fetch(`/api/cart/remove/all`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(res => {
+            return res.json();
+        }).then(json => { 
+            if(json.error) return json
+
+            if(json.success){
+                commit("clearCart");
+            }
+        });
     }
 };
 
