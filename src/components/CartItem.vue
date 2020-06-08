@@ -117,4 +117,7 @@ a {
 .padL {
   padding-left: 20px;
 }
+.btn:hover {
+filter: brightness(150%);
+}
 </style>

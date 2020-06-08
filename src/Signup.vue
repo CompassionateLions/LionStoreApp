@@ -44,21 +44,21 @@
                                 v-on:click="signUpHandler"
                             >Register</a>
                         </div>
-                        <div class="row">
-                            <router-link to="/">
+                        <div class="row">                      
+                                 <router-link to="/">
                             <a 
                                 class="btn waves-effect waves-light orange darken-3" 
-                                style="width:50%;" 
+                                style="width:49%;" 
                                 id="home-btn"
                                 >Return to Home</a>
                             </router-link>
-                            <router-link to="/Login">
+                                 <router-link to="/Login">
                             <a 
                             class="btn waves-effect waves-light orange darken-3" 
-                            style="width:50%;" 
+                            style="width:49%;" 
                             id="signup-btn"
                             >Login</a>
-                            </router-link>
+                          </router-link>                       
                         </div><br>
                     </div>
                 </div>
@@ -109,5 +109,12 @@ export default {
 </script>
 
 <style scoped>
+.btn:hover {
+filter: brightness(130%);
+}
+.btn {
+      margin-left: 2px;
+
+}
 
 </style>

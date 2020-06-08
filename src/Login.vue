@@ -32,14 +32,14 @@
             <div class="row">
                 <a
                     class="btn waves-effect waves-light orange darken-3"
-                    style="width:50%;"
+                    style="width:49%;"
                     type="submit"
                     id="login-btn"
                     v-on:click="loginHandler"           
                 >Login</a>
                 <a
                     class="btn waves-effect waves-light orange darken-3"
-                    style="width:50%;"
+                    style="width:49%;"
                     id="clear-btn"
                     v-on:click="clear"
                 >Clear</a>
@@ -104,4 +104,12 @@ export default {
 </script>
 
 <style scoped>
+
+.btn:hover {
+filter: brightness(130%);
+}
+.btn {
+      margin-left: 2px;
+
+}
 </style>

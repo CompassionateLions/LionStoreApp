@@ -41,7 +41,7 @@
         <div>
           <hr />
         </div>
-        <div class="col l4 s6 offset-l8 -s6">
+        <div class="col l4 s12 offset-l8 ">
           <div class="row">
             <router-link to="/Order">
               <button
@@ -112,5 +112,8 @@ i {
 button {
   margin-top: 10px;
   margin-left: 2px;
+}
+.btn:hover {
+filter: brightness(140%);
 }
 </style>

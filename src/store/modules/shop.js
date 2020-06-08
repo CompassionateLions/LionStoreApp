@@ -244,12 +244,8 @@ const actions = {
         })
         
     },
-<<<<<<< HEAD
  
     getCartProducts({rootState, commit}) {
-=======
-    getCartProducts({ rootState, commit }) {
->>>>>>> 330310da44a2460d036dc0e893dee49794db8e54
 
         if(! rootState.user.loggedIn){
             return
