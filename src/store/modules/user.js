@@ -18,7 +18,7 @@ const getters = {
 }
 
 const actions = {
-    loginUser({commit}, data){
+    loginUser({commit, dispatch}, data){
 
         return fetch(`/api/users/login`, {
             method: 'POST',
@@ -30,15 +30,31 @@ const actions = {
             if(json.error) return json
 
             commit('setUser', json);
+            dispatch('mergeGuestCart').then(res => console.log(res));
             return json
 
         })
     },
     // signUpUser({commit}, data){
-
     //same as login but to signup endpoint instead
 
-    // },
+    signUpUser({commit}, data){
+        console.log(data);
+        return fetch(`/api/users/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) return json
+
+            commit('setUser', json);
+            return json
+
+        })
+    },
     logoutUser({commit}){
         commit('clearUser');
         commit('clearCart');
@@ -77,6 +93,7 @@ const mutations = {
         state.email = user.email,
         state.loggedIn = true
     }
+
 }
 
 module.exports = {
