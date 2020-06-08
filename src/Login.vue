@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <StoreHeader />
-    <div class="row">
-      <div class="col s12 m4 offset-m4">
+    <div class="container">
+    <div class="row login-container">
+      <div class="col s12 m10 l8">
         <div class="card">
           <div class="card-action">
             <h3>Login Form</h3>
@@ -29,7 +30,12 @@
               />
             </div>
             <br />
+            <!-- <div v-if="error" class="card-panel red lighten-1 error-msg">
+                <span class="white-text">{{error}}</span>
+              </div> -->
+
             <div class="row">
+                <div class ="col s6">
                 <a
                     class="btn waves-effect waves-light orange darken-3"
                     style="width:49%;"
@@ -37,18 +43,26 @@
                     id="login-btn"
                     v-on:click="loginHandler"           
                 >Login</a>
+                </div>
+                <div class ="col s6">
                 <a
+<<<<<<< HEAD
                     class="btn waves-effect waves-light orange darken-3"
                     style="width:49%;"
+=======
+                    class="btn waves-effect waves-light orange darken-3 "
+                    style="width:50%;"
+>>>>>>> ca659f9ee201a6e5e3667f0a7b4fa1d8ec7759a4
                     id="clear-btn"
                     v-on:click="clear"
                 >Clear</a>
+                </div>
             </div>
             <div class="row">
               <router-link to="/Signup">
                 <a
                   class="btn waves-effect waves-light orange darken-3"
-                  style="width:100%;"
+                  style="width:50%;"
                   id="signup-btn"
                 >Sign Up</a>
               </router-link>
@@ -56,6 +70,8 @@
           </div>
         </div>
       </div>
+    </div>
+
     </div>
   </div>
 </template>
@@ -110,6 +126,14 @@ filter: brightness(130%);
 }
 .btn {
       margin-left: 2px;
+}
 
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
+.col {
+  margin: 0!important;
 }
 </style>

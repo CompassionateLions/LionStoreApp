@@ -1,39 +1,25 @@
 <template>
-    <div id="app">
-    <StoreHeader/>
-        <div class="row">
-            <div class ="col s12 m4 offset-m4">
-                <div class="card">
-                    <div class ="card-action">
-                        <h3>Sign Up</h3>
-                    </div>
-                    <div class ="card-content">
-                        <div class="form-field">
-                            <label for="email">Email</label>
-                            <input 
-                                type="email" 
-                                placeholder="Email" 
-                                id="username"
-                                v-model="user.email">
-                        </div><br>
+  <div id="app">
+    <StoreHeader />
+    <div class="container">
+      <div class="row signup-container">
+        <div class="col s12 m10 l8">
+          <div class="card">
+            <div class="card-action">
+              <h3>Sign Up</h3>
+            </div>
+            <div class="card-content">
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input type="text" placeholder="Email" id="username" />
+              </div>
+              <br />
 
-                        <div class="form-field">
-                            <label for="password">Password</label>
-                            <input 
-                                type="password"  
-                                placeholder="Password" 
-                                id="password"
-                                v-model="user.password">
-                        </div><br>
-
-                        <div class="form-field">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input 
-                                type="password"  
-                                placeholder="Confirm password" 
-                                id="confirm-password"
-                                v-model="user.confirmPassword">
-                        </div><br>
+              <div class="form-field">
+                <label for="password">Password</label>
+                <input type="text" placeholder="Password" id="password" />
+              </div>
+              <br />
 
                          <div class="row">
                             <a 
@@ -63,12 +49,15 @@
                     </div>
                 </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import StoreHeader from './components/StoreHeader.vue'
+import StoreHeader from "./components/StoreHeader.vue";
 
 import { mapActions } from "vuex";
 
@@ -104,17 +93,25 @@ export default {
             });
         }
      }
-    
 };
 </script>
 
 <style scoped>
+<<<<<<< HEAD
 .btn:hover {
 filter: brightness(130%);
 }
 .btn {
       margin-left: 2px;
 
+=======
+.signup-container {
+  display: flex;
+  justify-content: center;
+>>>>>>> ca659f9ee201a6e5e3667f0a7b4fa1d8ec7759a4
 }
 
+.col {
+  margin: 0 !important;
+}
 </style>

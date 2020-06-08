@@ -1,67 +1,65 @@
 <template>
-
+  <div>
+    <StoreHeader />
     <div class="container">
-<StoreHeader />
-    <div class="row">
-      <div class="col m12 s12 ">
-        <h4>
-          Items added to your Shopping
-          <span class>Cart</span>
-        </h4>
-      </div>
-      <div class="col m12 l8 s12 offset-l2 border_style z-depth-2">
+      <div class="row">
         <div class="col m12 s12">
-          <router-link to="/">
-            <a>
-              <i class="material-icons right">close</i>
-            </a>
-          </router-link>
+          <h4>
+            Items added to your Shopping
+            <span class>Cart</span>
+          </h4>
         </div>
-        <div v-if="cartProducts.length  === 0"> 
-          <div> 
-            <h2> Your cart is Empty </h2>
-              <div>
-     
-        </div>
-                <router-link to="/">
-                             <button
-                class="btn waves-effect waves-light deep-orange darken-3"
-                name="mainPage"
-              >Go for Shopping</button>
-          </router-link>
-          </div>
-        </div>
-
-        <div v-if="cartProducts.length > 0">
-                  <div>
-          <div class="collect" v-bind:key="product.productId" v-for="(product) in cartProducts">
-            <CartItem v-bind:product="product" />
-          </div>
-        </div>
-        <div>
-          <hr />
-        </div>
-        <div class="col m6 s12 offset-m6 ">
-          <div class="row">
-            <router-link to="/Order">
-              <button
-                class="btn waves-effect waves-light deep-orange darken-3"
-                type="submit"
-                name="orders"
-              >Process Order</button>
+        <div class="col m12 l8 s12 offset-l2 border_style z-depth-2">
+          <div class="col m12 s12">
+            <router-link to="/">
+              <a>
+                <i class="material-icons right">close</i>
+              </a>
             </router-link>
-            <button
-              class="btn waves-effect waves-light deep-orange darken-3"
-              name="clearCart" @click="cartClear()"
-            >Clear Cart</button>
           </div>
-        </div>
+          <div v-if="cartProducts.length  === 0">
+            <div>
+              <h2>Your cart is Empty</h2>
+              <div></div>
+              <router-link to="/">
+                <button
+                  class="btn waves-effect waves-light deep-orange darken-3"
+                  name="mainPage"
+                >Go for Shopping</button>
+              </router-link>
+            </div>
+          </div>
+
+          <div v-if="cartProducts.length > 0">
+            <div>
+              <div class="collect" v-bind:key="product.productId" v-for="(product) in cartProducts">
+                <CartItem v-bind:product="product" />
+              </div>
+            </div>
+            <div>
+              <hr />
+            </div>
+            <div class="col m6 s12 offset-m6">
+              <div class="row">
+                <router-link to="/Order">
+                  <button
+                    class="btn waves-effect waves-light deep-orange darken-3"
+                    type="submit"
+                    name="orders"
+                  >Process Order</button>
+                </router-link>
+                <button
+                  class="btn waves-effect waves-light deep-orange darken-3"
+                  name="clearCart"
+                  @click="cartClear()"
+                >Clear Cart</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-    
 </template>
 
 <script>
@@ -72,21 +70,20 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Cart",
-  components: { CartItem, StoreHeader},
+  components: { CartItem, StoreHeader },
   computed: {
-    ...mapGetters(["cartProducts","removeCartProduct"])
+    ...mapGetters(["cartProducts", "removeCartProduct"])
   },
   created() {
     this.getCartProducts();
   },
   methods: {
     ...mapActions(["getCartProducts"]),
-    cartClear(){
+    cartClear() {
       this.removeCartProduct();
-
     }
-  } 
-}
+  }
+};
 </script>
 
 <style scoped>
@@ -116,7 +113,7 @@ button {
   margin-left: 2px;
 }
 .btn:hover {
-filter: brightness(140%);
+  filter: brightness(140%);
 }
 @media only screen and (max-width: 600px) {
   .btn {
@@ -124,9 +121,8 @@ filter: brightness(140%);
   }
 }
 @media only screen and (device-width: 768px) {
-  .container{
-  width: 100%;
+  .container {
+    width: 100%;
   }
 }
-
 </style>
