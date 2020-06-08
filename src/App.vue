@@ -5,10 +5,12 @@
 </template>
 
 <script>
-//Import Materialize css
 
 export default {
-  name: 'App'
+  name: 'App',
+  created(){
+    this.$store.commit('clearFilter');
+  }
 }
 
 </script>

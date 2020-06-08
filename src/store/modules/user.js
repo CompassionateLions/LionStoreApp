@@ -18,7 +18,7 @@ const getters = {
 }
 
 const actions = {
-    loginUser({commit}, data){
+    loginUser({commit, dispatch}, data){
 
         return fetch(`/api/users/login`, {
             method: 'POST',
@@ -30,6 +30,7 @@ const actions = {
             if(json.error) return json
 
             commit('setUser', json);
+            dispatch('mergeGuestCart').then(res => console.log(res));
             return json
 
         })

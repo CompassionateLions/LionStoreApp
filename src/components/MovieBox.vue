@@ -1,72 +1,141 @@
 <template>
-  <div class="row">
-    <div class="card white">
-      <div class="movie-container">
-        <div class="movie-title center-align ">{{movie.name}}</div>
-        <div class="movie-img">
-           <img :src="movie.image_url" width = 100% height= 400em>
-        </div>
-        <div class="row">
-          <div class="col s12 m6 left price"> ${{movie.price}}</div>
-          <div class="col s12 m6">
-            <ul>
-              <li>
-                <a href="#">Details</a>
-              </li>
-              <li>
-                <a href="#">Add to Cart</a>
-              </li>
-            </ul>
+  <div class="col s12 m6 l4 xl3 card-wrapper">
+    <div class="card sticky-action">
+      <div class="card-image waves-effect waves-block waves-light poster-container">
+        <img class="activator responsive-img movie-poster" :src="movie.image_url" />
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">{{movie.name}}</span>
+        <p>{{movie.format}}</p>
+      </div>
+
+      <div class="card-reveal">
+        <div class="card-title grey-text text-darken-4">
+          <div>
+            <i class="material-icons right">close</i>
           </div>
+          <div>{{movie.name}}</div>
         </div>
+        <p>({{movie.year}}) {{movie.rating}}</p>
+        <p class="genre">{{movie.genre}}</p>
+        <p>
+          <span class="label">dir:</span>
+          {{movie.director}}
+        </p>
+        <p>
+          <span class="label">actors:</span>
+          {{movie.actors}}
+        </p>
+        <p>
+          <span class="label">plot:</span>
+          {{movie.description}}
+        </p>
+      </div>
+      <div class="action-spacer"></div>
+      <div class="card-action action-container">
+        <a class="icon-btn" @click="addtoCardHandler">
+          <i class="material-icons">add_shopping_cart</i>
+        </a>
+        <a class="movie-price">${{movie.price.toFixed(2)}}</a>
+        <a class="activator icon-btn">
+          <i class="material-icons">info</i>
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
+import M from "materialize-css";
+
 export default {
   name: "MovieBox",
   props: ["movie"],
   methods: {
+    ...mapActions(["addToCart", "addToCartGuest"]),
+    addtoCardHandler() {
+
+      //If logged in then add to cart using api
+      if (this.$store.state.user.loggedIn) {
+        return this.addToCart(this.movie.id).then(response => {
+          if (response.error) {
+            console.log(response.error);
+
+            return M.toast(
+              { html: response.error, classes: "red lighten-1" },
+              4000
+            );
+          }
+
+          M.toast({ html: `${this.movie.name} added to cart` }, 4000);
+        });
+
+        //If not logged in just add prod to local storage cart
+      } else {
+        this.addToCartGuest(this.movie);
+        M.toast({ html: `${this.movie.name} added to cart` }, 4000);
+      }
+    }
   },
-  created() {
-  }
+  created() {}
 };
 </script>
 
 <style scoped>
-
-.movie-title {
-  font-size: 2em;
-  margin-bottom: 1em;
-  padding-bottom: 1em;
-  height: 2em;
-  text-align: center;
+.card-wrapper {
+  padding: 10px 20px;
 }
 
-.price {
-  font-size: 2em;
-  color: #35d0ba;
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0;
 }
 
-.main-container {
-  margin: 1em;
-  border: none;
-  box-shadow: none;
-  margin-bottom: 1em;
+.card-content {
+  position: relative;
+  padding-bottom: 10px;
 }
 
-a {
-  color: black;
-  text-decoration: underline;
+.poster-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.movie-poster {
+  max-width: 200px;
 }
 
-.movie-img {
-  padding: 1em;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  overflow: hidden;
+.movie-price {
+  font-size: 1.5rem;
+}
+
+.movie-price:hover {
+  color: #ffab40 !important;
+}
+
+.action-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  justify-self: flex-end;
+}
+
+.action-spacer{
+  flex-grow: 8;
+}
+
+.action-container > * {
+  margin-right: 0 !important;
+}
+
+.icon-btn {
+  cursor: pointer;
 }
 </style>
