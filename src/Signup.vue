@@ -21,30 +21,33 @@
               </div>
               <br />
 
-              <div class="row">
-                <a
-                  class="btn-large waves-effect waves-light orange darken-3"
-                  style="width:50%;"
-                  type="submit"
-                  id="login-btn"
-                >Register</a>
-                <a
-                  class="btn-large waves-effect waves-light orange darken-3"
-                  style="width:50%;"
-                  id="clear-btn"
-                >Clear</a>
-                <br />
-              </div>
-              <div class="row">
-                <router-link to="/Login">
-                  <a
-                    class="btn-large waves-effect waves-light orange darken-3"
-                    style="width:100%;"
-                    id="signup-btn"
-                  >Login</a>
-                </router-link>
-              </div>
-              <br />
+                         <div class="row">
+                            <a 
+                                class="btn waves-effect waves-light orange darken-3" 
+                                style="width:100%;" 
+                                type ="submit" 
+                                id="login-btn"
+                                v-on:click="signUpHandler"
+                            >Register</a>
+                        </div>
+                        <div class="row">                      
+                                 <router-link to="/">
+                            <a 
+                                class="btn waves-effect waves-light orange darken-3" 
+                                style="width:49%;" 
+                                id="home-btn"
+                                >Return to Home</a>
+                            </router-link>
+                                 <router-link to="/Login">
+                            <a 
+                            class="btn waves-effect waves-light orange darken-3" 
+                            style="width:49%;" 
+                            id="signup-btn"
+                            >Login</a>
+                          </router-link>                       
+                        </div><br>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
@@ -94,9 +97,18 @@ export default {
 </script>
 
 <style scoped>
+<<<<<<< HEAD
+.btn:hover {
+filter: brightness(130%);
+}
+.btn {
+      margin-left: 2px;
+
+=======
 .signup-container {
   display: flex;
   justify-content: center;
+>>>>>>> ca659f9ee201a6e5e3667f0a7b4fa1d8ec7759a4
 }
 
 .col {
