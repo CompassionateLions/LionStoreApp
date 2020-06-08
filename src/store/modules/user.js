@@ -36,10 +36,25 @@ const actions = {
         })
     },
     // signUpUser({commit}, data){
-
     //same as login but to signup endpoint instead
 
-    // },
+    signUpUser({commit}, data){
+        console.log(data);
+        return fetch(`/api/users/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json()).then(json => {
+            console.log(json);
+            if(json.error) return json
+
+            commit('setUser', json);
+            return json
+
+        })
+    },
     logoutUser({commit}){
         commit('clearUser');
         commit('clearCart');
@@ -78,6 +93,7 @@ const mutations = {
         state.email = user.email,
         state.loggedIn = true
     }
+
 }
 
 module.exports = {

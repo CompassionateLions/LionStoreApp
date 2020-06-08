@@ -56,11 +56,40 @@
 <script>
 import StoreHeader from "./components/StoreHeader.vue";
 
+import { mapActions } from "vuex";
+
 export default {
-  name: "Signup",
-  components: {
-    StoreHeader
-  }
+    name: 'Signup',
+    components: {
+    StoreHeader  
+  },  
+    
+    data() {
+        return {
+            user: {
+                email: '',
+                password: '',
+                confirmPassword:''
+            },
+            error: ""
+        };
+    },
+
+    methods: {
+        ...mapActions(["signUpUser"]),
+        signUpHandler (){
+        console.log(this.user);
+        const body = {
+            email: this.user.email, 
+            password: this.user.password, 
+            confirmpassword: this.user.confirmPassword}
+
+            this.signUpUser(body).then(result => {
+                if (result.error) return console.log(result);
+                this.$router.push("/");
+            });
+        }
+     }
 };
 </script>
 
