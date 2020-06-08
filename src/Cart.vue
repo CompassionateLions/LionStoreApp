@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <StoreHeader />
 
+    <div class="container">
+<StoreHeader />
     <div class="row">
-      <div class="col l6 s12 offset-l3">
+      <div class="col l12 s12 ">
         <h4>
           Items added to your Shopping
           <span class>Cart</span>
         </h4>
       </div>
-      <div class="col l6 s12 offset-l3 border_style z-depth-2">
+      <div class="col l8 s12 offset-l2 border_style z-depth-2">
         <div class="col m12 s12">
           <router-link to="/">
             <a>
@@ -41,7 +41,7 @@
         <div>
           <hr />
         </div>
-        <div class="col l4 s12 offset-l8 ">
+        <div class="col m6 s12 offset-m6 ">
           <div class="row">
             <router-link to="/Order">
               <button
@@ -60,6 +60,8 @@
       </div>
     </div>
   </div>
+
+    
 </template>
 
 <script>
@@ -116,4 +118,15 @@ button {
 .btn:hover {
 filter: brightness(140%);
 }
+@media only screen and (max-width: 600px) {
+  .btn {
+    width: 100%;
+  }
+}
+@media only screen and (device-width: 768px) {
+  .container{
+  width: 100%;
+  }
+}
+
 </style>

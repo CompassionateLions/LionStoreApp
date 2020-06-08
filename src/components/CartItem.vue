@@ -1,13 +1,13 @@
 <template>
-  <div class="row divStyle">
-    <div class="col l2 m12">
+  <div class="row">
+    <div class="col l2 s12">
       <li>
         <a>
           <img class="responsive-img" :src="product.image_url" />
         </a>
       </li>
     </div>
-    <div class="col l4 m12 textStyle">
+    <div class="col l4 s12 textStyle">
       <li v-html="product.name" class="red-text text-darken-3 movName"></li>
       <li v-html="product.format"></li>
       <li>
@@ -15,7 +15,7 @@
       </li>
       <li>${{product.price.toFixed(2)}}</li>
     </div>
-    <div class="col l2 m12 textStyle">
+    <div class="col l2 s12 textStyle">
       <li>
         <b>Quantity</b>
       </li>
@@ -27,7 +27,7 @@
       <li class="qty" label="Quantity" v-html="product.quantity"></li>
       <li class="padL">
         <a>
-          <i class="material-icons"  @click=" decreaseProductByOne()">expand_more</i>
+          <i class="material-icons" @click=" decreaseProductByOne()">expand_more</i>
         </a>
       </li>
     </div>
@@ -45,28 +45,30 @@
   </div>
 </template>
 <script>
-
-import {mapActions} from 'vuex';
-
+import { mapActions } from "vuex";
 
 export default {
   name: "CartItem",
   props: ["product"],
   methods: {
-    ...mapActions(['removeProductFromCart', 'updateCartQuantity']),
-    removeProduct(){
+    ...mapActions(["removeProductFromCart", "updateCartQuantity"]),
+    removeProduct() {
       //Needs to call an action from vueX store
-    this.removeProductFromCart(this.product.productId);
+      this.removeProductFromCart(this.product.productId);
     },
-    increaseProductByOne(){
-      this.updateCartQuantity({productId: this.product.productId,newQuantity: this.product.quantity + 1})
+    increaseProductByOne() {
+      this.updateCartQuantity({
+        productId: this.product.productId,
+        newQuantity: this.product.quantity + 1
+      });
     },
-    decreaseProductByOne(){
-      this.updateCartQuantity({productId: this.product.productId,newQuantity: this.product.quantity - 1})
+    decreaseProductByOne() {
+      this.updateCartQuantity({
+        productId: this.product.productId,
+        newQuantity: this.product.quantity - 1
+      });
     }
   }
- 
-
 };
 </script>
 
@@ -76,9 +78,8 @@ i {
 }
 .movName {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 20px;
 }
-
 img:hover {
   cursor: pointer;
 }
@@ -89,19 +90,16 @@ li {
 .border_style {
   border-style: groove;
 }
-.divStyle {
-  padding-top: 20px;
-  padding-left: 10px;
-}
 .binStyle {
   padding-top: 60%;
   padding-left: 80%;
 }
-.textStyle {
+
+div {
   text-align: left;
   padding-left: 20px;
   margin-left: 20px;
-  font-size: 14px;
+  padding-top: 20px;
 }
 a {
   cursor: pointer;
@@ -118,6 +116,23 @@ a {
   padding-left: 20px;
 }
 .btn:hover {
-filter: brightness(150%);
+  filter: brightness(150%);
+}
+@media only screen and (max-width: 600px) {
+  li {
+    text-align: center;
+  }
+  .qty {
+    margin-left: 46%;
+  }
+  .movName {
+    font-size: 20px;
+  }
+  img.responsive-img {
+    max-width: 80%;
+  }
+  .padL {
+    padding-left: auto;
+  }
 }
 </style>
