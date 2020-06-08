@@ -31,6 +31,7 @@
           {{movie.description}}
         </p>
       </div>
+      <div class="action-spacer"></div>
       <div class="card-action action-container">
         <a class="icon-btn" @click="addtoCardHandler">
           <i class="material-icons">add_shopping_cart</i>
@@ -84,7 +85,7 @@ export default {
 
 <style scoped>
 .card-wrapper {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .card {
@@ -92,10 +93,12 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 0;
 }
 
 .card-content {
   position: relative;
+  padding-bottom: 10px;
 }
 
 .poster-container {
@@ -122,6 +125,9 @@ export default {
   justify-content: space-around;
   align-items: flex-end;
   justify-self: flex-end;
+}
+
+.action-spacer{
   flex-grow: 8;
 }
 
