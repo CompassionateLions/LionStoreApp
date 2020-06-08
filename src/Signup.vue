@@ -37,7 +37,7 @@
 
                          <div class="row">
                             <a 
-                                class="btn-large waves-effect waves-light orange darken-3" 
+                                class="btn waves-effect waves-light orange darken-3" 
                                 style="width:100%;" 
                                 type ="submit" 
                                 id="login-btn"
@@ -47,14 +47,14 @@
                         <div class="row">
                             <router-link to="/">
                             <a 
-                                class="btn-large waves-effect waves-light orange darken-3" 
+                                class="btn waves-effect waves-light orange darken-3" 
                                 style="width:50%;" 
                                 id="home-btn"
                                 >Return to Home</a>
                             </router-link>
                             <router-link to="/Login">
                             <a 
-                            class="btn-large waves-effect waves-light orange darken-3" 
+                            class="btn waves-effect waves-light orange darken-3" 
                             style="width:50%;" 
                             id="signup-btn"
                             >Login</a>

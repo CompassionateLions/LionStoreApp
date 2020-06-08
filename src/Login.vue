@@ -29,26 +29,25 @@
               />
             </div>
             <br />
-
             <div class="row">
-              <a
-                class="btn-large waves-effect waves-light orange darken-3"
-                style="width:50%;"
-                type="submit"
-                id="login-btn"
-                v-on:click="loginHandler"
-              >Login</a>
-              <a
-                class="btn-large waves-effect waves-light orange darken-3"
-                style="width:50%;"
-                id="clear-btn"
-                v-on:click="clear"
-              >Clear</a>
+                <a
+                    class="btn waves-effect waves-light orange darken-3"
+                    style="width:50%;"
+                    type="submit"
+                    id="login-btn"
+                    v-on:click="loginHandler"           
+                >Login</a>
+                <a
+                    class="btn waves-effect waves-light orange darken-3"
+                    style="width:50%;"
+                    id="clear-btn"
+                    v-on:click="clear"
+                >Clear</a>
             </div>
             <div class="row">
               <router-link to="/Signup">
                 <a
-                  class="btn-large waves-effect waves-light orange darken-3"
+                  class="btn waves-effect waves-light orange darken-3"
                   style="width:100%;"
                   id="signup-btn"
                 >Sign Up</a>
