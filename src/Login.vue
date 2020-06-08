@@ -29,7 +29,12 @@
               />
             </div>
             <br />
+            <!-- <div v-if="error" class="card-panel red lighten-1 error-msg">
+                <span class="white-text">{{error}}</span>
+              </div> -->
+
             <div class="row">
+                <div class ="col s6">
                 <a
                     class="btn waves-effect waves-light orange darken-3"
                     style="width:50%;"
@@ -37,18 +42,21 @@
                     id="login-btn"
                     v-on:click="loginHandler"           
                 >Login</a>
+                </div>
+                <div class ="col s6">
                 <a
-                    class="btn waves-effect waves-light orange darken-3"
+                    class="btn waves-effect waves-light orange darken-3 "
                     style="width:50%;"
                     id="clear-btn"
                     v-on:click="clear"
                 >Clear</a>
+                </div>
             </div>
             <div class="row">
               <router-link to="/Signup">
                 <a
                   class="btn waves-effect waves-light orange darken-3"
-                  style="width:100%;"
+                  style="width:50%;"
                   id="signup-btn"
                 >Sign Up</a>
               </router-link>
