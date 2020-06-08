@@ -66,6 +66,29 @@ Example response:
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJiZW5AdGVzdC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTU5MTE0NDYzMiwiZXhwIjoxNTkxMjMxMDMyfQ.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 }
 ````
+### Change Password ###
+
+| Endpoint | /api/users/password |
+| --- | --- |
+| Method | `PUT` |
+| Token required | Yes |
+| Admin only | No |
+
+#### Parameters ####
+
+| Parameter | Type | Required |
+| --- | --- | --- |
+| oldPassword | `String` | Yes |
+| newPassword | `String` | Yes |
+| confirmPassword | `String` | Yes |
+
+Example response:
+````json
+{
+    "success": "Password changed succesfully"
+}
+````
+
 
 ### Get All Users ###
 

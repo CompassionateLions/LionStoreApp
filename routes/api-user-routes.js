@@ -22,6 +22,9 @@ router.get("/:id", authenticateUser, checkAdmin, userControllers.getUserInfo);
 //Get info of the authenticated user
 router.get("/", authenticateUser, userControllers.getAuthenticatedUser);
 
+//Change password route
+router.put("/password", authenticateUser, userControllers.updatePassword);
+
 
 
 
