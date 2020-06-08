@@ -1,4 +1,4 @@
-//App logic in here
+//Sad file =( Needs refactoring and splitting into different files
 
 const fetch = require('node-fetch');
 
@@ -77,6 +77,16 @@ const actions = {
             // console.log(`${title.name}, Year: ${yearFilter}, Price: ${priceFilter}, Name: ${nameFilter}, Genre: ${genreFilter}`);
             return (yearFilter && priceFilter && nameFilter && genreFilter && inStock);
         })
+
+        filteredProducts.sort((a, b) =>{
+            if ( a.name < b.name ){
+                return -1;
+              }
+              if ( a.name > b.name ){
+                return 1;
+              }
+              return 0;
+        });
 
         commit('updateFiltered', filteredProducts)
     },

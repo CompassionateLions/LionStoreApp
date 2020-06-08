@@ -86,6 +86,7 @@ export default {
 <style scoped>
 .card-wrapper {
   padding: 10px 20px;
+  margin: 0!important;
 }
 
 .card {

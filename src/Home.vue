@@ -39,17 +39,20 @@ export default {
 </script>
 
 <style scoped>
-
 .main {
   margin-left: 300px;
 }
 
-.movie-box-container{
-    display: flex;
-    align-content: stretch;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
+.movie-box-container {
+  display: flex;
+  align-content: stretch;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.movie-box-container::after {
+  display: none;
+}
 
 @media screen and (max-width: 992px) {
   .main {
