@@ -19,14 +19,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/", 
+    path: "/",
     component: Home
   },
   {
-    path: "/Login", 
+    path: "/Login",
     component: Login,
     beforeEnter: (to, from, next) => {
-      if(store.state.user.loggedIn){
+      if (store.state.user.loggedIn) {
         return next(false)
       }
 
@@ -34,10 +34,10 @@ const routes = [
     }
   },
   {
-    path: "/Signup", 
+    path: "/Signup",
     component: Signup,
     beforeEnter: (to, from, next) => {
-      if(store.state.user.loggedIn){
+      if (store.state.user.loggedIn) {
         return next(false)
       }
 
@@ -45,24 +45,24 @@ const routes = [
     }
   },
   {
-    path: "/Cart", 
+    path: "/Cart",
     component: Cart
   },
   {
-    path: "/Admin", 
+    path: "/Admin",
     component: Admin,
     beforeEnter: (to, from, next) => {
-      if(store.state.user.role !== 'admin'){
+      if (store.state.user.role !== 'admin') {
         return next('/')
       }
       return next()
     }
   },
   {
-    path: "/Profile", 
+    path: "/Profile",
     component: Profile,
     beforeEnter: (to, from, next) => {
-      if(store.state.user.loggedIn){
+      if (store.state.user.loggedIn) {
         return next()
       }
 

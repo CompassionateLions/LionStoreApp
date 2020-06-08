@@ -17,7 +17,23 @@
             </a>
           </router-link>
         </div>
-        <div>
+        <div v-if="cartProducts.length  === 0"> 
+          <div> 
+            <h2> Your cart is Empty </h2>
+              <div>
+     
+        </div>
+                <router-link to="/">
+                             <button
+                class="btn waves-effect waves-light deep-orange darken-3"
+                name="mainPage"
+              >Go for Shopping</button>
+          </router-link>
+          </div>
+        </div>
+
+        <div v-if="cartProducts.length > 0">
+                  <div>
           <div class="collect" v-bind:key="product.productId" v-for="(product) in cartProducts">
             <CartItem v-bind:product="product" />
           </div>
@@ -25,21 +41,21 @@
         <div>
           <hr />
         </div>
-        <div class="col l3 s6 offset-l9 -s6">
+        <div class="col l4 s6 offset-l8 -s6">
           <div class="row">
-            <router-link to="/login">
+            <router-link to="/Order">
               <button
                 class="btn waves-effect waves-light deep-orange darken-3"
                 type="submit"
-                name="action"
-              >Checkout</button>
+                name="orders"
+              >Process Order</button>
             </router-link>
             <button
               class="btn waves-effect waves-light deep-orange darken-3"
-              type="submit"
-              name="action"
+              name="clearCart" @click="cartClear()"
             >Clear Cart</button>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -54,17 +70,20 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Cart",
-  components: { CartItem, StoreHeader },
+  components: { CartItem, StoreHeader},
   computed: {
-    ...mapGetters(["cartProducts"])
+    ...mapGetters(["cartProducts","removeCartProduct"])
   },
   created() {
     this.getCartProducts();
   },
   methods: {
     ...mapActions(["getCartProducts"]),
-  }
-   
+    cartClear(){
+      this.removeCartProduct();
+
+    }
+  } 
 }
 </script>
 
