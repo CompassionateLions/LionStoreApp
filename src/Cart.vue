@@ -113,10 +113,10 @@ export default {
       this.createOrder().then(res => {
         console.log(res);
         if(res.error){
-          console.log(res.error);
+          
+            this.errors.push(res.error);
 
           if(res.stock){
-            this.errors.push("Error placing order")
             for (let stockLevel of res.stock) {
               console.log(stockLevel)
               if(!stockLevel.enoughStock){
