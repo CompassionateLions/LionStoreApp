@@ -94,6 +94,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   margin: 0;
 }
 
@@ -108,6 +109,7 @@ export default {
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  max-width: 200px;
 }
 .movie-poster {
   height: auto;
