@@ -28,6 +28,10 @@
                   v-model="user.confirmPassword"
                 />
               </div>
+              <Errors
+              v-if="errors.length"
+              :errors="errors"
+              />
               <div class="row btn-row">
                 <div class="col s12">
                   <a
@@ -54,13 +58,19 @@
 
 <script>
 import StoreHeader from "./components/StoreHeader.vue";
+import Errors from "./components/Errors"
+
 import { mapActions } from "vuex";
+import { validationMixins } from "./mixins/validationMixins";
+
+
 export default {
   name: "Signup",
   components: {
-    StoreHeader
+    StoreHeader,
+    Errors
   },
-
+  mixins: [validationMixins],
   data() {
     return {
       user: {
@@ -68,20 +78,40 @@ export default {
         password: "",
         confirmPassword: ""
       },
-      error: ""
+      errors: []
     };
   },
   methods: {
     ...mapActions(["signUpUser"]),
     signUpHandler() {
+      this.errors = [];
       console.log(this.user);
+
+      if (
+        !this.user.email.length ||
+        !this.user.password.length ||
+        !this.user.confirmPassword.length
+      )
+        return this.errors.push("Please fill in all information");
+
+      this.validateEmail(this.user.email, this.errors);
+      this.validatePassword(this.user.password, this.errors);
+
+      if (this.user.password !== this.user.confirmPassword)
+        this.errors.push("Passwords don't match");
+
+      if (this.errors.length) return;
+
       const body = {
         email: this.user.email,
         password: this.user.password,
         confirmpassword: this.user.confirmPassword
       };
       this.signUpUser(body).then(result => {
-        if (result.error) return console.log(result);
+        if (result.error){
+            console.log(result.error)
+            return this.errors.push(result.error);
+        }
         this.$router.push("/");
       });
     }
