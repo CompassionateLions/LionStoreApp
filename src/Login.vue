@@ -2,71 +2,61 @@
   <div id="app">
     <StoreHeader />
     <div class="container">
-    <div class="row login-container">
-      <div class="col s12 m10 l8">
-        <div class="card">
-          <div class="card-action">
-            <h3>Login Form</h3>
-          </div>
-          <div class="card-content">
-            <div class="form-field">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                id="email"
-                v-model="credentials.email"
-              />
+      <div class="row login-container">
+        <div class="col s12 m10 l8">
+          <div class="card">
+            <div class="card-action">
+              <h3>Login Form</h3>
             </div>
-            <br />
+            <div class="card-content">
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  id="email"
+                  v-model="credentials.email"
+                />
+              </div>
+              
 
-            <div class="form-field">
-              <label for="password">Password</label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                id="password"
-                v-model="credentials.password"
-              />
-            </div>
-            <br />
-            <!-- <div v-if="error" class="card-panel red lighten-1 error-msg">
+              <div class="form-field">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  id="password"
+                  v-model="credentials.password"
+                />
+              </div>
+              
+              <!-- <div v-if="error" class="card-panel red lighten-1 error-msg">
                 <span class="white-text">{{error}}</span>
-              </div> -->
+              </div>-->
 
-            <div class="row">
-                <div class ="col s6">
-                <a
-                    class="btn waves-effect waves-light orange darken-3"
-                    style="width:49%;"
+              <div class="row btn-row">
+                <div class="col s12">
+                  <a
+                    class="btn waves-effect waves-light orange darken-3 login-btn"
+                    
                     type="submit"
                     id="login-btn"
-                    v-on:click="loginHandler"           
-                >Login</a>
+                    v-on:click="loginHandler"
+                  >Login</a>
                 </div>
-                <div class ="col s6">
-                <a
-                    class="btn waves-effect waves-light orange darken-3"
-                    style="width:49%;"
-                    id="clear-btn"
-                    v-on:click="clear"
-                >Clear</a>
-                </div>
-            </div>
-            <div class="row">
-              <router-link to="/Signup">
-                <a
-                  class="btn waves-effect waves-light orange darken-3"
-                  style="width:50%;"
-                  id="signup-btn"
-                >Sign Up</a>
-              </router-link>
+              </div>
+              <div class="row">
+                <p>
+                Don't have an account? 
+                <router-link to="/Signup">
+                  Sign up
+                </router-link>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
     </div>
   </div>
 </template>
@@ -101,7 +91,7 @@ export default {
       this.loginUser(this.credentials).then(result => {
         if (result.error) return console.log(result); //handle error
 
-       //console.log(this.$store.state.user.token)
+        //console.log(this.$store.state.user.token)
 
         this.$router.push("/");
       });
@@ -115,12 +105,11 @@ export default {
 </script>
 
 <style scoped>
-
 .btn:hover {
-filter: brightness(130%);
+  filter: brightness(130%);
 }
 .btn {
-      margin-left: 2px;
+  margin-left: 2px;
 }
 
 .login-container {
@@ -129,6 +118,14 @@ filter: brightness(130%);
 }
 
 .col {
-  margin: 0!important;
+  margin: 0 !important;
+}
+
+.btn-row {
+  padding-top: 10px;
+}
+
+.login-btn {
+  width: 100%;
 }
 </style>
