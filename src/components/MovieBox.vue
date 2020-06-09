@@ -110,7 +110,7 @@ export default {
   padding-right: 10px;
 }
 .movie-poster {
-  max-width: 200px;
+  height: auto;
 }
 
 .movie-price {
