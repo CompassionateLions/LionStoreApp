@@ -50,9 +50,10 @@
                 <label for="confirmPassword">Confirm Password</label>
               </div>
 
-              <div v-if="error" class="card-panel red lighten-1 error-msg">
-                <span class="white-text">{{error}}</span>
-              </div>
+              <Errors
+              v-if="errors.length"
+              :errors="errors"
+              />
               <button class="btn waves-effect waves-light" type="submit" name="action">
                 Submit
                 <i class="material-icons right">send</i>
@@ -89,15 +90,20 @@
 <script>
 import StoreHeader from "./components/StoreHeader";
 import OrderComponent from "./components/OrderComponent"
+import Errors from "./components/Errors"
+
+import { validationMixins } from "./mixins/validationMixins";
 
 import { mapActions, mapGetters } from "vuex";
 
 
 export default {
   name: "ProfilePage",
+  mixins:[validationMixins],
   components: {
       StoreHeader,
-      OrderComponent
+      OrderComponent,
+      Errors
   },
   computed:{
       ...mapGetters(['user']),
@@ -107,7 +113,7 @@ export default {
   },
   data() {
     return {
-      error: "",
+      errors: [],
       oldPassword: "",
       newPassword: "",
       confirmPassword: "",
@@ -117,7 +123,21 @@ export default {
   methods: {
     ...mapActions(["changePassword", "getUserOrders"]),
     changePasswordHandler(e) {
-      this.error = "";
+      this.errors = [];
+
+      if (
+        !this.oldPassword.length ||
+        !this.newPassword.length ||
+        !this.confirmPassword.length
+      )
+        return this.errors.push("Please fill in all information");
+
+      this.validatePassword(this.newPassword, this.errors);
+
+      if (this.newPassword !== this.confirmPassword)
+        this.errors.push("Passwords don't match");
+
+      if (this.errors.length) return;
 
       const data = new URLSearchParams(new FormData(e.target));
 
@@ -125,7 +145,7 @@ export default {
 
       this.changePassword(data).then(response => {
         console.log(response);
-        if (response.error) return (this.error = response.error);
+        if (response.error) return this.errors.push(response.error);
 
         this.clear();
       });

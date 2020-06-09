@@ -137,7 +137,9 @@ module.exports = {
         ]).then(([user, product]) => {
 
             //If there is stock in the store
-            if (product.quantity >= newQuantity) {
+            //Skip validation for now.
+            //Old validation:    if (product.quantity >= newQuantity) {
+            if (true) {
 
                 for (cartItem of user.CartContents) {
 
