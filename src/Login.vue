@@ -30,9 +30,10 @@
                 />
               </div>
               
-              <!-- <div v-if="error" class="card-panel red lighten-1 error-msg">
-                <span class="white-text">{{error}}</span>
-              </div>-->
+              <Errors
+              v-if="errors.length"
+              :errors="errors"
+              />
 
               <div class="row btn-row">
                 <div class="col s12">
@@ -63,13 +64,15 @@
 
 <script>
 import StoreHeader from "./components/StoreHeader.vue";
+import Errors from "./components/Errors";
 
 import { mapActions } from "vuex";
 
 export default {
   name: "Login",
   components: {
-    StoreHeader
+    StoreHeader,
+    Errors
   },
 
   data() {
@@ -78,18 +81,19 @@ export default {
         email: "",
         password: ""
       },
-      error: ""
+      errors: []
     };
   },
   methods: {
     ...mapActions(["loginUser"]),
     loginHandler() {
+      this.errors = [];
       //console.log(this.email);
       //Do validation
       console.log(this.credentials);
 
       this.loginUser(this.credentials).then(result => {
-        if (result.error) return console.log(result); //handle error
+        if (result.error) return this.errors.push(result.error); //handle error
 
         //console.log(this.$store.state.user.token)
 
@@ -107,9 +111,6 @@ export default {
 <style scoped>
 .btn:hover {
   filter: brightness(130%);
-}
-.btn {
-  margin-left: 2px;
 }
 
 .login-container {
