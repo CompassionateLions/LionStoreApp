@@ -1,8 +1,11 @@
 <template>
   <div class="col s12 m6 l4 xl3 card-wrapper">
     <div class="card sticky-action">
+      <div class="img-outer-wrapper">
+
       <div class="card-image waves-effect waves-block waves-light poster-container">
         <img class="activator responsive-img movie-poster" :src="movie.image_url" />
+      </div>
       </div>
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">{{movie.name}}</span>
@@ -94,7 +97,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
   margin: 0;
 }
 
@@ -103,6 +106,10 @@ export default {
   padding-bottom: 10px;
 }
 
+.img-outer-wrapper {
+  display: flex;
+  justify-content: center;
+}
 .poster-container {
   display: flex;
   justify-content: center;
