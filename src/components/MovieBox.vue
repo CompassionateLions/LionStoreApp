@@ -118,9 +118,8 @@ export default {
   padding-right: 10px;
   max-width: 200px;
 }
-.movie-poster {
-  height: auto;
-}
+/* .movie-poster {
+} */
 
 .movie-price {
   font-size: 1.5rem;
