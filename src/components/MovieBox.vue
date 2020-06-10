@@ -19,18 +19,22 @@
           </div>
           <div>{{movie.name}}</div>
         </div>
+       <br>
         <p>({{movie.year}}) {{movie.rating}}</p>
         <p class="genre">{{movie.genre}}</p>
         <p>
-          <span class="label">dir:</span>
+       
+          <span class="label"><b>Dir:</b></span>
           {{movie.director}}
         </p>
-        <p>
-          <span class="label">actors:</span>
+        <br>
+        <p class="textAlign">
+          <span class="label"><b>Actors:</b></span>
           {{movie.actors}}
         </p>
-        <p>
-          <span class="label">plot:</span>
+           <br/>
+        <p class="textAlign">
+          <span class="label textAlign"><b>Plot:</b></span>
           {{movie.description}}
         </p>
       </div>
@@ -147,5 +151,8 @@ export default {
 
 .icon-btn {
   cursor: pointer;
+}
+.textAlign{
+ text-align: left;
 }
 </style>
