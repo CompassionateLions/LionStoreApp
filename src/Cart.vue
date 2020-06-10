@@ -20,7 +20,6 @@
           <div v-if="cartProducts.length  === 0">
             <div>
               <h2>Your cart is Empty</h2>
-              <div></div>
               <router-link to="/">
                 <button
                   class="btn waves-effect waves-light deep-orange darken-3"
@@ -41,14 +40,12 @@
             </div>
             <div class="col m6 s12 offset-m6">
               <div class="row">
-                <button to="/Order">
-                  <button
-                    class="btn waves-effect waves-light deep-orange darken-3"
-                    type="submit"
-                    name="orders"
-                    @click="createOrderHandler"
-                  >Process Order</button>
-                </button>
+                <button
+                  class="btn waves-effect waves-light deep-orange darken-3"
+                  type="submit"
+                  name="orders"
+                  @click="createOrderHandler"
+                >Process Order</button>
                 <button
                   class="btn waves-effect waves-light deep-orange darken-3"
                   name="clearCart"
@@ -59,11 +56,11 @@
           </div>
         </div>
         <div class="row" v-if="order !== ''">
-        <div>
-          <h4>Order placed Sucessfully</h4>
-            <OrderComponent v-bind:order="order"/>
+          <div>
+            <h4>Order placed Sucessfully</h4>
+            <OrderComponent v-bind:order="order" />
+          </div>
         </div>
-    </div>
       </div>
     </div>
   </div>
@@ -82,10 +79,10 @@ export default {
   computed: {
     ...mapGetters(["cartProducts"])
   },
-  data(){
+  data() {
     return {
-      order: ''
-    }
+      order: ""
+    };
   },
   created() {
     this.getCartProducts();
@@ -95,22 +92,22 @@ export default {
     cartClear() {
       this.removeCartProduct();
     },
-    createOrderHandler (){
+    createOrderHandler() {
       //If not logged in redirect to login
-      if(! this.$store.state.user.loggedIn) {
+      if (!this.$store.state.user.loggedIn) {
         return this.$router.push("/Login");
       }
 
       this.createOrder().then(res => {
         console.log(res);
-        if(res.error) return console.log(res.error);
+        if (res.error) return console.log(res.error);
 
-        this.order = res.order
+        this.order = res.order;
         //Print out Order summary
-      })
+      });
     },
-    removeAllCartProductsHandler(){
-      this.removeAllCartProducts()
+    removeAllCartProductsHandler() {
+      this.removeAllCartProducts();
     }
   }
 };

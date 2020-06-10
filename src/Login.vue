@@ -35,33 +35,34 @@
               </div> -->
 
             <div class="row">
-                <div class ="col s6">
+                <div class ="col m6 s12">
                 <a
                     class="btn waves-effect waves-light orange darken-3"
-                    style="width:49%;"
+                    style="width:100%;"
                     type="submit"
                     id="login-btn"
                     v-on:click="loginHandler"           
                 >Login</a>
                 </div>
-                <div class ="col s6">
+                <div class ="col m6 s12">
                 <a
                     class="btn waves-effect waves-light orange darken-3"
-                    style="width:49%;"
+                    style="width:100%;"
                     id="clear-btn"
                     v-on:click="clear"
                 >Clear</a>
                 </div>
-            </div>
-            <div class="row">
+                  <div class="col m12 s12">
               <router-link to="/Signup">
                 <a
                   class="btn waves-effect waves-light orange darken-3"
-                  style="width:50%;"
+                  style="width:100%;"
                   id="signup-btn"
                 >Sign Up</a>
               </router-link>
             </div>
+            </div>
+          
           </div>
         </div>
       </div>
@@ -119,9 +120,6 @@ export default {
 .btn:hover {
 filter: brightness(130%);
 }
-.btn {
-      margin-left: 2px;
-}
 
 .login-container {
   display: flex;
@@ -131,4 +129,5 @@ filter: brightness(130%);
 .col {
   margin: 0!important;
 }
+
 </style>
