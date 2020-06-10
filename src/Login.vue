@@ -37,13 +37,13 @@
 
               <div class="row btn-row">
                 <div class="col s12">
-                  <a
+                  <button
                     class="btn waves-effect waves-light orange darken-3 login-btn"
                     
                     type="submit"
                     id="login-btn"
                     v-on:click="loginHandler"
-                  >Login</a>
+                  >Login</button>
                 </div>
               </div>
               <div class="row">

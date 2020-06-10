@@ -22,31 +22,16 @@
        <br>
         <p>({{movie.year}}) {{movie.rating}}</p>
         <p class="genre info-genre">{{movie.genre}}</p>
-        <p>
-<<<<<<< HEAD
-       
-          <span class="label"><b>Dir:</b></span>
-          {{movie.director}}
-        </p>
-        <br>
-        <p class="textAlign">
-          <span class="label"><b>Actors:</b></span>
-          {{movie.actors}}
-        </p>
-           <br/>
-        <p class="textAlign">
-          <span class="label textAlign"><b>Plot:</b></span>
-=======
+        <p class="text-align">
           <span class="info-label">dir:</span>
           {{movie.director}}
         </p>
-        <p>
+        <p class="text-align">
           <span class="info-label">actors:</span>
           {{movie.actors}}
         </p>
-        <p>
+        <p class="text-align">
           <span class="info-label">plot:</span>
->>>>>>> bd813dda041a519359688870b90a338829b8af5c
           {{movie.description}}
         </p>
       </div>
@@ -163,11 +148,9 @@ export default {
 .icon-btn {
   cursor: pointer;
 }
-<<<<<<< HEAD
-.textAlign{
+.text-align{
  text-align: left;
-=======
-
+}
 .info-genre {
   color: #ef6c00
 }
@@ -175,6 +158,5 @@ export default {
 .info-label {
   color: #ef6c00;
   font-weight: bold;
->>>>>>> bd813dda041a519359688870b90a338829b8af5c
 }
 </style>
