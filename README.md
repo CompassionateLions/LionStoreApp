@@ -10,9 +10,9 @@ The Lion Movie Store is an e-commerce single page application where users can br
 
 ## Technologies
 
-* **Vue.js** - The front end of the applicatin is built using Vue.js. We are also using the compainion librarys **Vue-router** to handle different pages, **VueX** for state management and **vuex-persistedstate** to store the state to local storage
+* **Vue.js** - The front end of the application is built using Vue.js. We are also using the companion libraries **Vue-router** to handle different pages, **VueX** for state management and **vuex-persistedstate** to store the state to local storage
 * **Materialize CSS** - The app was styled mainly using components from the Materialize CSS library. Additionally the **NoUISlider** library was used for the sliders in the filters
-* **MySQL** - The backend database for this application utilises MySQL which is accesed through the ORM **sequelize**
+* **MySQL** - The backend database for this application utilises MySQL which is accessed through the ORM **sequelize**
 * **JSON Web Tokens** - The authentication for this app is provided to the user in the form of a JSON Web Token. This allows the application to be stateless.
 
 * **Node.js** - The server language for this application uses Node.js.
