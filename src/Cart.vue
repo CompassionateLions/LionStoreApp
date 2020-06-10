@@ -38,6 +38,10 @@
             <div>
               <hr />
             </div>
+            <Errors
+            v-if="errors.length"
+            :errors="errors"
+            />
             <div class="col m6 s12 offset-m6">
               <div class="row">
                 <button
@@ -70,19 +74,21 @@
 import StoreHeader from "./components/StoreHeader";
 import CartItem from "./components/CartItem";
 import OrderComponent from "./components/OrderComponent";
+import Errors from "./components/Errors"
 
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Cart",
-  components: { CartItem, StoreHeader, OrderComponent },
+  components: { CartItem, StoreHeader, OrderComponent, Errors },
   computed: {
     ...mapGetters(["cartProducts"])
   },
   data() {
     return {
-      order: ""
-    };
+      order: '',
+      errors:[]
+    }
   },
   created() {
     this.getCartProducts();
@@ -92,7 +98,10 @@ export default {
     cartClear() {
       this.removeCartProduct();
     },
-    createOrderHandler() {
+    createOrderHandler (){
+
+      this.errors = [];
+
       //If not logged in redirect to login
       if (!this.$store.state.user.loggedIn) {
         return this.$router.push("/Login");
@@ -100,9 +109,21 @@ export default {
 
       this.createOrder().then(res => {
         console.log(res);
-        if (res.error) return console.log(res.error);
+        if(res.error){
+          
+            this.errors.push(res.error);
 
-        this.order = res.order;
+          if(res.stock){
+            for (let stockLevel of res.stock) {
+              console.log(stockLevel)
+              if(!stockLevel.enoughStock){
+                this.errors.push(`Not enough stock for ${stockLevel.name}. Store stock: ${stockLevel.storeStock}`);
+              }
+            }
+          }
+          return
+        } 
+        this.order = res.order
         //Print out Order summary
       });
     },

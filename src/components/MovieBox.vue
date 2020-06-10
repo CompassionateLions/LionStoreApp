@@ -21,8 +21,9 @@
         </div>
        <br>
         <p>({{movie.year}}) {{movie.rating}}</p>
-        <p class="genre">{{movie.genre}}</p>
+        <p class="genre info-genre">{{movie.genre}}</p>
         <p>
+<<<<<<< HEAD
        
           <span class="label"><b>Dir:</b></span>
           {{movie.director}}
@@ -35,6 +36,17 @@
            <br/>
         <p class="textAlign">
           <span class="label textAlign"><b>Plot:</b></span>
+=======
+          <span class="info-label">dir:</span>
+          {{movie.director}}
+        </p>
+        <p>
+          <span class="info-label">actors:</span>
+          {{movie.actors}}
+        </p>
+        <p>
+          <span class="info-label">plot:</span>
+>>>>>>> bd813dda041a519359688870b90a338829b8af5c
           {{movie.description}}
         </p>
       </div>
@@ -122,9 +134,8 @@ export default {
   padding-right: 10px;
   max-width: 200px;
 }
-.movie-poster {
-  height: auto;
-}
+/* .movie-poster {
+} */
 
 .movie-price {
   font-size: 1.5rem;
@@ -152,7 +163,18 @@ export default {
 .icon-btn {
   cursor: pointer;
 }
+<<<<<<< HEAD
 .textAlign{
  text-align: left;
+=======
+
+.info-genre {
+  color: #ef6c00
+}
+
+.info-label {
+  color: #ef6c00;
+  font-weight: bold;
+>>>>>>> bd813dda041a519359688870b90a338829b8af5c
 }
 </style>
