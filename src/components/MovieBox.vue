@@ -19,17 +19,18 @@
           </div>
           <div>{{movie.name}}</div>
         </div>
+       <br>
         <p>({{movie.year}}) {{movie.rating}}</p>
         <p class="genre info-genre">{{movie.genre}}</p>
-        <p>
+        <p class="text-align">
           <span class="info-label">dir:</span>
           {{movie.director}}
         </p>
-        <p>
+        <p class="text-align">
           <span class="info-label">actors:</span>
           {{movie.actors}}
         </p>
-        <p>
+        <p class="text-align">
           <span class="info-label">plot:</span>
           {{movie.description}}
         </p>
@@ -147,7 +148,9 @@ export default {
 .icon-btn {
   cursor: pointer;
 }
-
+.text-align{
+ text-align: left;
+}
 .info-genre {
   color: #ef6c00
 }
@@ -156,4 +159,5 @@ export default {
   color: #ef6c00;
   font-weight: bold;
 }
+
 </style>

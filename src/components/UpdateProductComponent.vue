@@ -72,7 +72,7 @@
               name="updateactors"
               v-model="actors"
             />
-            <label for="updateactors">Actors</label>
+            <label for="updateactors"><b>Actors</b></label>
           </div>
         </div>
 
