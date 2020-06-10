@@ -159,4 +159,5 @@ export default {
   color: #ef6c00;
   font-weight: bold;
 }
+
 </style>
