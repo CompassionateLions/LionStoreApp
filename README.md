@@ -32,5 +32,6 @@ The API has been extensively documented [here](routes/README.md)
 * ### [Ziyen Loh](https://github.com/zyloh89)
 * ### [Karthik Kovi](https://github.com/karthikkovi)
 
-
 ## [License](LICENSE.md)
+
+This project is provided under the MIT license.
