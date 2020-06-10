@@ -38,7 +38,7 @@ const actions = {
     // signUpUser({commit}, data){
         //same as login but to signup endpoint instead
         
-        signUpUser({commit}, data){
+        signUpUser({commit, dispatch}, data){
             console.log(data);
             return fetch(`/api/users/signup`, {
                 method: 'POST',
